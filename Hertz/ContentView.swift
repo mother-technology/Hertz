@@ -1,19 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let store = AppStore(
-        initialState: .init(),
-        reducer: appReducer,
-        middlewares: [
-            tickMiddleware()
-        ]
-    )
-
-//    @EnvironmentObject var store: AppStore
-    
-    init() {
-        store.dispatch(.timerStart)
-    }
+    @ObservedObject var model = HertzModel()
     
     let dot = Color.init(red: 0.7215301991, green: 0.2244053185, blue: 0.3535325527)
     
@@ -35,20 +23,19 @@ struct ContentView: View {
                                         red: 0.1529411765,
                                         green: 0.1725490196,
                                         blue: 0.2039215686),
-                                lineWidth: 2)
-                        )
+                                    lineWidth: 2)
+                    )
                         .frame(
                             width: geometry.size.width - 10,
                             height: geometry.size.width - 10)
-
-                    HertzFace()
+                    
+                    TickFace(ticks: self.model.ticks)
                         .frame(
                             width: geometry.size.width - 100,
                             height: geometry.size.width - 100)
-
+                    
                     Dot(circleRadius: 15, fillColor: self.dot)
-                        .rotationEffect(
-                            Angle.degrees(Double(self.store.state.seconds) * 360 / 60))
+                        .rotationEffect(self.model.currentAngle)
                         .frame(
                             width: geometry.size.width - 85,
                             height: geometry.size.width - 85)
@@ -61,7 +48,7 @@ struct ContentView: View {
                     red: 0.08547224849,
                     green: 0.1101305559,
                     blue: 0.1441726089)
-                .edgesIgnoringSafeArea(.all))
+                    .edgesIgnoringSafeArea(.all))
         }
     }
 }

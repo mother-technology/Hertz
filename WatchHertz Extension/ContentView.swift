@@ -6,7 +6,7 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { gr in
             VStack {
-                AnalogClockFace(time: self.model.seconds)
+                AnalogClockFace()
                     .frame(width: gr.size.width, height: gr.size.width)
                 Spacer()
             }

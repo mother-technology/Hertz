@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AnalogClockFace: View {
-    var time: TimeInterval = 0
+//    var time: TimeInterval = 0
 
     func tick(at tick: Int) -> some View {
         VStack {
@@ -14,18 +14,17 @@ struct AnalogClockFace: View {
         .rotationEffect(Angle.degrees(Double(tick) / 240 * 360))
     }
 
-    func pointer() -> some View {
-        Pointer()
-            .stroke(Color.orange, lineWidth: 2)
-            .rotationEffect(Angle.degrees(Double(time) * 360 / 60))
-    }
+//    func pointer() -> some View {
+//        Pointer()
+//            .stroke(Color.orange, lineWidth: 2)
+//            .rotationEffect(Angle.degrees(Double(time) * 360 / 60))
+//    }
 
     var body: some View {
         ZStack {
             ForEach(0 ..< 60 * 4) { tick in
                 self.tick(at: tick)
             }
-            pointer()
         }
     }
 }

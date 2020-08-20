@@ -11,7 +11,9 @@
 		9E729E4B24CF018C0000D408 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzModel.swift */; };
 		9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */; };
 		9E7B97F224CEF98A004F1304 /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Pointer.swift */; };
-		9E985E3D24D6E9D7008E0A01 /* HertzFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E985E3C24D6E9D7008E0A01 /* HertzFace.swift */; };
+		9E985E3D24D6E9D7008E0A01 /* SegmentFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */; };
+		9E98F8E924EC5CAF001E9C0D /* TickFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98F8E824EC5CAF001E9C0D /* TickFace.swift */; };
+		9E98F8EC24EC5F89001E9C0D /* AnalogClockFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA838F24CEEDBE00A0A156 /* AnalogClockFace.swift */; };
 		9ED0310D24D2AD8D002847FA /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ED0310B24D2AD8D002847FA /* Interface.storyboard */; };
 		9ED0310F24D2AD8D002847FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ED0310E24D2AD8D002847FA /* Assets.xcassets */; };
 		9ED0311624D2AD8D002847FA /* WatchHertz Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9ED0311524D2AD8D002847FA /* WatchHertz Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -25,14 +27,7 @@
 		9ED0312D24D2AD8E002847FA /* WatchHertz.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9ED0310924D2AD8C002847FA /* WatchHertz.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9ED0313624D2AE36002847FA /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzModel.swift */; };
 		9ED0313724D2AE36002847FA /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
-		9ED0313824D2AE36002847FA /* AnalogClockFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA838F24CEEDBE00A0A156 /* AnalogClockFace.swift */; };
-		9ED0313924D2AE36002847FA /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Pointer.swift */; };
-		9EE7DC0B24D89A2F00DAD388 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC0A24D89A2F00DAD388 /* AppState.swift */; };
-		9EE7DC0D24D89B2000DAD388 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC0C24D89B2000DAD388 /* AppAction.swift */; };
-		9EE7DC0F24D9F89400DAD388 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC0E24D9F89400DAD388 /* Reducers.swift */; };
-		9EE7DC1124D9F9E900DAD388 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1024D9F9E900DAD388 /* AppStore.swift */; };
-		9EE7DC1324D9FE8D00DAD388 /* TickService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1224D9FE8D00DAD388 /* TickService.swift */; };
-		9EE7DC1524DB30B700DAD388 /* TickFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1424DB30B700DAD388 /* TickFace.swift */; };
+		9EE7DC1524DB30B700DAD388 /* CircleFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1424DB30B700DAD388 /* CircleFace.swift */; };
 		9EE7DC1724DB32AF00DAD388 /* FaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */; };
 		9EE9E23624D469B30087331B /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE9E23524D469B30087331B /* Triangle.swift */; };
 		9EE9E23824D476FB0087331B /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE9E23724D476FB0087331B /* Arc.swift */; };
@@ -109,7 +104,8 @@
 		9E729E4A24CF018C0000D408 /* HertzModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzModel.swift; sourceTree = "<group>"; };
 		9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		9E7B97F124CEF98A004F1304 /* Pointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pointer.swift; sourceTree = "<group>"; };
-		9E985E3C24D6E9D7008E0A01 /* HertzFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzFace.swift; sourceTree = "<group>"; };
+		9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentFace.swift; sourceTree = "<group>"; };
+		9E98F8E824EC5CAF001E9C0D /* TickFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickFace.swift; sourceTree = "<group>"; };
 		9ED0310924D2AD8C002847FA /* WatchHertz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchHertz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ED0310C24D2AD8D002847FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		9ED0310E24D2AD8D002847FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,12 +120,7 @@
 		9ED0312724D2AD8D002847FA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9ED0312924D2AD8D002847FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ED0312A24D2AD8D002847FA /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		9EE7DC0A24D89A2F00DAD388 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		9EE7DC0C24D89B2000DAD388 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
-		9EE7DC0E24D9F89400DAD388 /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
-		9EE7DC1024D9F9E900DAD388 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
-		9EE7DC1224D9FE8D00DAD388 /* TickService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickService.swift; sourceTree = "<group>"; };
-		9EE7DC1424DB30B700DAD388 /* TickFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickFace.swift; sourceTree = "<group>"; };
+		9EE7DC1424DB30B700DAD388 /* CircleFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFace.swift; sourceTree = "<group>"; };
 		9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceModel.swift; sourceTree = "<group>"; };
 		9EE9E23524D469B30087331B /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		9EE9E23724D476FB0087331B /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
@@ -199,15 +190,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		9E7B97F024CEF972004F1304 /* ClockFace */ = {
+		9E98F8E424EC5C63001E9C0D /* Faces */ = {
 			isa = PBXGroup;
 			children = (
 				9EFA838F24CEEDBE00A0A156 /* AnalogClockFace.swift */,
-				9EE9E23524D469B30087331B /* Triangle.swift */,
-				9E7B97F124CEF98A004F1304 /* Pointer.swift */,
-				9EE9E23724D476FB0087331B /* Arc.swift */,
+				9EE7DC1424DB30B700DAD388 /* CircleFace.swift */,
+				9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */,
+				9E98F8E824EC5CAF001E9C0D /* TickFace.swift */,
 			);
-			path = ClockFace;
+			path = Faces;
 			sourceTree = "<group>";
 		};
 		9ED0310A24D2AD8C002847FA /* WatchHertz */ = {
@@ -244,17 +235,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		9EE7DC0924D8999D00DAD388 /* Redux */ = {
-			isa = PBXGroup;
-			children = (
-				9EE7DC0C24D89B2000DAD388 /* AppAction.swift */,
-				9EE7DC0A24D89A2F00DAD388 /* AppState.swift */,
-				9EE7DC0E24D9F89400DAD388 /* Reducers.swift */,
-				9EE7DC1024D9F9E900DAD388 /* AppStore.swift */,
-			);
-			path = Redux;
-			sourceTree = "<group>";
-		};
 		9EFA835024CEED5E00A0A156 = {
 			isa = PBXGroup;
 			children = (
@@ -282,22 +262,21 @@
 		9EFA835B24CEED5E00A0A156 /* Hertz */ = {
 			isa = PBXGroup;
 			children = (
-				9EE7DC0924D8999D00DAD388 /* Redux */,
+				9E98F8E424EC5C63001E9C0D /* Faces */,
 				9E729E4924CF01750000D408 /* Models */,
 				9E729E4624CF00C50000D408 /* Extensions */,
-				9E7B97F024CEF972004F1304 /* ClockFace */,
 				9EFA835C24CEED5E00A0A156 /* AppDelegate.swift */,
 				9EFA835E24CEED5E00A0A156 /* SceneDelegate.swift */,
+				9EE9E23524D469B30087331B /* Triangle.swift */,
+				9E7B97F124CEF98A004F1304 /* Pointer.swift */,
+				9EE9E23724D476FB0087331B /* Arc.swift */,
 				9EFA836324CEED5E00A0A156 /* ContentView.swift */,
-				9E985E3C24D6E9D7008E0A01 /* HertzFace.swift */,
 				9EFA836524CEED5F00A0A156 /* Assets.xcassets */,
 				9EFA836A24CEED5F00A0A156 /* LaunchScreen.storyboard */,
 				9EFA836D24CEED5F00A0A156 /* Info.plist */,
 				9EFA836024CEED5E00A0A156 /* Hertz.xcdatamodeld */,
 				9EFA836724CEED5F00A0A156 /* Preview Content */,
 				9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */,
-				9EE7DC1224D9FE8D00DAD388 /* TickService.swift */,
-				9EE7DC1424DB30B700DAD388 /* TickFace.swift */,
 				9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */,
 			);
 			path = Hertz;
@@ -527,10 +506,9 @@
 				9ED0312124D2AD8D002847FA /* NotificationController.swift in Sources */,
 				9ED0311F24D2AD8D002847FA /* ExtensionDelegate.swift in Sources */,
 				9ED0312324D2AD8D002847FA /* NotificationView.swift in Sources */,
-				9ED0313824D2AE36002847FA /* AnalogClockFace.swift in Sources */,
+				9E98F8EC24EC5F89001E9C0D /* AnalogClockFace.swift in Sources */,
 				9ED0313624D2AE36002847FA /* HertzModel.swift in Sources */,
 				9ED0313724D2AE36002847FA /* CGRect.swift in Sources */,
-				9ED0313924D2AE36002847FA /* Pointer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,22 +517,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFA839024CEEDBE00A0A156 /* AnalogClockFace.swift in Sources */,
-				9EE7DC1324D9FE8D00DAD388 /* TickService.swift in Sources */,
 				9E729E4B24CF018C0000D408 /* HertzModel.swift in Sources */,
 				9EFA835D24CEED5E00A0A156 /* AppDelegate.swift in Sources */,
 				9EFA835F24CEED5E00A0A156 /* SceneDelegate.swift in Sources */,
 				9EFA836424CEED5E00A0A156 /* ContentView.swift in Sources */,
 				9EFA836224CEED5E00A0A156 /* Hertz.xcdatamodeld in Sources */,
-				9EE7DC0F24D9F89400DAD388 /* Reducers.swift in Sources */,
-				9EE7DC1124D9F9E900DAD388 /* AppStore.swift in Sources */,
-				9EE7DC1524DB30B700DAD388 /* TickFace.swift in Sources */,
-				9E985E3D24D6E9D7008E0A01 /* HertzFace.swift in Sources */,
+				9EE7DC1524DB30B700DAD388 /* CircleFace.swift in Sources */,
+				9E985E3D24D6E9D7008E0A01 /* SegmentFace.swift in Sources */,
+				9E98F8E924EC5CAF001E9C0D /* TickFace.swift in Sources */,
 				9EE7DC1724DB32AF00DAD388 /* FaceModel.swift in Sources */,
 				9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */,
 				9EE9E23824D476FB0087331B /* Arc.swift in Sources */,
-				9EE7DC0D24D89B2000DAD388 /* AppAction.swift in Sources */,
 				9EE9E23624D469B30087331B /* Triangle.swift in Sources */,
-				9EE7DC0B24D89A2F00DAD388 /* AppState.swift in Sources */,
 				9E7B97F224CEF98A004F1304 /* Pointer.swift in Sources */,
 				9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */,
 			);

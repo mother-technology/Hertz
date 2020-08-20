@@ -1,9 +1,10 @@
 import SwiftUI
 
-struct HertzFace: View {
-    let breatheIn = Color.init(red: 0.3555664718, green: 0.4603664279, blue: 0.579121232)
-    let breatheOut = Color.init(red: 0.7711976171, green: 0.8416673541, blue: 0.8185895681)
-    let breatheHold = Color.init(red: 0.9599910378, green: 0.8189997077, blue: 0.7644532323)
+struct CircleFace: View {
+    
+    let breatheIn = Color.init(red: 0.086, green: 0.855, blue: 0.890, opacity: 0.4)
+    let breatheOut = Color.init(red: 0.086, green: 0.855, blue: 0.890, opacity: 0.4)
+    let breatheHold = Color.init(red: 0.086, green: 0.855, blue: 0.890, opacity: 0)
     
     let segments: [Segment] = [
         .breatheIn(3),
@@ -31,8 +32,8 @@ struct HertzFace: View {
         }
         
         let normalizedRevolution = Double(maxCyclesPerRevolution) * secondsForCycle
-        let degressPerSecond = 360.0 / Double(normalizedRevolution)
-
+        let degressPerSecond = 360.0 / normalizedRevolution
+        
         var currentDegree: Double = 0
         
         var d: [ArcSegment] = []
@@ -48,11 +49,16 @@ struct HertzFace: View {
         
         return ZStack {
             ForEach(d, id: \.self) { item in
-                Arc(
-                    startAngle: .degrees(item.startDegree),
-                    endAngle: .degrees(item.endDegree),
-                    clockwise: true
-                ).fill(item.color)
+                ZStack {
+                    Arc(
+                        startAngle: .degrees(item.startDegree),
+                        endAngle: .degrees(item.endDegree),
+                        clockwise: true
+                    ).fill(item.color)
+                    Dott(circleRadius: 6)
+                        .fill(Color.white)
+                        .rotationEffect(.degrees(item.startDegree))
+                }
             }
         }
     }
@@ -61,6 +67,10 @@ struct HertzFace: View {
         GeometryReader { geometry in
             ZStack {
                 self.makeSegmentsForCircle(self.segments)
+                    .frame(
+                        width: geometry.size.width,
+                        height: geometry.size.width
+                    )
                 Circle()
                     .fill(
                         Color.init(
@@ -68,16 +78,23 @@ struct HertzFace: View {
                             green: 0.1725490196,
                             blue: 0.2039215686))
                     .frame(
-                        width: geometry.size.width - 130,
-                        height: geometry.size.height - 130
-                )
+                        width: geometry.size.width - 18,
+                        height: geometry.size.width - 18
+                    )
             }
         }
     }
 }
 
-struct HertzFace_Previews: PreviewProvider {
+struct Tick_Previews: PreviewProvider {
     static var previews: some View {
-        HertzFace()
+        CircleFace()
+        .padding()
+        .background(
+            Color.init(
+                red: 0.08547224849,
+                green: 0.1101305559,
+                blue: 0.1441726089)
+            .edgesIgnoringSafeArea(.all))
     }
 }
