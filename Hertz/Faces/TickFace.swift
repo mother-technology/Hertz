@@ -9,7 +9,7 @@ struct TickFace: View {
                 ForEach(self.ticks, id: \.self) { tick in
                     VStack {
                         RoundedRectangle(cornerRadius: 5)
-                            .fill(tick.color)
+                            .fill(tick.color.opacity(tick.opacity))
                             .frame(width: 10, height: 30)
                         Spacer()
                     }

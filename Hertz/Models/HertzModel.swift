@@ -4,6 +4,7 @@ import SwiftUI
 struct Tick: Hashable {
     let angle: Angle
     let color: Color
+    let opacity = 0.0
 }
 
 enum CycleSegment: Hashable {
@@ -43,10 +44,15 @@ class HertzModel: ObservableObject {
     private var totalTicks: Int = 0
     private var ticksPerSecondScale: Double = 1.0
     private var seconds: Double = 0
+    private var degressPerTick: Double = 0
+    
+    private var currentTick: Int = 0
     
     init() {
         ticks = makeTicks()
 
+        degressPerTick = 360.0 / Double(totalTicks)
+        
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true)     { timer in
             let seconds = self.seconds + (timer.timeInterval / self.ticksPerSecondScale)
             self.seconds = min(seconds, Double(self.totalTicks))
@@ -58,6 +64,17 @@ class HertzModel: ObservableObject {
             // Calculate angle
             let angle = 360.0 / Double(self.totalTicks) * self.seconds
             self.currentAngle = Angle.degrees(angle)
+            
+            if angle < self.degressPerTick {
+                self.currentTick = 0
+            } else {
+                let tick = Int(floor(self.currentAngle.degrees / self.degressPerTick))
+                if tick != self.currentTick {
+                    self.currentTick = tick
+                }
+            }
+            
+            self.calculateTransparency()
         }
     }
     
@@ -70,6 +87,14 @@ class HertzModel: ObservableObject {
         case .breatheHold:
             return breatheHoldColor
         }
+    }
+    
+    private func calculateTransparency() {
+        // Get three after and three before
+        let currentTick = ticks[self.currentTick]
+        let tick = Tick(angle: currentTick.angle, color: currentTick.color.opacity(0.1))
+        
+        ticks[self.currentTick] = tick
     }
     
     private func makeTicks() -> [Tick] {
