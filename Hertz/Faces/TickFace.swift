@@ -10,7 +10,7 @@ struct TickFace: View {
                     VStack {
                         RoundedRectangle(cornerRadius: 5)
                             .fill(tick.color.opacity(tick.opacity))
-                            .frame(width: 8, height: 30)
+                            .frame(width: 8, height: 20)
                             .shadow(color: .black, radius: 1, x: -0.5, y: -0.5)
                         Spacer()
                     }

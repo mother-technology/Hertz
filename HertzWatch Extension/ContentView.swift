@@ -4,6 +4,7 @@ struct ContentView: View {
     @ObservedObject var model = HertzModel()
     
     let dot = Color.init(red: 0.7215301991, green: 0.2244053185, blue: 0.3535325527)
+    // #colorLiteral(red: 0.1258122921, green: 0.1453048885, blue: 0.1794787049, alpha: 1)
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -29,14 +30,14 @@ struct ContentView: View {
                     
                     TickFace(ticks: self.model.ticks)
                         .frame(
-                            width: geometry.size.width - 100,
-                            height: geometry.size.width - 100)
+                            width: geometry.size.width - 20,
+                            height: geometry.size.width - 20)
                     
-                    Dot(circleRadius: 11, fillColor: self.dot)
+                    Dot(circleRadius: 7, fillColor: self.dot)
                         .rotationEffect(self.model.currentAngle)
                         .frame(
-                            width: geometry.size.width - 130,
-                            height: geometry.size.width - 130)
+                            width: geometry.size.width - 38,
+                            height: geometry.size.width - 38)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)
                 Spacer()
@@ -45,8 +46,10 @@ struct ContentView: View {
                 Color.init(
                     red: 0.08547224849,
                     green: 0.1101305559,
-                    blue: 0.1441726089)
-                .edgesIgnoringSafeArea(.all))
+                    blue: 0.1441726089
+                )
+                .edgesIgnoringSafeArea(.all)
+            )
         }
     }
 }
