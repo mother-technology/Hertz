@@ -4,7 +4,7 @@ import SwiftUI
 struct Tick: Hashable {
     let angle: Angle
     let color: Color
-    let opacity = 0.0
+    let opacity: Double
 }
 
 enum CycleSegment: Hashable {
@@ -47,13 +47,15 @@ class HertzModel: ObservableObject {
     private var degressPerTick: Double = 0
     
     private var currentTick: Int = 0
+    private var previousTick: Int = 0
     
     init() {
         ticks = makeTicks()
+//        calculateTransparency()
 
         degressPerTick = 360.0 / Double(totalTicks)
         
-        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true)     { timer in
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
             let seconds = self.seconds + (timer.timeInterval / self.ticksPerSecondScale)
             self.seconds = min(seconds, Double(self.totalTicks))
 
@@ -65,16 +67,16 @@ class HertzModel: ObservableObject {
             let angle = 360.0 / Double(self.totalTicks) * self.seconds
             self.currentAngle = Angle.degrees(angle)
             
-            if angle < self.degressPerTick {
-                self.currentTick = 0
-            } else {
-                let tick = Int(floor(self.currentAngle.degrees / self.degressPerTick))
-                if tick != self.currentTick {
-                    self.currentTick = tick
-                }
-            }
-            
-            self.calculateTransparency()
+//            self.previousTick = self.currentTick
+//            if angle < self.degressPerTick {
+//                self.currentTick = 0
+//            } else {
+//                let tick = Int(floor(self.currentAngle.degrees / self.degressPerTick))
+//                if tick != self.currentTick {
+//                    self.currentTick = tick
+//                }
+//            }
+//            self.calculateTransparency()
         }
     }
     
@@ -90,11 +92,11 @@ class HertzModel: ObservableObject {
     }
     
     private func calculateTransparency() {
-        // Get three after and three before
         let currentTick = ticks[self.currentTick]
-        let tick = Tick(angle: currentTick.angle, color: currentTick.color.opacity(0.1))
+        ticks[self.currentTick] = Tick(angle: currentTick.angle, color: currentTick.color, opacity: 1)
         
-        ticks[self.currentTick] = tick
+        let previousTick = ticks[self.previousTick]
+        ticks[self.previousTick] = Tick(angle: previousTick.angle, color: previousTick.color, opacity: 0.0)
     }
     
     private func makeTicks() -> [Tick] {
@@ -112,7 +114,7 @@ class HertzModel: ObservableObject {
             for cycleSegment in cycleSegments {
                 for _ in 1...Int(cycleSegment.getSeconds()) {
                     let angle = Angle.degrees(Double(count) / Double(totalTicks) * 360)
-                    let tick = Tick(angle: angle, color: getColor(for: cycleSegment))
+                    let tick = Tick(angle: angle, color: getColor(for: cycleSegment), opacity: 1)
                     ticks.append(tick)
                     
                     count = count + 1
