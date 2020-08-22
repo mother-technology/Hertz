@@ -25,7 +25,7 @@ enum CycleSegment: Hashable {
 }
 
 class HertzModel: ObservableObject {
-    @Published var currentAngle: Angle = Angle.degrees(10)
+    @Published var currentAngle: Angle = Angle.degrees(0)
     @Published var ticks: [Tick] = []
     
     let maxCycles = 3
@@ -51,8 +51,7 @@ class HertzModel: ObservableObject {
     
     init() {
         ticks = makeTicks()
-//        calculateTransparency()
-
+        
         degressPerTick = 360.0 / Double(totalTicks)
         
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
@@ -67,16 +66,17 @@ class HertzModel: ObservableObject {
             let angle = 360.0 / Double(self.totalTicks) * self.seconds
             self.currentAngle = Angle.degrees(angle)
             
-//            self.previousTick = self.currentTick
-//            if angle < self.degressPerTick {
-//                self.currentTick = 0
-//            } else {
-//                let tick = Int(floor(self.currentAngle.degrees / self.degressPerTick))
-//                if tick != self.currentTick {
-//                    self.currentTick = tick
-//                }
-//            }
-//            self.calculateTransparency()
+            self.previousTick = self.currentTick
+            if angle < self.degressPerTick {
+                self.currentTick = 0
+            } else {
+                let tick = Int(floor(self.currentAngle.degrees / self.degressPerTick))
+                if tick != self.currentTick {
+                    self.currentTick = tick
+                }
+            }
+            
+            self.calculateTransparency()
         }
     }
     
@@ -91,12 +91,54 @@ class HertzModel: ObservableObject {
         }
     }
     
+    private func getCircularIndex(for index: Int) -> Int {
+        if index < 0 {
+            let i = abs(index) % ticks.count
+            if i == 0 {
+                return i
+            }
+            
+            return ticks.count - i
+        } else if index >= ticks.count {
+            return index % ticks.count
+        } else {
+            return index
+        }
+    }
+    
     private func calculateTransparency() {
-        let currentTick = ticks[self.currentTick]
-        ticks[self.currentTick] = Tick(angle: currentTick.angle, color: currentTick.color, opacity: 1)
+        // First reset previousTick
+        let previousTickIndex = getCircularIndex(for: self.previousTick - 4)
+        let previousTick = ticks[previousTickIndex]
+        ticks[previousTickIndex] = Tick(angle: previousTick.angle, color: previousTick.color, opacity: 0)
+
+        var beforeTickIndex = getCircularIndex(for: self.currentTick - 3)
+        var beforeTick = ticks[beforeTickIndex]
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.25)
+
+        beforeTickIndex = getCircularIndex(for: self.currentTick - 2)
+        beforeTick = ticks[beforeTickIndex]
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.50)
+
+        beforeTickIndex = getCircularIndex(for: self.currentTick - 1)
+        beforeTick = ticks[beforeTickIndex]
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.75)
+
+        beforeTickIndex = getCircularIndex(for: self.currentTick)
+        beforeTick = ticks[beforeTickIndex]
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 1)
         
-        let previousTick = ticks[self.previousTick]
-        ticks[self.previousTick] = Tick(angle: previousTick.angle, color: previousTick.color, opacity: 0.0)
+        beforeTickIndex = getCircularIndex(for: self.currentTick + 1)
+        beforeTick = ticks[beforeTickIndex]
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.75)
+        
+        beforeTickIndex = getCircularIndex(for: self.currentTick + 2)
+        beforeTick = ticks[beforeTickIndex]
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.50)
+        
+        beforeTickIndex = getCircularIndex(for: self.currentTick + 3)
+        beforeTick = ticks[beforeTickIndex]
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.25)
     }
     
     private func makeTicks() -> [Tick] {
@@ -114,7 +156,7 @@ class HertzModel: ObservableObject {
             for cycleSegment in cycleSegments {
                 for _ in 1...Int(cycleSegment.getSeconds()) {
                     let angle = Angle.degrees(Double(count) / Double(totalTicks) * 360)
-                    let tick = Tick(angle: angle, color: getColor(for: cycleSegment), opacity: 1)
+                    let tick = Tick(angle: angle, color: getColor(for: cycleSegment), opacity: 0)
                     ticks.append(tick)
                     
                     count = count + 1

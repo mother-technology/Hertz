@@ -11,14 +11,27 @@ class HertzTests: XCTestCase {
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        let t: [Int] = [1,2,3,4,5]
+        
+        XCTAssertEqual(1, t[circular: 0])
+        XCTAssertEqual(5, t[circular: 4])
+        
+        XCTAssertEqual(1, t[circular: 5])
+        XCTAssertEqual(1, t[circular: 10])
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+        XCTAssertEqual(5, t[circular: -1])
+        XCTAssertEqual(5, t[circular: -6])
+
+        XCTAssertEqual(4, t[circular: -2])
+        XCTAssertEqual(4, t[circular: -7])
+
+        XCTAssertEqual(3, t[circular: -3])
+        XCTAssertEqual(3, t[circular: -8])
+
+        XCTAssertEqual(2, t[circular: -4])
+        XCTAssertEqual(2, t[circular: -9])
+
+        XCTAssertEqual(1, t[circular: -5])
+        XCTAssertEqual(1, t[circular: -10])
     }
 }

@@ -28,6 +28,7 @@
 		9E8D7BF824F036F400EF7E98 /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Pointer.swift */; };
 		9E985E3D24D6E9D7008E0A01 /* SegmentFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */; };
 		9E98F8E924EC5CAF001E9C0D /* TickFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98F8E824EC5CAF001E9C0D /* TickFace.swift */; };
+		9EBB1D5024F057420079F1C3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBB1D4F24F057420079F1C3 /* Array.swift */; };
 		9EE7DC1524DB30B700DAD388 /* CircleFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1424DB30B700DAD388 /* CircleFace.swift */; };
 		9EE7DC1724DB32AF00DAD388 /* FaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */; };
 		9EE9E23624D469B30087331B /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE9E23524D469B30087331B /* Triangle.swift */; };
@@ -121,6 +122,7 @@
 		9E8D7BEA24F0361F00EF7E98 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentFace.swift; sourceTree = "<group>"; };
 		9E98F8E824EC5CAF001E9C0D /* TickFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickFace.swift; sourceTree = "<group>"; };
+		9EBB1D4F24F057420079F1C3 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		9EE7DC1424DB30B700DAD388 /* CircleFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFace.swift; sourceTree = "<group>"; };
 		9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceModel.swift; sourceTree = "<group>"; };
 		9EE9E23524D469B30087331B /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				9E729E4724CF00DB0000D408 /* CGRect.swift */,
+				9EBB1D4F24F057420079F1C3 /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				9EFA835D24CEED5E00A0A156 /* AppDelegate.swift in Sources */,
 				9EFA835F24CEED5E00A0A156 /* SceneDelegate.swift in Sources */,
 				9EFA836424CEED5E00A0A156 /* ContentView.swift in Sources */,
+				9EBB1D5024F057420079F1C3 /* Array.swift in Sources */,
 				9EFA836224CEED5E00A0A156 /* Hertz.xcdatamodeld in Sources */,
 				9EE7DC1524DB30B700DAD388 /* CircleFace.swift in Sources */,
 				9E985E3D24D6E9D7008E0A01 /* SegmentFace.swift in Sources */,
