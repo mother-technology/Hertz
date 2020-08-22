@@ -4,10 +4,10 @@ struct ContentView: View {
     @ObservedObject var model = HertzModel()
     
     let dot = Color.init(red: 0.7215301991, green: 0.2244053185, blue: 0.3535325527)
-    // #colorLiteral(red: 0.1258122921, green: 0.1453048885, blue: 0.1794787049, alpha: 1)
     var body: some View {
         GeometryReader { geometry in
             VStack {
+                Spacer()
                 ZStack {
                     Circle()
                         .fill(
@@ -40,8 +40,8 @@ struct ContentView: View {
                             height: geometry.size.width - 38)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)
-                Spacer()
             }
+            .padding()
             .background(
                 Color.init(
                     red: 0.08547224849,

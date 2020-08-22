@@ -28,7 +28,7 @@ class HertzModel: ObservableObject {
     @Published var currentAngle: Angle = Angle.degrees(0)
     @Published var ticks: [Tick] = []
     
-    let maxCycles = 3
+    let maxCycles = 2
     
     let breatheInColor = Color.init(red: 0.3555664718, green: 0.4603664279, blue: 0.579121232)
     let breatheOutColor = Color.init(red: 0.7711976171, green: 0.8416673541, blue: 0.8185895681)
@@ -43,11 +43,11 @@ class HertzModel: ObservableObject {
     
     private var totalTicks: Int = 0
     private var ticksPerSecondScale: Double = 1.0
-    private var seconds: Double = 0
     private var degressPerTick: Double = 0
     
     private var currentTick: Int = 0
     private var previousTick: Int = 0
+    private var seconds: Double = 0
     
     init() {
         ticks = makeTicks()
@@ -55,7 +55,7 @@ class HertzModel: ObservableObject {
         degressPerTick = 360.0 / Double(totalTicks)
         
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
-            let seconds = self.seconds + (timer.timeInterval / self.ticksPerSecondScale)
+            let seconds = self.seconds + (timer.timeInterval)
             self.seconds = min(seconds, Double(self.totalTicks))
 
             if self.seconds == Double(self.totalTicks) {
