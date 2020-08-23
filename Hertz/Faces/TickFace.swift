@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TickFace: View {
     var ticks: [Tick] = []
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {

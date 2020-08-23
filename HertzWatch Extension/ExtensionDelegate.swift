@@ -1,15 +1,6 @@
-//
-//  ExtensionDelegate.swift
-//  HertzWatch Extension
-//
-//  Created by Mikael Hultgren on 2020-08-21.
-//  Copyright © 2020 Mikael Hultgren. All rights reserved.
-//
-
 import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
-
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
     }
@@ -52,5 +43,4 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             }
         }
     }
-
 }

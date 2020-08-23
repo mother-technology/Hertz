@@ -8,7 +8,7 @@ extension Array {
             if i == 0 {
                 return self[i]
             }
-            
+
             return self[count - i]
         } else if index >= count {
             return self[index % count]

@@ -11,11 +11,11 @@ class HertzTests: XCTestCase {
     }
 
     func testExample() throws {
-        let t: [Int] = [1,2,3,4,5]
-        
+        let t: [Int] = [1, 2, 3, 4, 5]
+
         XCTAssertEqual(1, t[circular: 0])
         XCTAssertEqual(5, t[circular: 4])
-        
+
         XCTAssertEqual(1, t[circular: 5])
         XCTAssertEqual(1, t[circular: 10])
 

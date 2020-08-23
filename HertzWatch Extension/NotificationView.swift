@@ -1,11 +1,3 @@
-//
-//  NotificationView.swift
-//  HertzWatch Extension
-//
-//  Created by Mikael Hultgren on 2020-08-21.
-//  Copyright © 2020 Mikael Hultgren. All rights reserved.
-//
-
 import SwiftUI
 
 struct NotificationView: View {

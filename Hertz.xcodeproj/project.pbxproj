@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
-		9E729E4B24CF018C0000D408 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzModel.swift */; };
+		9E729E4B24CF018C0000D408 /* HertzViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzViewModel.swift */; };
 		9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */; };
-		9E7B97F224CEF98A004F1304 /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Pointer.swift */; };
+		9E7B97F224CEF98A004F1304 /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Dot.swift */; };
 		9E8D7BCD24F0361D00EF7E98 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BCB24F0361D00EF7E98 /* Interface.storyboard */; };
 		9E8D7BCF24F0361E00EF7E98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BCE24F0361E00EF7E98 /* Assets.xcassets */; };
 		9E8D7BD624F0361E00EF7E98 /* HertzWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9E8D7BD524F0361E00EF7E98 /* HertzWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -22,17 +22,12 @@
 		9E8D7BE524F0361F00EF7E98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BE424F0361F00EF7E98 /* Assets.xcassets */; };
 		9E8D7BE824F0361F00EF7E98 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BE724F0361F00EF7E98 /* Preview Assets.xcassets */; };
 		9E8D7BED24F0361F00EF7E98 /* HertzWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9E8D7BC924F0361D00EF7E98 /* HertzWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9E8D7BF524F0369600EF7E98 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzModel.swift */; };
+		9E8D7BF524F0369600EF7E98 /* HertzViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzViewModel.swift */; };
 		9E8D7BF624F036AC00EF7E98 /* TickFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98F8E824EC5CAF001E9C0D /* TickFace.swift */; };
 		9E8D7BF724F036B300EF7E98 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
-		9E8D7BF824F036F400EF7E98 /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Pointer.swift */; };
-		9E985E3D24D6E9D7008E0A01 /* SegmentFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */; };
+		9E8D7BF824F036F400EF7E98 /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Dot.swift */; };
 		9E98F8E924EC5CAF001E9C0D /* TickFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98F8E824EC5CAF001E9C0D /* TickFace.swift */; };
 		9EBB1D5024F057420079F1C3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBB1D4F24F057420079F1C3 /* Array.swift */; };
-		9EE7DC1524DB30B700DAD388 /* CircleFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1424DB30B700DAD388 /* CircleFace.swift */; };
-		9EE7DC1724DB32AF00DAD388 /* FaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */; };
-		9EE9E23624D469B30087331B /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE9E23524D469B30087331B /* Triangle.swift */; };
-		9EE9E23824D476FB0087331B /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE9E23724D476FB0087331B /* Arc.swift */; };
 		9EFA835D24CEED5E00A0A156 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA835C24CEED5E00A0A156 /* AppDelegate.swift */; };
 		9EFA835F24CEED5E00A0A156 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA835E24CEED5E00A0A156 /* SceneDelegate.swift */; };
 		9EFA836224CEED5E00A0A156 /* Hertz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA836024CEED5E00A0A156 /* Hertz.xcdatamodeld */; };
@@ -42,7 +37,6 @@
 		9EFA836C24CEED5F00A0A156 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EFA836A24CEED5F00A0A156 /* LaunchScreen.storyboard */; };
 		9EFA837724CEED5F00A0A156 /* HertzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA837624CEED5F00A0A156 /* HertzTests.swift */; };
 		9EFA838224CEED5F00A0A156 /* HertzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA838124CEED5F00A0A156 /* HertzUITests.swift */; };
-		9EFA839024CEEDBE00A0A156 /* AnalogClockFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA838F24CEEDBE00A0A156 /* AnalogClockFace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,9 +97,9 @@
 
 /* Begin PBXFileReference section */
 		9E729E4724CF00DB0000D408 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
-		9E729E4A24CF018C0000D408 /* HertzModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzModel.swift; sourceTree = "<group>"; };
+		9E729E4A24CF018C0000D408 /* HertzViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzViewModel.swift; sourceTree = "<group>"; };
 		9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
-		9E7B97F124CEF98A004F1304 /* Pointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pointer.swift; sourceTree = "<group>"; };
+		9E7B97F124CEF98A004F1304 /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
 		9E8D7BC924F0361D00EF7E98 /* HertzWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HertzWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8D7BCC24F0361D00EF7E98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		9E8D7BCE24F0361E00EF7E98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,13 +114,8 @@
 		9E8D7BE724F0361F00EF7E98 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9E8D7BE924F0361F00EF7E98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E8D7BEA24F0361F00EF7E98 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentFace.swift; sourceTree = "<group>"; };
 		9E98F8E824EC5CAF001E9C0D /* TickFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickFace.swift; sourceTree = "<group>"; };
 		9EBB1D4F24F057420079F1C3 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		9EE7DC1424DB30B700DAD388 /* CircleFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFace.swift; sourceTree = "<group>"; };
-		9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceModel.swift; sourceTree = "<group>"; };
-		9EE9E23524D469B30087331B /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
-		9EE9E23724D476FB0087331B /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		9EFA835924CEED5E00A0A156 /* Hertz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hertz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFA835C24CEED5E00A0A156 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EFA835E24CEED5E00A0A156 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,7 +131,6 @@
 		9EFA837D24CEED5F00A0A156 /* HertzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HertzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFA838124CEED5F00A0A156 /* HertzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzUITests.swift; sourceTree = "<group>"; };
 		9EFA838324CEED5F00A0A156 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9EFA838F24CEEDBE00A0A156 /* AnalogClockFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockFace.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +177,7 @@
 		9E729E4924CF01750000D408 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9E729E4A24CF018C0000D408 /* HertzModel.swift */,
+				9E729E4A24CF018C0000D408 /* HertzViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,9 +219,6 @@
 		9E98F8E424EC5C63001E9C0D /* Faces */ = {
 			isa = PBXGroup;
 			children = (
-				9EFA838F24CEEDBE00A0A156 /* AnalogClockFace.swift */,
-				9EE7DC1424DB30B700DAD388 /* CircleFace.swift */,
-				9E985E3C24D6E9D7008E0A01 /* SegmentFace.swift */,
 				9E98F8E824EC5CAF001E9C0D /* TickFace.swift */,
 			);
 			path = Faces;
@@ -271,9 +256,7 @@
 				9E729E4624CF00C50000D408 /* Extensions */,
 				9EFA835C24CEED5E00A0A156 /* AppDelegate.swift */,
 				9EFA835E24CEED5E00A0A156 /* SceneDelegate.swift */,
-				9EE9E23524D469B30087331B /* Triangle.swift */,
-				9E7B97F124CEF98A004F1304 /* Pointer.swift */,
-				9EE9E23724D476FB0087331B /* Arc.swift */,
+				9E7B97F124CEF98A004F1304 /* Dot.swift */,
 				9EFA836324CEED5E00A0A156 /* ContentView.swift */,
 				9EFA836524CEED5F00A0A156 /* Assets.xcassets */,
 				9EFA836A24CEED5F00A0A156 /* LaunchScreen.storyboard */,
@@ -281,7 +264,6 @@
 				9EFA836024CEED5E00A0A156 /* Hertz.xcdatamodeld */,
 				9EFA836724CEED5F00A0A156 /* Preview Content */,
 				9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */,
-				9EE7DC1624DB32AF00DAD388 /* FaceModel.swift */,
 			);
 			path = Hertz;
 			sourceTree = "<group>";
@@ -571,9 +553,9 @@
 				9E8D7BE124F0361E00EF7E98 /* NotificationController.swift in Sources */,
 				9E8D7BDF24F0361E00EF7E98 /* ExtensionDelegate.swift in Sources */,
 				9E8D7BE324F0361F00EF7E98 /* NotificationView.swift in Sources */,
-				9E8D7BF524F0369600EF7E98 /* HertzModel.swift in Sources */,
+				9E8D7BF524F0369600EF7E98 /* HertzViewModel.swift in Sources */,
 				9E8D7BF724F036B300EF7E98 /* CGRect.swift in Sources */,
-				9E8D7BF824F036F400EF7E98 /* Pointer.swift in Sources */,
+				9E8D7BF824F036F400EF7E98 /* Dot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,21 +563,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EFA839024CEEDBE00A0A156 /* AnalogClockFace.swift in Sources */,
-				9E729E4B24CF018C0000D408 /* HertzModel.swift in Sources */,
+				9E729E4B24CF018C0000D408 /* HertzViewModel.swift in Sources */,
 				9EFA835D24CEED5E00A0A156 /* AppDelegate.swift in Sources */,
 				9EFA835F24CEED5E00A0A156 /* SceneDelegate.swift in Sources */,
 				9EFA836424CEED5E00A0A156 /* ContentView.swift in Sources */,
 				9EBB1D5024F057420079F1C3 /* Array.swift in Sources */,
 				9EFA836224CEED5E00A0A156 /* Hertz.xcdatamodeld in Sources */,
-				9EE7DC1524DB30B700DAD388 /* CircleFace.swift in Sources */,
-				9E985E3D24D6E9D7008E0A01 /* SegmentFace.swift in Sources */,
 				9E98F8E924EC5CAF001E9C0D /* TickFace.swift in Sources */,
-				9EE7DC1724DB32AF00DAD388 /* FaceModel.swift in Sources */,
 				9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */,
-				9EE9E23824D476FB0087331B /* Arc.swift in Sources */,
-				9EE9E23624D469B30087331B /* Triangle.swift in Sources */,
-				9E7B97F224CEF98A004F1304 /* Pointer.swift in Sources */,
+				9E7B97F224CEF98A004F1304 /* Dot.swift in Sources */,
 				9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
