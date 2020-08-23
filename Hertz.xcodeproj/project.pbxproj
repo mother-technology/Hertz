@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E4EE83424F2E07C0057CB8D /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
 		9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
 		9E729E4B24CF018C0000D408 /* HertzViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzViewModel.swift */; };
 		9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */; };
@@ -96,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9E4EE83324F2E07C0057CB8D /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		9E729E4724CF00DB0000D408 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		9E729E4A24CF018C0000D408 /* HertzViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzViewModel.swift; sourceTree = "<group>"; };
 		9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				9EFA836024CEED5E00A0A156 /* Hertz.xcdatamodeld */,
 				9EFA836724CEED5F00A0A156 /* Preview Content */,
 				9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */,
+				9E4EE83324F2E07C0057CB8D /* Arc.swift */,
 			);
 			path = Hertz;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				9EBB1D5024F057420079F1C3 /* Array.swift in Sources */,
 				9EFA836224CEED5E00A0A156 /* Hertz.xcdatamodeld in Sources */,
 				9E98F8E924EC5CAF001E9C0D /* TickFace.swift in Sources */,
+				9E4EE83424F2E07C0057CB8D /* Arc.swift in Sources */,
 				9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */,
 				9E7B97F224CEF98A004F1304 /* Dot.swift in Sources */,
 				9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */,

@@ -77,7 +77,7 @@ class HertzViewModel: ObservableObject {
                 }
             }
 
-            self.calculateTransparency()
+//            self.calculateTransparency()
         }
     }
 
@@ -115,15 +115,15 @@ class HertzViewModel: ObservableObject {
 
         var beforeTickIndex = getCircularIndex(for: currentTick - 3)
         var beforeTick = ticks[beforeTickIndex]
-        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.25)
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 1)
 
         beforeTickIndex = getCircularIndex(for: currentTick - 2)
         beforeTick = ticks[beforeTickIndex]
-        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.50)
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 1)
 
         beforeTickIndex = getCircularIndex(for: currentTick - 1)
         beforeTick = ticks[beforeTickIndex]
-        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.75)
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 1)
 
         beforeTickIndex = getCircularIndex(for: currentTick)
         beforeTick = ticks[beforeTickIndex]
@@ -131,15 +131,15 @@ class HertzViewModel: ObservableObject {
 
         beforeTickIndex = getCircularIndex(for: currentTick + 1)
         beforeTick = ticks[beforeTickIndex]
-        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.75)
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 1)
 
         beforeTickIndex = getCircularIndex(for: currentTick + 2)
         beforeTick = ticks[beforeTickIndex]
-        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.50)
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 1)
 
         beforeTickIndex = getCircularIndex(for: currentTick + 3)
         beforeTick = ticks[beforeTickIndex]
-        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 0.25)
+        ticks[beforeTickIndex] = Tick(angle: beforeTick.angle, color: beforeTick.color, opacity: 1)
     }
 
     private func makeTicks() -> [Tick] {
@@ -156,7 +156,7 @@ class HertzViewModel: ObservableObject {
             for cycleSegment in cycleSegments {
                 for _ in 1 ... Int(cycleSegment.getSeconds()) {
                     let angle = Angle.degrees(Double(count) / Double(totalTicks) * 360)
-                    let tick = Tick(angle: angle, color: getColor(for: cycleSegment), opacity: 0)
+                    let tick = Tick(angle: angle, color: getColor(for: cycleSegment), opacity: 1)
                     ticks.append(tick)
 
                     count = count + 1
