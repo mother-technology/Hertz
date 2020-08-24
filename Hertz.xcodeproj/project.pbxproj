@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E3AC93124F3DD1F00DDB271 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
 		9E4EE83424F2E07C0057CB8D /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
 		9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
 		9E729E4B24CF018C0000D408 /* HertzViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzViewModel.swift */; };
@@ -552,6 +553,7 @@
 			files = (
 				9E8D7BDD24F0361E00EF7E98 /* HostingController.swift in Sources */,
 				9E8D7BDB24F0361E00EF7E98 /* ContentView.swift in Sources */,
+				9E3AC93124F3DD1F00DDB271 /* Arc.swift in Sources */,
 				9E8D7BF624F036AC00EF7E98 /* TickFace.swift in Sources */,
 				9E8D7BE124F0361E00EF7E98 /* NotificationController.swift in Sources */,
 				9E8D7BDF24F0361E00EF7E98 /* ExtensionDelegate.swift in Sources */,
