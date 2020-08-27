@@ -35,10 +35,10 @@ class HertzViewModel: ObservableObject {
     let breatheHoldColor = Color(red: 1, green: 1, blue: 1)
 
     let cycleSegments: [CycleSegment] = [
-        .breatheHold(2),
-        .breatheIn(4),
-        .breatheHold(2),
-        .breatheOut(4),
+        .breatheHold(1),
+        .breatheIn(3),
+        .breatheHold(1),
+        .breatheOut(3),
     ]
 
     private var totalTicks: Int = 0
@@ -170,6 +170,6 @@ class HertzViewModel: ObservableObject {
 
 struct HertzViewModel_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        Text("le monde est à vous!")
     }
 }
