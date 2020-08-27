@@ -30,9 +30,9 @@ class HertzViewModel: ObservableObject {
 
     let maxCycles = 2
 
-    let breatheInColor = Color(red: 0.3555664718, green: 0.4603664279, blue: 0.579121232)
-    let breatheOutColor = Color(red: 0.7711976171, green: 0.8416673541, blue: 0.8185895681)
-    let breatheHoldColor = Color(red: 0.9599910378, green: 0.8189997077, blue: 0.7644532323)
+    let breatheInColor = Color(red: 0.190, green: 0.123, blue: 0.645)
+    let breatheOutColor = Color(red: 0.495, green: 0.281, blue: 0.283)
+    let breatheHoldColor = Color(red: 1, green: 1, blue: 1)
 
     let cycleSegments: [CycleSegment] = [
         .breatheHold(2),
