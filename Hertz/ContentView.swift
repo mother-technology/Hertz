@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var model = HertzViewModel()
 
-    let dot = Color(red: 1, green: 0, blue: 0)
+    let dot = Color(red: 0, green: 0, blue: 1)
     let bc = Color(
         red: 0,
         green: 0,
@@ -13,25 +13,11 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
+                // Just to push down the tickface
+                Rectangle()
+                    .fill(self.bc)
+                    .frame(width: geometry.size.width, height: 20)
                 ZStack {
-                    Circle()
-                        .fill(self.bc)
-                        .overlay(
-                            Circle()
-                                .stroke(
-                                    Color(
-                                        red: 0,
-                                        green: 0,
-                                        blue: 0
-                                    ),
-                                    lineWidth: 2
-                                )
-                        )
-                        .frame(
-                            width: geometry.size.width - 0,
-                            height: geometry.size.width - 10
-                        )
-
                     TickFace(ticks: self.model.ticks)
                         .frame(
                             width: geometry.size.width - 10,
@@ -71,8 +57,8 @@ struct ContentView: View {
                     Dot(circleRadius: 7, fillColor: self.dot)
                         .rotationEffect(self.model.currentAngle)
                         .frame(
-                            width: geometry.size.width - 120,
-                            height: geometry.size.width - 90
+                            width: geometry.size.width - 100,
+                            height: geometry.size.width - 100
                         )
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)
