@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var model = HertzViewModel()
 
-    let dot = Color(red: 0, green: 0, blue: 1)
+    let dot = Color(red: 1, green: 0, blue: 0)
     let bc = Color(
         red: 0,
         green: 0,
