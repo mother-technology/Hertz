@@ -84,9 +84,9 @@ class HertzViewModel: ObservableObject {
                     case .breatheIn:
                         self.factor = 1
                     case .breatheOut:
-                        self.factor = 0.5
+                        self.factor = 0.75
                     case .breatheHold:
-                        self.factor = 0.8
+                        self.factor = 1
                     }
                 }
             }

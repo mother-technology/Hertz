@@ -57,8 +57,8 @@ struct ContentView: View {
                     Dot(circleRadius: 7, fillColor: self.dot)
                         .rotationEffect(self.model.currentAngle)
                         .frame(
-                            width: geometry.size.width - 100,
-                            height: geometry.size.width - 100
+                            width: geometry.size.width - 93,
+                            height: geometry.size.width - 93
                         )
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)

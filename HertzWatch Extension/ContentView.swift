@@ -3,35 +3,12 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var model = HertzViewModel()
 
-    let dot = Color(red: 1, green: 0, blue: 0)
+    let dot = Color(red: 0, green: 0, blue: 1)
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
                 ZStack {
-                    Circle()
-                        .fill(
-                            Color(
-                                red: 0,
-                                green: 0,
-                                blue: 0
-                            ))
-                        .overlay(
-                            Circle()
-                                .stroke(
-                                    Color(
-                                        red: 0,
-                                        green: 0,
-                                        blue: 0
-                                    ),
-                                    lineWidth: 0
-                                )
-                        )
-                        .frame(
-                            width: geometry.size.width - 10,
-                            height: geometry.size.width - 10
-                        )
-
                     TickFace(ticks: self.model.ticks)
                         .frame(
                             width: geometry.size.width - 0,
