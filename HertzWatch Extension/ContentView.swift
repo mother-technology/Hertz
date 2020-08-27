@@ -72,7 +72,7 @@ struct ContentView: View {
                         .rotationEffect(self.model.currentAngle)
                         .frame(
                             width: geometry.size.width - 38,
-                            height: geometry.size.width - 0
+                            height: geometry.size.width - 12
                         )
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)
