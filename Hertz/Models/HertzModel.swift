@@ -25,7 +25,7 @@ enum CycleSegment: Hashable {
 }
 
 class HertzViewModel: ObservableObject {
-    @Published var currentAngle: Angle = Angle.degrees(0)
+    @Published var currentAngle = Angle.degrees(0)
     @Published var ticks: [Tick] = []
 
     let maxCycles = 2

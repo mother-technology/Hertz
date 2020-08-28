@@ -9,7 +9,7 @@ struct ContentView: View {
         green: 0,
         blue: 0
     )
-    
+
     var body: some View {
         GeometryReader { geometry in
             VStack {

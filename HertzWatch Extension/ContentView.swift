@@ -14,36 +14,36 @@ struct ContentView: View {
                             width: geometry.size.width - 0,
                             height: geometry.size.width - 1
                         )
-                    .mask(
-                        Arc(
-                            startAngle: .degrees(312),
-                            endAngle: .degrees(47),
-                            clockwise: true,
-                            radiusOffset: 0
-                        )
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(
-                                    colors: [
-                                        .clear,
-                                        Color.gray.opacity(0.1),
-                                        Color.gray.opacity(0.2),
-                                        Color.gray.opacity(0.3),
-                                        Color.gray.opacity(0.4),
-                                        Color.gray.opacity(1),
-                                        Color.gray.opacity(0.4),
-                                        Color.gray.opacity(0.3),
-                                        Color.gray.opacity(0.2),
-                                        Color.gray.opacity(0.1),
-                                        .clear,
-                                    ]
-                                ),
-                                startPoint: .leading,
-                                endPoint: .trailing
+                        .mask(
+                            Arc(
+                                startAngle: .degrees(312),
+                                endAngle: .degrees(47),
+                                clockwise: true,
+                                radiusOffset: 0
                             )
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(
+                                        colors: [
+                                            .clear,
+                                            Color.gray.opacity(0.1),
+                                            Color.gray.opacity(0.2),
+                                            Color.gray.opacity(0.3),
+                                            Color.gray.opacity(0.4),
+                                            Color.gray.opacity(1),
+                                            Color.gray.opacity(0.4),
+                                            Color.gray.opacity(0.3),
+                                            Color.gray.opacity(0.2),
+                                            Color.gray.opacity(0.1),
+                                            .clear,
+                                        ]
+                                    ),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .rotationEffect(self.model.currentAngle)
                         )
-                        .rotationEffect(self.model.currentAngle)
-                    )
 
                     Dot(circleRadius: 6, fillColor: self.dot)
                         .rotationEffect(self.model.currentAngle)

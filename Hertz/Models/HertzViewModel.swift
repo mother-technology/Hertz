@@ -26,7 +26,7 @@ enum CycleSegment: Hashable {
 }
 
 class HertzViewModel: ObservableObject {
-    @Published var currentAngle: Angle = Angle.degrees(0)
+    @Published var currentAngle = Angle.degrees(0)
     @Published var ticks: [Tick] = []
 
     let maxCycles = 2
@@ -51,7 +51,7 @@ class HertzViewModel: ObservableObject {
 
     private var timer: Timer?
     private var currentSegment: CycleSegment?
-    
+
     var factor: Double = 1
 
     init() {
@@ -79,7 +79,7 @@ class HertzViewModel: ObservableObject {
                 if tick != self.currentTick {
                     let tick = self.ticks[tick]
                     let segment = tick.segment
-                    
+
                     switch segment {
                     case .breatheIn:
                         self.factor = 1
@@ -92,7 +92,7 @@ class HertzViewModel: ObservableObject {
             }
         }
     }
-    
+
     private func getColor(for cycleSegment: CycleSegment) -> Color {
         switch cycleSegment {
         case .breatheIn:
