@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E3AC93124F3DD1F00DDB271 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
 		9E3B8D1F24FA391400C3C103 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */; };
+		9E3B8D2324FA44FF00C3C103 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3B8D2224FA44FF00C3C103 /* HealthKit.framework */; };
 		9E4EE83424F2E07C0057CB8D /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
 		9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
 		9E729E4B24CF018C0000D408 /* HertzViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzViewModel.swift */; };
@@ -100,6 +101,8 @@
 
 /* Begin PBXFileReference section */
 		9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HertzWatch Extension.entitlements"; sourceTree = "<group>"; };
+		9E3B8D2224FA44FF00C3C103 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		9E4EE83324F2E07C0057CB8D /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		9E729E4724CF00DB0000D408 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		9E729E4A24CF018C0000D408 /* HertzViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzViewModel.swift; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E3B8D2324FA44FF00C3C103 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +174,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E3B8D2124FA44FF00C3C103 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E3B8D2224FA44FF00C3C103 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9E729E4624CF00C50000D408 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +212,7 @@
 		9E8D7BD924F0361E00EF7E98 /* HertzWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */,
 				9E8D7BDA24F0361E00EF7E98 /* ContentView.swift */,
 				9E8D7BDC24F0361E00EF7E98 /* HostingController.swift */,
 				9E8D7BDE24F0361E00EF7E98 /* ExtensionDelegate.swift */,
@@ -239,6 +252,7 @@
 				9E8D7BCA24F0361D00EF7E98 /* HertzWatch */,
 				9E8D7BD924F0361E00EF7E98 /* HertzWatch Extension */,
 				9EFA835A24CEED5E00A0A156 /* Products */,
+				9E3B8D2124FA44FF00C3C103 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -689,6 +703,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "HertzWatch Extension/HertzWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HertzWatch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 58262W9GL8;
@@ -713,6 +728,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "HertzWatch Extension/HertzWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HertzWatch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 58262W9GL8;

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var model = HertzViewModel()
+    @ObservedObject var hrvModel = WorkoutManager()
 
     let dot = Color(red: 1, green: 0, blue: 0)
     var body: some View {
@@ -51,8 +52,20 @@ struct ContentView: View {
                             width: geometry.size.width - 38,
                             height: geometry.size.width - 12
                         )
+                    
+                    // The current heartrate.
+                    Text("\(self.hrvModel.heartrate, specifier: "%.1f") BPM")
+                        .font(
+                            Font.system(
+                                size: 26,
+                                weight: .regular,
+                                design: .default
+                            ).monospacedDigit())
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)
+                .onAppear() {
+                    self.hrvModel.requestAuthorization()
+                }
             }
             .padding()
             .background(

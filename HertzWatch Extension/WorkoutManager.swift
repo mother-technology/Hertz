@@ -31,7 +31,9 @@ class WorkoutManager: NSObject, ObservableObject {
         
         // Request authorization for those quantity types.
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
-            // Handle error.
+            if success {
+                self.startWorkout()
+            }
         }
     }
     
@@ -39,7 +41,7 @@ class WorkoutManager: NSObject, ObservableObject {
     func workoutConfiguration() -> HKWorkoutConfiguration {
         /// - Tag: WorkoutConfiguration
         let configuration = HKWorkoutConfiguration()
-        configuration.activityType = .running
+        configuration.activityType = .other
         configuration.locationType = .indoor
         
         return configuration
@@ -93,7 +95,10 @@ class WorkoutManager: NSObject, ObservableObject {
     // MARK: - Update the UI
     // Update the published values.
     func updateForStatistics(_ statistics: HKStatistics?) {
-        guard let statistics = statistics else { return }
+        guard let statistics = statistics else {
+            print("Nothing for stats")
+            return
+        }
         
         DispatchQueue.main.async {
             switch statistics.quantityType {
@@ -102,6 +107,7 @@ class WorkoutManager: NSObject, ObservableObject {
                 let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
                 let value = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
                 let roundedValue = Double( round( 1 * value! ) / 1 )
+                print("heartRate: \(roundedValue)")
                 self.heartrate = roundedValue
             default:
                 return
@@ -141,6 +147,7 @@ extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
         for type in collectedTypes {
             guard let quantityType = type as? HKQuantityType else {
+                print("Nothing for quanttype")
                 return // Nothing to do.
             }
             
@@ -148,6 +155,7 @@ extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
             let statistics = workoutBuilder.statistics(for: quantityType)
             
             // Update the published values.
+            print("Update stats")
             updateForStatistics(statistics)
         }
     }
