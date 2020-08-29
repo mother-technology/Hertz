@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E3AC93124F3DD1F00DDB271 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
+		9E3B8D1F24FA391400C3C103 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */; };
 		9E4EE83424F2E07C0057CB8D /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
 		9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
 		9E729E4B24CF018C0000D408 /* HertzViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* HertzViewModel.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9E4EE83324F2E07C0057CB8D /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		9E729E4724CF00DB0000D408 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		9E729E4A24CF018C0000D408 /* HertzViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzViewModel.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				9E8D7BE924F0361F00EF7E98 /* Info.plist */,
 				9E8D7BEA24F0361F00EF7E98 /* PushNotificationPayload.apns */,
 				9E8D7BE624F0361F00EF7E98 /* Preview Content */,
+				9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */,
 			);
 			path = "HertzWatch Extension";
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				9E8D7BDB24F0361E00EF7E98 /* ContentView.swift in Sources */,
 				9E3AC93124F3DD1F00DDB271 /* Arc.swift in Sources */,
 				9E8D7BF624F036AC00EF7E98 /* TickFace.swift in Sources */,
+				9E3B8D1F24FA391400C3C103 /* WorkoutManager.swift in Sources */,
 				9E8D7BE124F0361E00EF7E98 /* NotificationController.swift in Sources */,
 				9E8D7BDF24F0361E00EF7E98 /* ExtensionDelegate.swift in Sources */,
 				9E8D7BE324F0361F00EF7E98 /* NotificationView.swift in Sources */,
