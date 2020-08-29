@@ -54,7 +54,7 @@ struct ContentView: View {
                         )
                     
                     // The current heartrate.
-                    Text("\(self.hrvModel.heartrate, specifier: "%.1f") BPM")
+                    Text("\(self.hrvModel.heartrate, specifier: "%.1f") ♥")
                         .font(
                             Font.system(
                                 size: 26,
