@@ -56,9 +56,14 @@ class HertzViewModel: ObservableObject {
 
     init() {
         ticks = makeTicks()
-
         degressPerTick = 360.0 / Double(totalTicks)
-
+    }
+    
+    func stop() {
+        timer?.invalidate()
+    }
+    
+    func start() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { t in
             let seconds = self.seconds + (t.timeInterval * self.factor)
             self.seconds = min(seconds, Double(self.totalTicks))

@@ -4,6 +4,8 @@ struct ContentView: View {
     @ObservedObject var model = HertzViewModel()
     @ObservedObject var hrvModel = WorkoutManager()
 
+    @State var sessionInProgress = false
+
     let dot = Color(red: 1, green: 0, blue: 0)
     var body: some View {
         GeometryReader { geometry in
@@ -52,20 +54,30 @@ struct ContentView: View {
                             width: geometry.size.width - 38,
                             height: geometry.size.width - 12
                         )
+
                     
-                    // The current heartrate.
                     Text("\(self.hrvModel.heartrate, specifier: "%.1f") ♥")
                         .font(
                             Font.system(
                                 size: 26,
                                 weight: .regular,
                                 design: .default
-                            ).monospacedDigit())
+                            ).monospacedDigit()
+                        )
+                        .opacity(self.sessionInProgress ? 1 : 0)
+                        .overlay(
+                            RunButton(action: {
+                                self.sessionInProgress = true
+                                self.model.start()
+                                self.hrvModel.startWorkout()
+                            }).onAppear() {
+                                self.hrvModel.requestAuthorization()
+                            }
+                            .offset(CGSize(width: 0, height: self.sessionInProgress ? geometry.size.height : 0))
+                            .animation(.easeInOut(duration: 0.3))
+                        )
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)
-                .onAppear() {
-                    self.hrvModel.requestAuthorization()
-                }
             }
             .padding()
             .background(
