@@ -9,11 +9,10 @@ class WorkoutManager: NSObject, ObservableObject {
     var session: HKWorkoutSession!
     var builder: HKLiveWorkoutBuilder!
     
+    let builderDelegate = WorkoutManagerBuilderDelegate()
+    
     /// - Tag: Publishers
     @Published var heartrate: Double = 0
-    
-    // The app's workout state.
-    var running: Bool = false
     
     // Request authorization to access HealthKit.
     func requestAuthorization() {
@@ -46,8 +45,6 @@ class WorkoutManager: NSObject, ObservableObject {
     
     // Start the workout.
     func startWorkout() {
-        self.running = true
-        
         // Create the session and obtain the workout builder.
         /// - Tag: CreateWorkout
         do {
@@ -61,8 +58,12 @@ class WorkoutManager: NSObject, ObservableObject {
         }
         
         // Setup session and builder.
+        builderDelegate.action = { statistics in
+            self.updateForStatistics(statistics)
+        }
+        builder.delegate = builderDelegate
+
         session.delegate = self
-        builder.delegate = self
         
         // Set the workout builder's data source.
         /// - Tag: SetDataSource
@@ -79,7 +80,9 @@ class WorkoutManager: NSObject, ObservableObject {
 
     func endWorkout() {
         // End the workout session.
-        session.end()
+        if session.state == .running {
+            session.end()
+        }
     }
     
     func resetWorkout() {
@@ -113,6 +116,30 @@ class WorkoutManager: NSObject, ObservableObject {
     }
 }
 
+// MARK: - HKLiveWorkoutBuilderDelegate
+class WorkoutManagerBuilderDelegate: NSObject, HKLiveWorkoutBuilderDelegate {
+    var action: ((_ statistics: HKStatistics?) -> Void)?
+
+    func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {        
+    }
+    
+    func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
+        for type in collectedTypes {
+            guard let quantityType = type as? HKQuantityType else {
+                print("Nothing for quanttype")
+                return // Nothing to do.
+            }
+            
+            /// - Tag: GetStatistics
+            let statistics = workoutBuilder.statistics(for: quantityType)
+            
+            // Update the published values.
+            print("Update stats")
+            self.action?(statistics)
+        }
+    }
+}
+
 // MARK: - HKWorkoutSessionDelegate
 extension WorkoutManager: HKWorkoutSessionDelegate {
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState,
@@ -130,30 +157,5 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
         }
     }
     
-    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-        
-    }
-}
-
-// MARK: - HKLiveWorkoutBuilderDelegate
-extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
-    func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
-        
-    }
-    
-    func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
-        for type in collectedTypes {
-            guard let quantityType = type as? HKQuantityType else {
-                print("Nothing for quanttype")
-                return // Nothing to do.
-            }
-            
-            /// - Tag: GetStatistics
-            let statistics = workoutBuilder.statistics(for: quantityType)
-            
-            // Update the published values.
-            print("Update stats")
-            updateForStatistics(statistics)
-        }
-    }
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {}
 }

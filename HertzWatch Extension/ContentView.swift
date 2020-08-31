@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var model = HertzViewModel()
-    @ObservedObject var hrvModel = WorkoutManager()
+    @EnvironmentObject var model: HertzViewModel
+    @EnvironmentObject var hrvModel: WorkoutManager
 
     @State var sessionInProgress = false
 
@@ -73,7 +73,12 @@ struct ContentView: View {
                             }).onAppear() {
                                 self.hrvModel.requestAuthorization()
                             }
-                            .offset(CGSize(width: 0, height: self.sessionInProgress ? geometry.size.height : 0))
+                            .offset(
+                                CGSize(
+                                    width: 0,
+                                    height: self.sessionInProgress ? geometry.size.height : 0
+                                )
+                            )
                             .animation(.easeInOut(duration: 0.3))
                         )
                 }
