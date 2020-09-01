@@ -4,8 +4,6 @@ struct ContentView: View {
     @EnvironmentObject var model: HertzViewModel
     @EnvironmentObject var hrvModel: WorkoutManager
 
-    @State var sessionInProgress = false
-
     let dot = Color(red: 1, green: 0, blue: 0)
     var body: some View {
         GeometryReader { geometry in
@@ -64,10 +62,9 @@ struct ContentView: View {
                                 design: .default
                             ).monospacedDigit()
                         )
-                        .opacity(self.sessionInProgress ? 1 : 0)
+                        .opacity(self.model.started ? 1 : 0)
                         .overlay(
                             RunButton(action: {
-                                self.sessionInProgress = true
                                 self.model.start()
                                 self.hrvModel.startWorkout()
                             }).onAppear() {
@@ -76,7 +73,7 @@ struct ContentView: View {
                             .offset(
                                 CGSize(
                                     width: 0,
-                                    height: self.sessionInProgress ? geometry.size.height : 0
+                                    height: self.model.started ? geometry.size.height : 0
                                 )
                             )
                             .animation(.easeInOut(duration: 0.3))

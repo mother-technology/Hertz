@@ -85,13 +85,6 @@ class WorkoutManager: NSObject, ObservableObject {
         }
     }
     
-    func resetWorkout() {
-        // Reset the published values.
-        DispatchQueue.main.async {
-            self.heartrate = 0
-        }
-    }
-    
     // MARK: - Update the UI
     // Update the published values.
     func updateForStatistics(_ statistics: HKStatistics?) {
@@ -132,9 +125,6 @@ class WorkoutManagerBuilderDelegate: NSObject, HKLiveWorkoutBuilderDelegate {
             
             /// - Tag: GetStatistics
             let statistics = workoutBuilder.statistics(for: quantityType)
-            
-            // Update the published values.
-            print("Update stats")
             self.action?(statistics)
         }
     }
@@ -151,7 +141,6 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
             builder.endCollection(withEnd: Date()) { (success, error) in
                 self.builder.finishWorkout { (workout, error) in
                     // Optionally display a workout summary to the user.
-                    self.resetWorkout()
                 }
             }
         }
