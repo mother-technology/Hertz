@@ -1,14 +1,14 @@
 import Foundation
 import UserNotifications
 
-struct Notification {
+struct Not {
     var id: String
     var title: String
     var datetime: DateComponents
 }
 
 class LocalNotificationManager {
-    var notifications = [Notification]()
+    var notifications = [Not]()
 
     func listScheduledNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in

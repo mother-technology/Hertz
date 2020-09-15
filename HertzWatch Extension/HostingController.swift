@@ -2,18 +2,13 @@ import Foundation
 import SwiftUI
 import WatchKit
 
-class HostingController: WKHostingController<AnyView> {
-    var model: HertzViewModel!
-    var hrvModel: WorkoutManager!
-
+class HostingController: WKHostingController<ContentView> {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        self.model = (WKExtension.shared().delegate as! ExtensionDelegate).model
-        self.hrvModel = (WKExtension.shared().delegate as! ExtensionDelegate).hrvModel
     }
-    
-    override var body: AnyView {
-        return AnyView(ContentView().environmentObject(model).environmentObject(hrvModel))
+
+    override var body: ContentView {
+        return ContentView()
     }
 }
 

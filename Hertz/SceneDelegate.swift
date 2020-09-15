@@ -17,12 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let contentView = ContentView()
             .environment(\.managedObjectContext, context)
 
-        let manager = LocalNotificationManager()
-        manager.notifications = [
-            Notification(id: "reminder-1", title: "Remember the milk!", datetime: DateComponents(calendar: Calendar.current, year: 2020, month: 7, day: 27, hour: 22, minute: 08)),
-        ]
-
-        manager.schedule()
+//        let manager = LocalNotificationManager()
+//        manager.notifications = [
+//            Notification(id: "reminder-1", title: "Remember the milk!", datetime: DateComponents(calendar: Calendar.current, year: 2020, month: 7, day: 27, hour: 22, minute: 08)),
+//        ]
+//
+//        manager.schedule()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

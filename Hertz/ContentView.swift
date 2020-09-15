@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var model = HertzViewModel()
+    @ObservedObject var model = ContentViewModel(hertzModel: HertzModel())
 
     let dot = Color(red: 1, green: 0, blue: 0)
     let bc = Color(
@@ -18,7 +18,7 @@ struct ContentView: View {
                     .fill(self.bc)
                     .frame(width: geometry.size.width, height: 20)
                 ZStack {
-                    TickFace(ticks: self.model.ticks)
+                    TickFace(model: self.model)
                         .frame(
                             width: geometry.size.width - 10,
                             height: geometry.size.width - 80

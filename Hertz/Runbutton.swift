@@ -16,7 +16,7 @@ struct RunStyle: ButtonStyle {
 
 struct RunButton: View {
     var action: (() -> Void) = {}
-    
+
     var body: some View {
         Button(action: { self.action() }) {
             Text("Start")

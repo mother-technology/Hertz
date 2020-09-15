@@ -1,16 +1,19 @@
+import Combine
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var model: HertzViewModel
-    @EnvironmentObject var hrvModel: WorkoutManager
+    @ObservedObject var model = ContentViewModel(hertzModel: HertzModel())
+
+    @ObservedObject var workoutManager: WorkoutManager = .shared
 
     let dot = Color(red: 1, green: 0, blue: 0)
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
                 ZStack {
-                    TickFace(ticks: self.model.ticks)
+                    TickFace(model: self.model)
                         .frame(
                             width: geometry.size.width - 0,
                             height: geometry.size.width - 1
@@ -53,8 +56,7 @@ struct ContentView: View {
                             height: geometry.size.width - 12
                         )
 
-                    
-                    Text("\(self.hrvModel.heartrate, specifier: "%.1f") ♥")
+                    Text("\(self.workoutManager.heartrate, specifier: "%.1f") ♥")
                         .font(
                             Font.system(
                                 size: 26,
@@ -62,18 +64,18 @@ struct ContentView: View {
                                 design: .default
                             ).monospacedDigit()
                         )
-                        .opacity(self.model.started ? 1 : 0)
+                        .opacity(self.model.isRunning ? 1 : 0)
                         .overlay(
                             RunButton(action: {
                                 self.model.start()
-                                self.hrvModel.startWorkout()
-                            }).onAppear() {
-                                self.hrvModel.requestAuthorization()
+                                self.workoutManager.startWorkout()
+                            }).onAppear {
+                                self.workoutManager.requestAuthorization()
                             }
                             .offset(
                                 CGSize(
                                     width: 0,
-                                    height: self.model.started ? geometry.size.height : 0
+                                    height: self.model.isRunning ? geometry.size.height : 0
                                 )
                             )
                             .animation(.easeInOut(duration: 0.3))
@@ -97,5 +99,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ContentViewModel(hertzModel: HertzModel()))
     }
 }
