@@ -26,7 +26,6 @@ enum CycleSegment: Hashable {
 
 struct HertzModel {
     private(set) var absoluteStartTime: TimeInterval? = nil
-    var currentTime: TimeInterval = 0
     var elapsedTime: TimeInterval = 0
     
     var maxCycles: Int = 2
@@ -39,6 +38,8 @@ struct HertzModel {
     private var initialHeartRate: Double = 0
     private var initialFactor: Double = 1
 
+    var heartRate: Double = 0
+    
     var cycleSegments: [CycleSegment] =
         [
             .breatheHold(1),
@@ -60,6 +61,8 @@ struct HertzModel {
     }
     
     mutating func update(heartRate withHeartRate: Double) {
+        heartRate = withHeartRate
+        
         if initialHeartRate == 0 {
             initialHeartRate = withHeartRate
             print(withHeartRate)
@@ -159,6 +162,14 @@ class ContentViewModel: ObservableObject {
         hertzModel.ticks
     }
 
+    var heartRate: Double {
+        hertzModel.heartRate
+    }
+    
+    var factor: Double {
+        hertzModel.factor
+    }
+    
     func stop() {
         timer?.invalidate()
         timer = nil
@@ -168,7 +179,6 @@ class ContentViewModel: ObservableObject {
     func start() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [unowned self] timer in
             self.hertzModel.update(elapsedTime: timer.timeInterval)
-//            self.hertzModel.currentTime = Date().timeIntervalSinceReferenceDate
         }
 
         hertzModel.start(at: Date().timeIntervalSinceReferenceDate)

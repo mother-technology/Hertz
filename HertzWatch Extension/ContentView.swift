@@ -11,12 +11,11 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Spacer()
                 ZStack {
                     TickFace(model: self.model)
                         .frame(
-                            width: geometry.size.width - 0,
-                            height: geometry.size.width - 1
+                            width: geometry.size.width,
+                            height: geometry.size.width
                         )
                         .mask(
                             Arc(
@@ -56,34 +55,44 @@ struct ContentView: View {
                             height: geometry.size.width - 12
                         )
 
-                    Text("\(self.workoutManager.heartrate, specifier: "%.1f") ♥")
-                        .font(
-                            Font.system(
-                                size: 26,
-                                weight: .regular,
-                                design: .default
-                            ).monospacedDigit()
-                        )
-                        .opacity(self.model.isRunning ? 1 : 0)
-                        .overlay(
-                            RunButton(action: {
-                                self.model.start()
-                                self.workoutManager.startWorkout()
-                            }).onAppear {
-                                self.workoutManager.requestAuthorization()
-                            }
-                            .offset(
-                                CGSize(
-                                    width: 0,
-                                    height: self.model.isRunning ? geometry.size.height : 0
-                                )
+                    VStack {
+                        Text("\(self.model.heartRate, specifier: "%.1f") ♥")
+                            .font(
+                                Font.system(
+                                    size: 20,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
                             )
-                            .animation(.easeInOut(duration: 0.3))
+                        
+                            Text("\(self.model.factor, specifier: "%.1f")")
+                                .font(
+                                    Font.system(
+                                        size: 18,
+                                        weight: .regular,
+                                        design: .default
+                                    ).monospacedDigit()
+                                )
+                    }
+                    .opacity(self.model.isRunning ? 1 : 0)
+                    .overlay(
+                        RunButton(action: {
+                            self.model.start()
+                            self.workoutManager
+                                .startWorkout()
+                        }).onAppear {
+                            self.workoutManager.requestAuthorization()
+                        }
+                        .offset(
+                            CGSize(
+                                width: 0,
+                                height: self.model.isRunning ? geometry.size.height : 0
+                            )
                         )
+                        .animation(.easeInOut(duration: 0.3))
+                    )
                 }
-                .frame(width: geometry.size.width, height: geometry.size.width)
             }
-            .padding()
             .background(
                 Color(
                     red: 0,
@@ -99,6 +108,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(ContentViewModel(hertzModel: HertzModel()))
     }
 }

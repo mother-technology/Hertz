@@ -6,12 +6,10 @@ class WorkoutManager: NSObject, ObservableObject {
     static let shared = WorkoutManager()
 
     let healthStore = HKHealthStore()
-    var session: HKWorkoutSession!
+    var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder!
 
     let builderDelegate = WorkoutManagerBuilderDelegate()
-
-    @Published var heartrate: Double = 0
 
     func requestAuthorization() {
         let typesToShare: Set = [
@@ -40,7 +38,7 @@ class WorkoutManager: NSObject, ObservableObject {
                 healthStore: healthStore,
                 configuration: workoutConfiguration()
             )
-            builder = session.associatedWorkoutBuilder()
+            builder = session?.associatedWorkoutBuilder()
         } catch {
             return
         }
@@ -50,21 +48,21 @@ class WorkoutManager: NSObject, ObservableObject {
         }
         builder.delegate = builderDelegate
 
-        session.delegate = self
+        session?.delegate = self
 
         builder.dataSource = HKLiveWorkoutDataSource(
             healthStore: healthStore,
             workoutConfiguration: workoutConfiguration()
         )
 
-        session.startActivity(with: Date())
+        session?.startActivity(with: Date())
         builder.beginCollection(withStart: Date()) { _, _ in
         }
     }
 
     func endWorkout() {
-        if session.state == .running {
-            session.end()
+        if session?.state == .running {
+            session?.end()
         }
     }
 
@@ -79,7 +77,6 @@ class WorkoutManager: NSObject, ObservableObject {
                 let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
                 let value = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
                 let roundedValue = Double(round(1 * value!) / 1)
-                self.heartrate = roundedValue
                 
                 let userInfo: [String: Any] = [
                     "beat": roundedValue

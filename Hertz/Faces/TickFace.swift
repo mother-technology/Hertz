@@ -23,3 +23,9 @@ struct TickFace: View {
         }
     }
 }
+
+struct TickFace_Previews: PreviewProvider {
+    static var previews: some View {
+        TickFace(model: ContentViewModel(hertzModel: HertzModel()))
+    }
+}
