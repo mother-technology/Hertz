@@ -78,8 +78,7 @@ struct ContentView: View {
                     .overlay(
                         RunButton(action: {
                             self.model.start()
-                            self.workoutManager
-                                .startWorkout()
+                            self.workoutManager.startWorkout()
                         }).onAppear {
                             self.workoutManager.requestAuthorization()
                         }
