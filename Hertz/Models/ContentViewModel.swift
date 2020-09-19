@@ -60,7 +60,7 @@ struct HertzModel {
             .breatheHold(1),
             .breatheIn(3),
             .breatheHold(1),
-            .breatheOut(3),
+            .breatheOut(5),
         ]
 
     var currentAngle: Angle {
