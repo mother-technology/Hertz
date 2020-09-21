@@ -60,7 +60,7 @@ struct HertzModel {
             .breatheHold(1),
             .breatheIn(3),
             .breatheHold(1),
-            .breatheOut(5),
+            .breatheOut(4),
         ]
 
     var currentAngle: Angle {
@@ -157,8 +157,8 @@ struct HertzModel {
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
 
-    var breatheInColor = Color(red: 0.495, green: 0.523, blue: 0.645)
-    var breatheOutColor = Color(red: 0.495, green: 0.281, blue: 0.283)
+    var breatheInColor = Color(red: 0.2, green: 0.8, blue: 0.8) //(red: 0.495, green: 0.523, blue: 0.645)
+    var breatheOutColor = Color(red: 0.501, green: 0, blue: 0)
     var breatheHoldColor = Color(red: 1, green: 1, blue: 1)
 
     private var timer: Timer?
