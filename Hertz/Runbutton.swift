@@ -19,7 +19,7 @@ struct RunButton: View {
 
     var body: some View {
         Button(action: { self.action() }) {
-            Text("Start")
+            Text("➠")
         }
         .buttonStyle(RunStyle())
     }

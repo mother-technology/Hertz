@@ -6,7 +6,7 @@ struct ContentView: View {
 
     @ObservedObject var workoutManager: WorkoutManager = .shared
 
-    let dot = Color(red: 1, green: 0, blue: 0)
+    let dot = Color(red: 1, green: 0.2, blue: 0)
 
     var body: some View {
         GeometryReader { geometry in
