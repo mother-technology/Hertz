@@ -24,7 +24,7 @@ enum CycleSegment: Hashable {
     }
 }
 
-func circularArray<Element>(array:[Element], index: Int) -> Element {
+func circularArray<Element>(array: [Element], index: Int) -> Element {
     if index < 0 {
         let i = abs(index) % array.count
         if i == 0 {
@@ -42,7 +42,7 @@ func circularArray<Element>(array:[Element], index: Int) -> Element {
 struct HertzModel {
     private(set) var absoluteStartTime: TimeInterval? = nil
     var elapsedTime: TimeInterval = 0
-    
+
     var maxCycles: Int = 2
     var totalTicks: Int = 0
     var degressPerTick: Double = 0
@@ -53,7 +53,7 @@ struct HertzModel {
     private var initialFactor: Double = 1
 
     var heartRate: Double = 0
-    
+
     var insideSpeedUpAngle: Bool = false
     var cycleSegments: [CycleSegment] =
         [
@@ -93,10 +93,10 @@ struct HertzModel {
             insideSpeedUpAngle = true
         }
     }
-    
+
     mutating func update(heartRate withHeartRate: Double) {
         heartRate = withHeartRate
-        
+
         if initialHeartRate == 0 {
             initialHeartRate = withHeartRate
             return
@@ -104,7 +104,7 @@ struct HertzModel {
 
         if initialHeartRate <= withHeartRate {
             let diff = withHeartRate - initialHeartRate
-            factor = self.initialFactor + (diff / 10)
+            factor = initialFactor + (diff / 10)
         } else {
             let diff = initialHeartRate - withHeartRate
             factor = max(initialFactor - (diff / 10), 0.1)
@@ -146,7 +146,7 @@ struct HertzModel {
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
 
-    var breatheInColor = Color(red: 0.2, green: 0.8, blue: 0.8) //(red: 0.495, green: 0.523, blue: 0.645)
+    var breatheInColor = Color(red: 0.2, green: 0.8, blue: 0.8) // (red: 0.495, green: 0.523, blue: 0.645)
     var breatheOutColor = Color(red: 0.501, green: 0, blue: 0)
     var breatheHoldColor = Color(red: 1, green: 1, blue: 1)
 
@@ -196,11 +196,11 @@ class ContentViewModel: ObservableObject {
     var heartRate: Double {
         hertzModel.heartRate
     }
-    
+
     var factor: Double {
         hertzModel.factor
     }
-    
+
     func stop() {
         timer?.invalidate()
         timer = nil

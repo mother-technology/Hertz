@@ -64,7 +64,7 @@ struct ContentView: View {
 //                                    design: .default
 //                                ).monospacedDigit()
 //                            )
-//                        
+//
 //                            Text("\(self.model.factor, specifier: "%.1f")")
 //                                .font(
 //                                    Font.system(
@@ -74,22 +74,22 @@ struct ContentView: View {
 //                                    ).monospacedDigit()
 //                                )
 //                    }
-                    .opacity(self.model.isRunning ? 1 : 0)
-                    .overlay(
-                        RunButton(action: {
-                            self.model.start()
-                            self.workoutManager.startWorkout()
-                        }).onAppear {
-                            self.workoutManager.requestAuthorization()
-                        }
-                        .offset(
-                            CGSize(
-                                width: 0,
-                                height: self.model.isRunning ? geometry.size.height : 0
+                        .opacity(self.model.isRunning ? 1 : 0)
+                        .overlay(
+                            RunButton(action: {
+                                self.model.start()
+                                self.workoutManager.startWorkout()
+                            }).onAppear {
+                                self.workoutManager.requestAuthorization()
+                            }
+                            .offset(
+                                CGSize(
+                                    width: 0,
+                                    height: self.model.isRunning ? geometry.size.height : 0
+                                )
                             )
+                            .animation(.easeInOut(duration: 0.3))
                         )
-                        .animation(.easeInOut(duration: 0.3))
-                    )
                 }
             }
             .background(

@@ -77,9 +77,9 @@ class WorkoutManager: NSObject, ObservableObject {
                 let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
                 let value = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
                 let roundedValue = Double(round(1 * value!) / 1)
-                
+
                 let userInfo: [String: Any] = [
-                    "beat": roundedValue
+                    "beat": roundedValue,
                 ]
 
                 NotificationCenter.default.post(
@@ -114,7 +114,8 @@ class WorkoutManagerBuilderDelegate: NSObject, HKLiveWorkoutBuilderDelegate {
 
 extension WorkoutManager: HKWorkoutSessionDelegate {
     func workoutSession(_: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState,
-                        from _: HKWorkoutSessionState, date _: Date) {
+                        from _: HKWorkoutSessionState, date _: Date)
+    {
         if toState == .ended {
             builder.endCollection(withEnd: Date()) { _, _ in
                 self.builder.finishWorkout { _, _ in
