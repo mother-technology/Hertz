@@ -8,9 +8,9 @@ struct RunStyle: ButtonStyle {
             .overlay(
                 configuration.label
                     .foregroundColor(.white)
-                    .font(Font.system(size: 36, weight: .black, design: .default))
+                    .font(Font.system(size: 50, weight: .ultraLight, design: .default))
             )
-            .frame(width: 100, height: 100)
+//            .frame(width: 100, height: 100)
     }
 }
 
@@ -19,7 +19,7 @@ struct RunButton: View {
 
     var body: some View {
         Button(action: { self.action() }) {
-            Text("➠")
+            Image(systemName: "arrowtriangle.right.circle")
         }
         .buttonStyle(RunStyle())
     }

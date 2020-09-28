@@ -85,22 +85,11 @@ struct HertzModel {
         if case .breatheHold = currentTick.segment {
             let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
             if case .breatheOut = nextTick.segment {
-                if !insideSpeedUpAngle {
-                    print("speedup set to true")
-                }
-                
                 insideSpeedUpAngle = true
             } else {
-                if insideSpeedUpAngle {
-                    print("speedup set to false")
-                }
                 insideSpeedUpAngle = false
             }
         } else if case .breatheOut = currentTick.segment {
-            if !insideSpeedUpAngle {
-                print("speedup set to true")
-            }
-            
             insideSpeedUpAngle = true
         }
     }
