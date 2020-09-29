@@ -119,6 +119,7 @@ struct HertzModel {
 
     mutating func stop() {
         absoluteStartTime = nil
+        elapsedTime = 0
     }
 
     mutating func generateTicks() {
