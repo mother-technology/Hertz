@@ -61,7 +61,6 @@ struct ContentView: View {
                             height: geometry.size.width - 93
                         )
                 }
-                .frame(width: geometry.size.width, height: geometry.size.width)
                 Spacer()
             }
             .background(
