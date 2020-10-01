@@ -55,42 +55,41 @@ struct ContentView: View {
                             height: geometry.size.width - 12
                         )
 
-                    VStack {
-                    
-//                        Text("\(self.model.heartRate, specifier: "%.1f") ♥")
-//                            .font(
-//                                Font.system(
-//                                    size: 20,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//
-//                            Text("\(self.model.factor, specifier: "%.1f")")
-//                                .font(
-//                                    Font.system(
-//                                        size: 18,
-//                                        weight: .regular,
-//                                        design: .default
-//                                    ).monospacedDigit()
-//                                )
-                    }
-                        .opacity(self.model.isRunning ? 1 : 0)
-                        .overlay(
-                            RunButton(action: {
-                                self.model.start()
-                                self.workoutManager.startWorkout()
-                            }).onAppear {
-                                self.workoutManager.requestAuthorization()
-                            }
-                            .offset(
-                                CGSize(
-                                    width: 0,
-                                    height: self.model.isRunning ? geometry.size.height : 0
-                                )
-                            )
-                            .animation(.easeInOut(duration: 0.3))
+                    if !self.model.isRunning {
+                        RunButton(action: {
+                            self.model.start()
+                            self.workoutManager.startWorkout()
+                        })
+                        .onAppear {
+                            self.workoutManager.requestAuthorization()
+                        }
+                        .transition(
+                            AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                         )
+                    } else {
+                        VStack {
+                            Text("\(self.model.heartRate, specifier: "%.1f") ♥")
+                                .font(
+                                    Font.system(
+                                        size: 20,
+                                        weight: .regular,
+                                        design: .default
+                                    ).monospacedDigit()
+                                )
+                            
+                            Text("\(self.model.factor, specifier: "%.1f")")
+                                .font(
+                                    Font.system(
+                                        size: 18,
+                                        weight: .regular,
+                                        design: .default
+                                    ).monospacedDigit()
+                                )
+                        }
+                        .transition(
+                            AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
+                        )
+                    }
                 }
             }
             .background(
