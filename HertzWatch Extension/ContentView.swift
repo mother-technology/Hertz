@@ -6,7 +6,7 @@ struct ContentView: View {
 
     @ObservedObject var workoutManager: WorkoutManager = .shared
 
-    let dot = Color(red: 1, green: 0.2, blue: 0)
+    let dot = Color(red: 1, green: 0, blue: 0)
 
     var body: some View {
         GeometryReader { geometry in
@@ -55,7 +55,8 @@ struct ContentView: View {
                             height: geometry.size.width - 12
                         )
 
-//                    VStack {
+                    VStack {
+                    
 //                        Text("\(self.model.heartRate, specifier: "%.1f") ♥")
 //                            .font(
 //                                Font.system(
@@ -73,7 +74,7 @@ struct ContentView: View {
 //                                        design: .default
 //                                    ).monospacedDigit()
 //                                )
-//                    }
+                    }
                         .opacity(self.model.isRunning ? 1 : 0)
                         .overlay(
                             RunButton(action: {
