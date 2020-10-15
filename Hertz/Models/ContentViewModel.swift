@@ -47,6 +47,8 @@ struct HertzModel {
     var totalTicks: Int = 0
     var degressPerTick: Double = 0
     var factor: Double = 1
+    var targetFactor: Double = 1
+    var factorIncrement: Double = 0
     var ticks: [Tick] = []
 
     private var initialHeartRate: Double = 0
@@ -75,6 +77,13 @@ struct HertzModel {
 
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
         if insideSpeedUpAngle {
+            if factor < targetFactor {
+                let newFactor = factor + factorIncrement
+                factor = min(newFactor, targetFactor)
+            } else if factor > targetFactor {
+                let newFactor = factor - factorIncrement
+                factor = max(newFactor, targetFactor)
+            }
             elapsedTime += (withTimeInterval * factor)
         } else {
             elapsedTime += withTimeInterval
@@ -82,6 +91,7 @@ struct HertzModel {
 
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
+        
         if case .breatheHold = currentTick.segment {
             let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
             if case .breatheOut = nextTick.segment {
@@ -91,6 +101,10 @@ struct HertzModel {
             }
         } else if case .breatheOut = currentTick.segment {
             insideSpeedUpAngle = true
+        }
+        
+        if !insideSpeedUpAngle {
+            targetFactor = 1
         }
     }
 
@@ -104,10 +118,12 @@ struct HertzModel {
 
         if initialHeartRate <= withHeartRate {
             let diff = withHeartRate - initialHeartRate
-            factor = initialFactor + (diff / 10)
+            targetFactor = initialFactor + (diff / 10.0)
+            factorIncrement = diff / 10.0 / 10.0
         } else {
             let diff = initialHeartRate - withHeartRate
-            factor = max(initialFactor - (diff / 10), 0.1)
+            targetFactor = max(initialFactor - (diff / 10.0), 0.1)
+            factorIncrement = diff / 10.0 / 10.0
         }
     }
 
