@@ -23,21 +23,6 @@ class ContentViewModel: ObservableObject {
                 self.stop()
             }
             .store(in: &cancellables)
-
-        NotificationCenter.default
-            .publisher(for: Notification.Name.Hertz.beat)
-            .receive(on: RunLoop.main)
-            .sink { [unowned self] notification in
-                guard
-                    let uInfo = notification.userInfo,
-                    let hr = uInfo["beat"] as? Double
-                else {
-                    return
-                }
-
-                self.hertzModel.update(heartRate: hr)
-            }
-            .store(in: &cancellables)
     }
 
     var isRunning: Bool {
