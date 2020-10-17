@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0A8F6A253B5D90004E1184 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */; };
+		9E0A8F76253B5DE5004E1184 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */; };
 		9E2BBEA524FD785000E23C48 /* Runbutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BBEA424FD785000E23C48 /* Runbutton.swift */; };
 		9E2BBEA624FD785000E23C48 /* Runbutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BBEA424FD785000E23C48 /* Runbutton.swift */; };
 		9E3AC93124F3DD1F00DDB271 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
@@ -30,7 +32,6 @@
 		9E8D7BE524F0361F00EF7E98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BE424F0361F00EF7E98 /* Assets.xcassets */; };
 		9E8D7BE824F0361F00EF7E98 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BE724F0361F00EF7E98 /* Preview Assets.xcassets */; };
 		9E8D7BED24F0361F00EF7E98 /* HertzWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9E8D7BC924F0361D00EF7E98 /* HertzWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9E8D7BF524F0369600EF7E98 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4A24CF018C0000D408 /* ContentViewModel.swift */; };
 		9E8D7BF624F036AC00EF7E98 /* TickFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98F8E824EC5CAF001E9C0D /* TickFace.swift */; };
 		9E8D7BF724F036B300EF7E98 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
 		9E8D7BF824F036F400EF7E98 /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B97F124CEF98A004F1304 /* Dot.swift */; };
@@ -45,6 +46,7 @@
 		9EFA836C24CEED5F00A0A156 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EFA836A24CEED5F00A0A156 /* LaunchScreen.storyboard */; };
 		9EFA837724CEED5F00A0A156 /* HertzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA837624CEED5F00A0A156 /* HertzTests.swift */; };
 		9EFA838224CEED5F00A0A156 /* HertzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA838124CEED5F00A0A156 /* HertzUITests.swift */; };
+		9EFEA988253B5C8F00F9EF80 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		9E2BBEA424FD785000E23C48 /* Runbutton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runbutton.swift; sourceTree = "<group>"; };
 		9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HertzWatch Extension.entitlements"; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 		9EFA837D24CEED5F00A0A156 /* HertzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HertzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFA838124CEED5F00A0A156 /* HertzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzUITests.swift; sourceTree = "<group>"; };
 		9EFA838324CEED5F00A0A156 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				9E729E4A24CF018C0000D408 /* ContentViewModel.swift */,
+				9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 		9E8D7BD924F0361E00EF7E98 /* HertzWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9EFEA97A253B5BDC00F9EF80 /* Models */,
 				9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */,
 				9E8D7BDA24F0361E00EF7E98 /* ContentView.swift */,
 				9E8D7BDC24F0361E00EF7E98 /* HostingController.swift */,
@@ -321,6 +327,14 @@
 				9EFA838324CEED5F00A0A156 /* Info.plist */,
 			);
 			path = HertzUITests;
+			sourceTree = "<group>";
+		};
+		9EFEA97A253B5BDC00F9EF80 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -586,9 +600,10 @@
 				9E2BBEA624FD785000E23C48 /* Runbutton.swift in Sources */,
 				9E63D2162512B83E006B5643 /* NSNotification.swift in Sources */,
 				9E8D7BE324F0361F00EF7E98 /* NotificationView.swift in Sources */,
-				9E8D7BF524F0369600EF7E98 /* ContentViewModel.swift in Sources */,
+				9E0A8F76253B5DE5004E1184 /* ContentViewModel.swift in Sources */,
 				9E8D7BF724F036B300EF7E98 /* CGRect.swift in Sources */,
 				9E8D7BF824F036F400EF7E98 /* Dot.swift in Sources */,
+				9E0A8F6A253B5D90004E1184 /* HertzModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,6 +624,7 @@
 				9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */,
 				9E7B97F224CEF98A004F1304 /* Dot.swift in Sources */,
 				9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */,
+				9EFEA988253B5C8F00F9EF80 /* HertzModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

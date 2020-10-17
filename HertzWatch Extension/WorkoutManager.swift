@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import HealthKit
 
-class WorkoutManager: NSObject, ObservableObject {
+final class WorkoutManager: NSObject, ObservableObject {
     static let shared = WorkoutManager()
 
     let healthStore = HKHealthStore()
@@ -10,6 +10,13 @@ class WorkoutManager: NSObject, ObservableObject {
     var builder: HKLiveWorkoutBuilder!
 
     let builderDelegate = WorkoutManagerBuilderDelegate()
+    
+    let publisher: AnyPublisher<Double, Never>
+    let subject = PassthroughSubject<Double, Never>()
+    
+    override init() {
+        publisher = subject.eraseToAnyPublisher()
+    }
 
     func requestAuthorization() {
         let typesToShare: Set = [
@@ -71,26 +78,15 @@ class WorkoutManager: NSObject, ObservableObject {
             return
         }
 
-        DispatchQueue.main.async {
-            switch statistics.quantityType {
-            case HKQuantityType.quantityType(forIdentifier: .heartRate):
-                let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
-                let value = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
-                let roundedValue = Double(round(1 * value!) / 1)
+        switch statistics.quantityType {
+        case HKQuantityType.quantityType(forIdentifier: .heartRate):
+            let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
+            let value = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
+            let roundedValue = Double(round(1 * value!) / 1)
 
-                let userInfo: [String: Any] = [
-                    "beat": roundedValue,
-                ]
-
-                NotificationCenter.default.post(
-                    name: Notification.Name.Hertz.beat,
-                    object: self,
-                    userInfo: userInfo
-                )
-
-            default:
-                return
-            }
+            self.subject.send(roundedValue)
+        default:
+            return
         }
     }
 }
@@ -114,8 +110,7 @@ class WorkoutManagerBuilderDelegate: NSObject, HKLiveWorkoutBuilderDelegate {
 
 extension WorkoutManager: HKWorkoutSessionDelegate {
     func workoutSession(_: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState,
-                        from _: HKWorkoutSessionState, date _: Date)
-    {
+                        from _: HKWorkoutSessionState, date _: Date) {
         if toState == .ended {
             builder.endCollection(withEnd: Date()) { _, _ in
                 self.builder.finishWorkout { _, _ in

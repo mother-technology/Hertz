@@ -13,6 +13,8 @@ class ContentViewModel: ObservableObject {
 
     var cancellables = Set<AnyCancellable>()
 
+    let workOutManager: WorkoutManager = .shared
+    
     init(hertzModel: HertzModel) {
         self.hertzModel = hertzModel
         self.hertzModel.generateTicks()
@@ -24,22 +26,21 @@ class ContentViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
-        NotificationCenter.default
-            .publisher(for: Notification.Name.Hertz.beat)
+        workOutManager
+            .publisher
             .receive(on: RunLoop.main)
-            .sink { [unowned self] notification in
-                guard
-                    let uInfo = notification.userInfo,
-                    let hr = uInfo["beat"] as? Double
-                else {
-                    return
-                }
-
-                self.hertzModel.update(heartRate: hr)
+            .sink { [unowned self] value in
+                self.hertzModel.update(heartRate: value)
             }
             .store(in: &cancellables)
     }
 
+    deinit {
+        cancellables.forEach { c in
+            c.cancel()
+        }
+    }
+    
     var isRunning: Bool {
         hertzModel.absoluteStartTime != nil
     }
