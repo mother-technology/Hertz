@@ -12,7 +12,7 @@ struct ContentView: View {
         GeometryReader { geometry in
             VStack {
                 ZStack {
-                    TickFace(model: self.model)
+                    TickFace(model: model)
                         .frame(
                             width: geometry.size.width,
                             height: geometry.size.width
@@ -45,30 +45,31 @@ struct ContentView: View {
                                     endPoint: .trailing
                                 )
                             )
-                            .rotationEffect(self.model.currentAngle)
+                            .rotationEffect(model.currentAngle)
                         )
 
-                    Dot(circleRadius: 6, fillColor: self.dot)
-                        .rotationEffect(self.model.currentAngle)
+                    Dot(circleRadius: 6, fillColor: dot)
+                        .rotationEffect(model.currentAngle)
                         .frame(
                             width: geometry.size.width - 38,
                             height: geometry.size.width - 12
                         )
 
-                    if !self.model.isRunning {
-                        RunButton(action: {
-                            self.model.start()
-                            self.workoutManager.startWorkout()
-                        })
-                        .onAppear {
-                            self.workoutManager.requestAuthorization()
+                    if !model.isRunning {
+                        Button {
+                            model.start()
+                        } label: {
+                            Image(systemName: "arrowtriangle.right.circle")
                         }
+                        .buttonStyle(PlainButtonStyle())
+                        .foregroundColor(.white)
+                        .font(Font.system(size: 50, weight: .ultraLight, design: .default))
                         .transition(
                             AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                         )
                     } else {
                         VStack {
-                            Text("\(self.model.heartRate, specifier: "%.1f") ♥")
+                            Text("\(model.heartRate, specifier: "%.1f") ♥")
                                 .font(
                                     Font.system(
                                         size: 20,
@@ -77,7 +78,7 @@ struct ContentView: View {
                                     ).monospacedDigit()
                                 )
                             
-                            Text("\(self.model.factor, specifier: "%.1f")")
+                            Text("\(model.factor, specifier: "%.1f")")
                                 .font(
                                     Font.system(
                                         size: 18,

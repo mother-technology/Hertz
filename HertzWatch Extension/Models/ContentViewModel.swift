@@ -22,7 +22,7 @@ class ContentViewModel: ObservableObject {
         NotificationCenter.default
             .publisher(for: Notification.Name.Hertz.stop)
             .sink { [unowned self] _ in
-                self.stop()
+                stop()
             }
             .store(in: &cancellables)
 
@@ -65,14 +65,16 @@ class ContentViewModel: ObservableObject {
         timer?.invalidate()
         timer = nil
         hertzModel.stop()
+        workOutManager.endWorkout()
     }
 
     func start() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [unowned self] timer in
-            self.hertzModel.update(elapsedTime: timer.timeInterval)
+            hertzModel.update(elapsedTime: timer.timeInterval)
         }
 
         hertzModel.start(at: Date().timeIntervalSinceReferenceDate)
+        workOutManager.startWorkout()
     }
 
     func getColor(for cycleSegment: CycleSegment) -> Color {

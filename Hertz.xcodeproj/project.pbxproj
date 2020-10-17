@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		9E0A8F6A253B5D90004E1184 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */; };
 		9E0A8F76253B5DE5004E1184 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */; };
-		9E2BBEA524FD785000E23C48 /* Runbutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BBEA424FD785000E23C48 /* Runbutton.swift */; };
-		9E2BBEA624FD785000E23C48 /* Runbutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BBEA424FD785000E23C48 /* Runbutton.swift */; };
 		9E3AC93124F3DD1F00DDB271 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4EE83324F2E07C0057CB8D /* Arc.swift */; };
 		9E3B8D1F24FA391400C3C103 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */; };
 		9E3B8D2324FA44FF00C3C103 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3B8D2224FA44FF00C3C103 /* HealthKit.framework */; };
@@ -107,7 +105,6 @@
 
 /* Begin PBXFileReference section */
 		9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
-		9E2BBEA424FD785000E23C48 /* Runbutton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runbutton.swift; sourceTree = "<group>"; };
 		9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HertzWatch Extension.entitlements"; sourceTree = "<group>"; };
 		9E3B8D2224FA44FF00C3C103 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -298,7 +295,6 @@
 				9EFA836724CEED5F00A0A156 /* Preview Content */,
 				9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */,
 				9E4EE83324F2E07C0057CB8D /* Arc.swift */,
-				9E2BBEA424FD785000E23C48 /* Runbutton.swift */,
 			);
 			path = Hertz;
 			sourceTree = "<group>";
@@ -597,7 +593,6 @@
 				9E3B8D1F24FA391400C3C103 /* WorkoutManager.swift in Sources */,
 				9E8D7BE124F0361E00EF7E98 /* NotificationController.swift in Sources */,
 				9E8D7BDF24F0361E00EF7E98 /* ExtensionDelegate.swift in Sources */,
-				9E2BBEA624FD785000E23C48 /* Runbutton.swift in Sources */,
 				9E63D2162512B83E006B5643 /* NSNotification.swift in Sources */,
 				9E8D7BE324F0361F00EF7E98 /* NotificationView.swift in Sources */,
 				9E0A8F76253B5DE5004E1184 /* ContentViewModel.swift in Sources */,
@@ -618,7 +613,6 @@
 				9EBB1D5024F057420079F1C3 /* Array.swift in Sources */,
 				9EFA836224CEED5E00A0A156 /* Hertz.xcdatamodeld in Sources */,
 				9E98F8E924EC5CAF001E9C0D /* TickFace.swift in Sources */,
-				9E2BBEA524FD785000E23C48 /* Runbutton.swift in Sources */,
 				9E63D2102512B752006B5643 /* NSNotification.swift in Sources */,
 				9E4EE83424F2E07C0057CB8D /* Arc.swift in Sources */,
 				9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */,
