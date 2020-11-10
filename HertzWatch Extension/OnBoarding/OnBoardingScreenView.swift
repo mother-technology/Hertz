@@ -13,6 +13,7 @@ struct OnBoardingScreenView: View {
                             .padding()
                     }
                 }
+                .tabViewStyle(PageTabViewStyle())
             }
         }
     }

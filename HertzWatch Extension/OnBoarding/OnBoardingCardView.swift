@@ -8,7 +8,7 @@ struct OnBoardingCardView: View {
     var body: some View {
         ScrollView {
             VStack {
-                HStack {
+                HStack(alignment: .top) {
                     Text(card.title)
                         .font(.title)
                     Spacer()
@@ -17,8 +17,7 @@ struct OnBoardingCardView: View {
     //                .resizable()
     //                .scaledToFit()
                 Text(card.text)
-                
-//                Spacer()
+                Spacer()
             }
             .padding(.horizontal)
             .padding(.top, 10)
@@ -37,6 +36,6 @@ struct OnBoardingCardView: View {
 
 struct OnBoardingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingCardView(isShowing: .constant(true), card: OnBoardCard(title: "HAJ", image: "xmark.circle.fill", text: "This is a long text, "))
+        OnBoardingCardView(isShowing: .constant(true), card: OnBoardCard(title: "HAJ", image: "xmark.circle.fill", text: "This is a long text, with the posiblih asdhad had adh lkjhad lkajhd k akjdh ak akjdha kjhasd k akdjhadkh kasd akjhd"))
     }
 }
