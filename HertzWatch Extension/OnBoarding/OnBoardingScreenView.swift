@@ -22,9 +22,9 @@ struct OnBoardingScreenView: View {
 struct OnBoardingScreenView_Previews: PreviewProvider {
     static var data: OnBoardingScreenViewModel {
         let model = OnBoardingScreenViewModel()
-        model.newCard(title: "Test", image: "Image", text: "Alot of text just slipping on by ad by")
-        model.newCard(title: "Test", image: "Image", text: "Alot of text just slipping on by ad by")
-        model.newCard(title: "Test", image: "Image", text: "Alot of text just slipping on by ad by")
+        model.newCard(image: "Image", text: "Alot of text just slipping on by ad by")
+        model.newCard(image: "Image", text: "Alot of text just slipping on by ad by")
+        model.newCard(image: "Image", text: "Alot of text just slipping on by ad by")
 
         return model
     }
