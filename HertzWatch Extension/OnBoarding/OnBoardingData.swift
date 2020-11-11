@@ -1,9 +1,9 @@
 struct OnBoardingData {
     static func build() -> OnBoardingScreenViewModel {
         let model = OnBoardingScreenViewModel()
-        model.newCard(title: "Test", image: "Image", text: "Alot of text just slipping on by ad by")
-        model.newCard(title: "Test2", image: "Image", text: "adadad ad adad adAlot of text just slipping on by ad by")
-        model.newCard(title: "Test3", image: "Image", text: "Aloasd d asdadadad ddadasdadt of text just slipping on by ad by")
+        model.newCard(title: "", image: "Image", text: "A few minutes a day, every day.")
+        model.newCard(title: "", image: "Image", text: "For best results, practice directly after waking, last thing before sleeping, and directly after exercise.")
+        model.newCard(title: "", image: "Image", text: "Rest a finger on the top right of the display during practice to keep the display on.")
 
         return model
     }
