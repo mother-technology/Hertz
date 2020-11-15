@@ -12,19 +12,19 @@ struct OnBoardingCardView: View {
     //                .resizable()
     //                .scaledToFit()
                 Text(card.text)
+                    .font(.system(size: 14, weight: .light))
                 Spacer()
             }
             .padding(.horizontal)
-            .padding(.top, 10)
-            .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(Color(.darkGray))
+            .background(Rectangle()
+                            .fill(Color(.black))
             )
             Button("Dismiss") {
                 withAnimation {
                     isShowing = false
                 }
             }
-            .padding(.top, 5)
+            .padding(.top, 3)
         }
     }
 }
