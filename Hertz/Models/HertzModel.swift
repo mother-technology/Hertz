@@ -76,18 +76,16 @@ public struct HertzModel {
     }
 
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
-        if insideSpeedUpAngle {
-            if factor < targetFactor {
-                let newFactor = factor + factorIncrement
-                factor = min(newFactor, targetFactor)
-            } else if factor > targetFactor {
-                let newFactor = factor - factorIncrement
-                factor = max(newFactor, targetFactor)
-            }
-            elapsedTime += (withTimeInterval * factor)
-        } else {
-            elapsedTime += withTimeInterval
+        let localTargetFactor = insideSpeedUpAngle ? targetFactor : 1
+        if factor < localTargetFactor {
+            let newFactor = factor + factorIncrement
+            factor = min(newFactor, localTargetFactor)
+        } else if factor > localTargetFactor {
+            let newFactor = factor - factorIncrement
+            factor = max(newFactor, localTargetFactor)
         }
+        
+        elapsedTime += (withTimeInterval * factor)
 
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
@@ -101,10 +99,6 @@ public struct HertzModel {
             }
         } else if case .breatheOut = currentTick.segment {
             insideSpeedUpAngle = true
-        }
-        
-        if !insideSpeedUpAngle {
-            targetFactor = 1
         }
     }
 
