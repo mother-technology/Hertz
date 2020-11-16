@@ -202,7 +202,6 @@
 		9E531371255AF1F5004AACE3 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				9E53136A255AEF8A004AACE3 /* OnBoardingScreenView.swift */,
 				9E531377255AF249004AACE3 /* OnBoardCard.swift */,
 				9E531385255AF358004AACE3 /* OnBoardingCardView.swift */,
 				9E53137E255AF2C4004AACE3 /* OnBoardingScreenViewModel.swift */,
@@ -254,6 +253,7 @@
 				9E8D7BE424F0361F00EF7E98 /* Assets.xcassets */,
 				9E8D7BE924F0361F00EF7E98 /* Info.plist */,
 				9E8D7BEA24F0361F00EF7E98 /* PushNotificationPayload.apns */,
+				9E53136A255AEF8A004AACE3 /* OnBoardingScreenView.swift */,
 				9E8D7BE624F0361F00EF7E98 /* Preview Content */,
 				9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */,
 			);

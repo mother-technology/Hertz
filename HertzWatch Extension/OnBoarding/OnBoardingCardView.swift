@@ -8,9 +8,10 @@ struct OnBoardingCardView: View {
     var body: some View {
         ScrollView {
             VStack {
-    //            Image(card.image)
-    //                .resizable()
-    //                .scaledToFit()
+                Image(card.image)
+                    .resizable()
+                    .frame(width: 42.0, height: 42.0)
+                    .scaledToFill()
                 Text(card.text)
                     .font(.system(size: 14, weight: .light))
                 Spacer()
@@ -31,6 +32,8 @@ struct OnBoardingCardView: View {
 
 struct OnBoardingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingCardView(isShowing: .constant(true), card: OnBoardCard(image: "xmark.circle.fill", text: "This is a long text, with the posiblih asdhad had adh lkjhad lkajhd k akjdh ak akjdha kjhasd k akdjhadkh kasd akjhd"))
+        OnBoardingCardView(isShowing: .constant(true), card: OnBoardCard(image: "onboarding-chart", text: "Swipe down to access your results."))
+        
+        
     }
 }
