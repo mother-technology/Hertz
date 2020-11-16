@@ -10,7 +10,7 @@ struct OnBoardingCardView: View {
             VStack {
                 Image(card.image)
                     .resizable()
-                    .frame(width: 42.0, height: 42.0)
+                    .frame(width: card.width, height: card.height)
                     .scaledToFill()
                 Text(card.text)
                     .font(.system(size: 14, weight: .light))
@@ -32,7 +32,7 @@ struct OnBoardingCardView: View {
 
 struct OnBoardingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingCardView(isShowing: .constant(true), card: OnBoardCard(image: "onboarding-chart", text: "Swipe down to access your results."))
+        OnBoardingCardView(isShowing: .constant(true), card: OnBoardCard(image: "onboarding-chart",width: 42.0, height: 42.0, text: "Swipe down to access your results."))
         
         
     }
