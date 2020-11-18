@@ -20,16 +20,7 @@ struct OnBoardingScreenView: View {
 }
 
 struct OnBoardingScreenView_Previews: PreviewProvider {
-    static var data: OnBoardingScreenViewModel {
-        let model = OnBoardingScreenViewModel()
-        model.newCard(image: "Image", text: "Alot of text just slipping on by ad by")
-        model.newCard(image: "Image", text: "Alot of text just slipping on by ad by")
-        model.newCard(image: "Image", text: "Alot of text just slipping on by ad by")
-
-        return model
-    }
-    
     static var previews: some View {
-        OnBoardingScreenView(isPresenting: .constant(true), model: data)
+        OnBoardingScreenView(isPresenting: .constant(true), model: OnBoardingData.build())
     }
 }

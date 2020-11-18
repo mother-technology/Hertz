@@ -33,8 +33,8 @@ final class WorkoutManager: NSObject, ObservableObject {
 
     func workoutConfiguration() -> HKWorkoutConfiguration {
         let configuration = HKWorkoutConfiguration()
-        configuration.activityType = .other
-        configuration.locationType = .indoor
+        configuration.activityType = .mindAndBody
+        configuration.locationType = .unknown
 
         return configuration
     }

@@ -13,7 +13,7 @@ struct OnBoardingCardView: View {
                     .frame(width: card.width, height: card.height)
                     .scaledToFill()
                 Text(card.text)
-                    .font(.system(size: 14, weight: .light))
+                    .font(.system(size: 15, weight: .medium))
                 Spacer()
             }
             .padding(.horizontal)
@@ -32,8 +32,6 @@ struct OnBoardingCardView: View {
 
 struct OnBoardingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingCardView(isShowing: .constant(true), card: OnBoardCard(image: "onboarding-chart",width: 42.0, height: 42.0, text: "Swipe down to access your results."))
-        
-        
+        OnBoardingCardView(isShowing: .constant(true), card: OnBoardingData.build().cards.first!)
     }
 }
