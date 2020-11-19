@@ -92,7 +92,7 @@ struct ContentView: View {
                                         ).monospacedDigit()
                                     )
                                     .focusable(true)
-                                    .digitalCrownRotation($scrollAmount, from: 1, through: 10, by: 0.1, sensitivity: .low, isContinuous: true, isHapticFeedbackEnabled: true)
+                                    .digitalCrownRotation($scrollAmount, from: 1, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                                 /*Text("\(model.factor, specifier: "%.1f")")
                                     .font(
                                         Font.system(
