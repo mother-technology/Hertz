@@ -4,7 +4,7 @@ import SwiftUI
 
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
-    
+        
     var breatheInColor = Color(red: 0.2, green: 0.8, blue: 0.8) // (red: 0.495, green: 0.523, blue: 0.645)
     var breatheOutColor = Color(red: 0.501, green: 0, blue: 0)
     var breatheHoldColor = Color(red: 1, green: 1, blue: 1)
@@ -60,7 +60,11 @@ class ContentViewModel: ObservableObject {
     var factor: Double {
         hertzModel.factor
     }
-
+    
+/*    var scrollAmount: Double {
+        hertzModel.scrollAmount
+    }
+*/
     func stop() {
         timer?.invalidate()
         timer = nil
@@ -91,6 +95,6 @@ class ContentViewModel: ObservableObject {
 
 struct ContentViewModel_Previews: PreviewProvider {
     static var previews: some View {
-        Text("le monde est à vous!")
+        Text("le monde est à nous!")
     }
 }

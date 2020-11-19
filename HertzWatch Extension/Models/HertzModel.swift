@@ -55,6 +55,8 @@ public struct HertzModel {
     private var initialFactor: Double = 1
 
     var heartRate: Double = 0
+    
+//    var scrollAmount = 0.0
 
     var insideSpeedUpAngle: Bool = false
     var cycleSegments: [CycleSegment] =

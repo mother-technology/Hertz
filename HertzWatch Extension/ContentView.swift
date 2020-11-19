@@ -3,6 +3,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showOnboarding = false
+    @State private var scrollAmount = 0.0
+    
     @AppStorage("OnboardBeenViewed") var hasOnboarded = false
     let onBoardingModel = OnBoardingData.build()
     
@@ -81,8 +83,7 @@ struct ContentView: View {
                                             design: .default
                                         ).monospacedDigit()
                                     )
-                                
-                                Text("\(model.factor, specifier: "%.1f")")
+                                Text("Scroll: \(scrollAmount)")
                                     .font(
                                         Font.system(
                                             size: 18,
@@ -90,6 +91,17 @@ struct ContentView: View {
                                             design: .default
                                         ).monospacedDigit()
                                     )
+                                    .focusable(true)
+                                    .digitalCrownRotation($scrollAmount, from: 1, through: 10, by: 0.1, sensitivity: .low, isContinuous: true, isHapticFeedbackEnabled: true)
+                                /*Text("\(model.factor, specifier: "%.1f")")
+                                    .font(
+                                        Font.system(
+                                            size: 18,
+                                            weight: .regular,
+                                            design: .default
+                                        ).monospacedDigit()
+                                    )
+ */
                             }
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
