@@ -114,11 +114,11 @@ public struct HertzModel {
 
         if initialHeartRate <= withHeartRate {
             let diff = withHeartRate - initialHeartRate
-            targetFactor = min(initialFactor + (diff / 10.0), 1.7)
+            targetFactor = min(initialFactor + (diff / 10.0), 1.0)
             factorIncrement = diff / 10.0 / 10.0
         } else {
             let diff = initialHeartRate - withHeartRate
-            targetFactor = max(initialFactor - (diff / 10.0), 0.7)
+            targetFactor = max(initialFactor - (diff / 10.0), 0.6)
             factorIncrement = diff / 10.0 / 10.0
         }
     }
