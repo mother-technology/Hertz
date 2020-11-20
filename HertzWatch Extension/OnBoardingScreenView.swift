@@ -5,16 +5,14 @@ struct OnBoardingScreenView: View {
     var model: OnBoardingScreenViewModel
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                TabView {
-                    ForEach(model.cards) { card in
-                        OnBoardingCardView(isShowing: $isPresenting, card: card)
-                            .padding()
-                    }
+        VStack {
+            TabView {
+                ForEach(model.cards) { card in
+                    OnBoardingCardView(isShowing: $isPresenting, card: card)
+                        .padding()
                 }
-                .tabViewStyle(PageTabViewStyle())
             }
+            .tabViewStyle(PageTabViewStyle())
         }
     }
 }
