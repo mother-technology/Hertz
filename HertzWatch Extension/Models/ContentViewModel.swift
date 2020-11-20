@@ -69,10 +69,10 @@ class ContentViewModel: ObservableObject {
         hertzModel.factor
     }
     
-/*    var scrollAmount: Double {
-        hertzModel.scrollAmount
+    var crownFactor: Double {
+        hertzModel.crownFactor
     }
-*/
+
     func stop() {
         timer?.invalidate()
         timer = nil

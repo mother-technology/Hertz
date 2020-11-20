@@ -48,6 +48,7 @@ public struct HertzModel {
     var totalTicks: Int = 0
     var degressPerTick: Double = 0
     var factor: Double = 1
+    var crownFactor: Double = 1.0
     var targetFactor: Double = 1
     var factorIncrement: Double = 0
     var ticks: [Tick] = []
@@ -58,8 +59,7 @@ public struct HertzModel {
     var heartRate: Double = 0
     
     private var digitalCrown: Double = 0
-//    var scrollAmount = 0.0
-
+    
     var insideSpeedUpAngle: Bool = false
     var cycleSegments: [CycleSegment] =
         [
@@ -89,12 +89,13 @@ public struct HertzModel {
             factor = max(newFactor, localTargetFactor)
         }
         
-        elapsedTime += (withTimeInterval * factor)
+        //elapsedTime += (withTimeInterval * factor) //while testing with digital crown
+        elapsedTime += (withTimeInterval * (digitalCrown + 1))
 
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
         
-        if case .breatheHold = currentTick.segment {
+        if case .breatheHold = currentTick.segment { //to be used when crown test is gone
 //            let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
 //            if case .breatheOut = nextTick.segment, !nextTick.isFirst {
 //                insideSpeedUpAngle = true
@@ -104,11 +105,11 @@ public struct HertzModel {
         } else if case .breatheOut = currentTick.segment, !currentTick.isFirst {
             insideSpeedUpAngle = true
         }
+ 
     }
 
     mutating func update(digitalCrown withValue: Double) {
         digitalCrown = withValue
-        print(withValue)
     }
     
     mutating func update(heartRate withHeartRate: Double) {
