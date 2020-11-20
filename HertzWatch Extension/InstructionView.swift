@@ -13,11 +13,19 @@ struct InstructionView: View {
                     design: .default
                 ).monospacedDigit()
             )
-        Text("Test")
+            Text("Focus on the red dot.")
+                .font(
+                    Font.system(
+                        size: 14,
+                        weight: .bold,
+                        design: .default
+                    ).monospacedDigit()
+                )
+            Text("As it passes over blue ticks, breath in slowly. As it passes over white ticks, arrest breathing without tensing. As it passes over red ticks, breath out through your nose.")
             .font(
                 Font.system(
                     size: 14,
-                    weight: .regular,
+                    weight: .ultraLight,
                     design: .default
                 ).monospacedDigit()
             )
