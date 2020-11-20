@@ -4,6 +4,7 @@ import SwiftUI
 
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
+    @Published var digitalScrollAmount: Double = 0
         
     var breatheInColor = Color(red: 0.2, green: 0.8, blue: 0.8) // (red: 0.495, green: 0.523, blue: 0.645)
     var breatheOutColor = Color(red: 0.501, green: 0, blue: 0)
@@ -31,6 +32,13 @@ class ContentViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink { [unowned self] value in
                 self.hertzModel.update(heartRate: value)
+            }
+            .store(in: &cancellables)
+
+        $digitalScrollAmount
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                self.hertzModel.update(digitalCrown: value)
             }
             .store(in: &cancellables)
     }

@@ -20,6 +20,7 @@ func circularArray<Element>(array: [Element], index: Int) -> Element {
 struct Tick: Hashable {
     let angle: Angle
     let segment: CycleSegment
+    let isFirst: Bool
 }
 
 enum CycleSegment: Hashable {
@@ -56,6 +57,7 @@ public struct HertzModel {
 
     var heartRate: Double = 0
     
+    private var digitalCrown: Double = 0
 //    var scrollAmount = 0.0
 
     var insideSpeedUpAngle: Bool = false
@@ -93,17 +95,22 @@ public struct HertzModel {
         let currentTick = ticks[currentTickIndex]
         
         if case .breatheHold = currentTick.segment {
-            let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
-            if case .breatheOut = nextTick.segment {
-                insideSpeedUpAngle = true
-            } else {
+//            let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
+//            if case .breatheOut = nextTick.segment, !nextTick.isFirst {
+//                insideSpeedUpAngle = true
+//            } else {
                 insideSpeedUpAngle = false
-            }
-        } else if case .breatheOut = currentTick.segment {
+//            }
+        } else if case .breatheOut = currentTick.segment, !currentTick.isFirst {
             insideSpeedUpAngle = true
         }
     }
 
+    mutating func update(digitalCrown withValue: Double) {
+        digitalCrown = withValue
+        print(withValue)
+    }
+    
     mutating func update(heartRate withHeartRate: Double) {
         heartRate = withHeartRate
 
@@ -114,7 +121,7 @@ public struct HertzModel {
 
         if initialHeartRate <= withHeartRate {
             let diff = withHeartRate - initialHeartRate
-            targetFactor = min(initialFactor + (diff / 10.0), 1.0)
+            targetFactor = min(initialFactor + (diff / 10.0), 1.6)
             factorIncrement = diff / 10.0 / 10.0
         } else {
             let diff = initialHeartRate - withHeartRate
@@ -145,9 +152,9 @@ public struct HertzModel {
         var count = 0
         for _ in 1 ... Int(maxCycles) {
             for cycleSegment in cycleSegments {
-                for _ in 1 ... Int(cycleSegment.getSeconds()) {
+                for index in 1 ... Int(cycleSegment.getSeconds()) {
                     let angle = Angle.degrees(Double(count) / Double(totalTicks) * 360)
-                    let tick = Tick(angle: angle, segment: cycleSegment)
+                    let tick = Tick(angle: angle, segment: cycleSegment, isFirst: index == 1)
                     ticks.append(tick)
                     count = count + 1
                 }

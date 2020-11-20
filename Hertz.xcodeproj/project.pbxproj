@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84B1C39B25683D09005375B2 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1C39A25683D09005375B2 /* InstructionView.swift */; };
 		9E0A8F6A253B5D90004E1184 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */; };
 		9E0A8F76253B5DE5004E1184 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */; };
 		9E3B8D1F24FA391400C3C103 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */; };
@@ -105,6 +106,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		84B1C39A25683D09005375B2 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HertzWatch Extension.entitlements"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				9EFEA97A253B5BDC00F9EF80 /* Models */,
 				9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */,
 				9E8D7BDA24F0361E00EF7E98 /* ContentView.swift */,
+				84B1C39A25683D09005375B2 /* InstructionView.swift */,
 				9E8D7BDC24F0361E00EF7E98 /* HostingController.swift */,
 				9E8D7BDE24F0361E00EF7E98 /* ExtensionDelegate.swift */,
 				9E8D7BE024F0361E00EF7E98 /* NotificationController.swift */,
@@ -604,6 +607,7 @@
 				9E53136B255AEF8A004AACE3 /* OnBoardingScreenView.swift in Sources */,
 				9E8D7BDF24F0361E00EF7E98 /* ExtensionDelegate.swift in Sources */,
 				9E531378255AF249004AACE3 /* OnBoardCard.swift in Sources */,
+				84B1C39B25683D09005375B2 /* InstructionView.swift in Sources */,
 				9EEA96D82565433A0010A751 /* Array.swift in Sources */,
 				9EEA96B1256542120010A751 /* TickFace.swift in Sources */,
 				9E53137F255AF2C4004AACE3 /* OnBoardingScreenViewModel.swift in Sources */,
