@@ -45,10 +45,11 @@ struct ContentView: View {
                         .rotationEffect(model.currentAngle)
                     )
                 
-                Dot(circleRadius: 6, fillColor: Color(red: 1, green: 0, blue: 0))
+                Dot(circleRadius: 6)
+                    .fill(Color(red: 1, green: 0, blue: 0))
                     .rotationEffect(model.currentAngle)
                     .padding(5)
-                
+
                 if !model.isRunning {
                     Button {
                         model.start()
