@@ -82,29 +82,36 @@ public struct HertzModel {
     }
 
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
-        let localTargetFactor = insideSpeedUpAngle ? targetFactor : 1
-        if factor < localTargetFactor {
-            let newFactor = factor + factorIncrement
-            factor = min(newFactor, localTargetFactor)
-        } else if factor > localTargetFactor {
-            let newFactor = factor - factorIncrement
-            factor = max(newFactor, localTargetFactor)
+        if insideSpeedUpAngle {
+            if factor < targetFactor {
+                let newFactor = factor + factorIncrement
+                factor = min(newFactor, targetFactor)
+            } else if factor > targetFactor {
+                let newFactor = factor - factorIncrement
+                factor = max(newFactor, targetFactor)
+            }
+        }
+        else {
+            factor = 1
         }
         
-        elapsedTime += (withTimeInterval * (factor + digitalCrown)) //while testing with digital crown
+        elapsedTime += (withTimeInterval * (factor + ( digitalCrown / 5) ))
             
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
         
+        let currentRevolution = ceil(elapsedTime / Double(totalTicks))
         
-        if case .breatheHold = currentTick.segment {
-//            let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
-//            if case .breatheOut = nextTick.segment, !nextTick.isFirst {
-//                insideSpeedUpAngle = true
-//            } else {
-                insideSpeedUpAngle = false
-//            }
-        } else if case .breatheOut = currentTick.segment, !currentTick.isFirst {
+        if currentRevolution == 1 {
+            insideSpeedUpAngle = false
+        }
+        else if case .breatheHold = currentTick.segment {
+            insideSpeedUpAngle = false
+        }
+        else if case .breatheIn = currentTick.segment {
+            insideSpeedUpAngle = false
+        }
+        else if case .breatheOut = currentTick.segment, !currentTick.isFirst {
             insideSpeedUpAngle = true
         }
  
@@ -115,7 +122,6 @@ public struct HertzModel {
     }
     
     mutating func update(heartRate withHeartRate: Double) {
-        
         heartRate = withHeartRate
         
         initialHeartRates.append(heartRate)

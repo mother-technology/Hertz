@@ -5,10 +5,6 @@ import SwiftUI
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
     @Published var digitalScrollAmount: Double = 0
-        
-    var breatheInColor = Color(red: 0.2, green: 0.8, blue: 0.8) // (red: 0.495, green: 0.523, blue: 0.645)
-    var breatheOutColor = Color(red: 0.501, green: 0, blue: 0)
-    var breatheHoldColor = Color(red: 1, green: 1, blue: 1)
 
     private var timer: Timer?
 
@@ -92,11 +88,11 @@ class ContentViewModel: ObservableObject {
     func getColor(for cycleSegment: CycleSegment) -> Color {
         switch cycleSegment {
         case .breatheIn:
-            return breatheInColor
+            return Color.BreathIn
         case .breatheOut:
-            return breatheOutColor
+            return Color.BreathOut
         case .breatheHold:
-            return breatheHoldColor
+            return Color.BreathHold
         }
     }
 }
