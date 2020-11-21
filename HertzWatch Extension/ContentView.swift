@@ -80,7 +80,7 @@ struct ContentView: View {
                                     design: .default
                                 ).monospacedDigit()
                             )
-                        Text("\(model.factor, specifier: "%.1f")")
+                        Text("\(model.factor, specifier: "%.3f")")
                             .font(
                                 Font.system(
                                     size: 18,
