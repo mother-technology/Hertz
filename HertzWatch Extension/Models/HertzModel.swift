@@ -53,7 +53,10 @@ public struct HertzModel {
     var factorIncrement: Double = 0
     var ticks: [Tick] = []
 
-    private var initialHeartRate: Double = 0
+    private var avgHeartRate: Double = 0.0
+    private var initialHeartRates:[Double] = []
+    private var baselineHeartRateCount = 3
+     
     private var initialFactor: Double = 1
 
     var heartRate: Double = 0
@@ -75,7 +78,6 @@ public struct HertzModel {
         }
 
         let s = elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))
-
         return Angle.degrees(degressPerTick * s)
     }
 
@@ -89,13 +91,13 @@ public struct HertzModel {
             factor = max(newFactor, localTargetFactor)
         }
         
-        //elapsedTime += (withTimeInterval * factor) //while testing with digital crown
-        elapsedTime += (withTimeInterval * (digitalCrown + 1))
-
+        elapsedTime += (withTimeInterval * (factor + digitalCrown)) //while testing with digital crown
+            
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
         
-        if case .breatheHold = currentTick.segment { //to be used when crown test is gone
+        
+        if case .breatheHold = currentTick.segment {
 //            let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
 //            if case .breatheOut = nextTick.segment, !nextTick.isFirst {
 //                insideSpeedUpAngle = true
@@ -113,19 +115,26 @@ public struct HertzModel {
     }
     
     mutating func update(heartRate withHeartRate: Double) {
+        
         heartRate = withHeartRate
-
-        if initialHeartRate == 0 {
-            initialHeartRate = withHeartRate
+        
+        initialHeartRates.append(heartRate)
+        
+        if initialHeartRates.count <= baselineHeartRateCount {
             return
         }
-
-        if initialHeartRate <= withHeartRate {
-            let diff = withHeartRate - initialHeartRate
-            targetFactor = min(initialFactor + (diff / 10.0), 1.6)
+        
+        initialHeartRates.removeFirst()
+        
+        avgHeartRate = initialHeartRates.reduce(0.0, +) / Double(baselineHeartRateCount)
+        
+        if avgHeartRate <= withHeartRate {
+            let diff = withHeartRate - avgHeartRate
+            //targetFactor = min(initialFactor + (diff / 10.0), 1.6)
+            targetFactor = initialFactor + (diff / 10.0)
             factorIncrement = diff / 10.0 / 10.0
         } else {
-            let diff = initialHeartRate - withHeartRate
+            let diff = avgHeartRate - withHeartRate
             targetFactor = max(initialFactor - (diff / 10.0), 0.6)
             factorIncrement = diff / 10.0 / 10.0
         }
@@ -134,7 +143,7 @@ public struct HertzModel {
     mutating func start(at time: TimeInterval) {
         absoluteStartTime = time
         elapsedTime = 0
-        initialHeartRate = 0
+        avgHeartRate = 0
     }
 
     mutating func stop() {
