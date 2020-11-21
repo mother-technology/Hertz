@@ -93,8 +93,8 @@ public struct HertzModel {
         
         let currentHalfRevolution = ceil(2 * elapsedTime / Double(totalTicks))
         
-        if case .breatheOut = currentTick.segment, !currentTick.isFirst {
-            targetFactor = 1 - ( currentHalfRevolution / 20 ) - ( diffAvgMinHeartRate / 10)
+        if case .breatheOut = currentTick.segment {
+            targetFactor = 1 - ( currentHalfRevolution / 40 ) - ( diffAvgMinHeartRate / 7)
         } else {
             targetFactor = 1
         }
@@ -103,7 +103,7 @@ public struct HertzModel {
             if case .breatheIn = nextTick.segment {
                 insideSpeedUpAngle = true
             }
-        } else if case .breatheOut = currentTick.segment, !currentTick.isFirst {
+        } else if case .breatheOut = currentTick.segment {
             if case .breatheOut = nextTick.segment {
                 insideSpeedDownAngle = true
             }
@@ -127,7 +127,7 @@ public struct HertzModel {
             }
         }
         
-        elapsedTime += (withTimeInterval * (factor + ( digitalCrown / 5) ))
+        elapsedTime += (withTimeInterval * (factor + ( digitalCrown / 7) ))
         print("elapsedTime: ", elapsedTime)
         print("factor: ", factor )
         print("currentSegment: ", currentTick.segment)
