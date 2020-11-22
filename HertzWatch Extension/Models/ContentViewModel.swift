@@ -65,6 +65,14 @@ class ContentViewModel: ObservableObject {
         hertzModel.factor
     }
     
+    var diffAvgMinHeartRate: Double {
+        hertzModel.diffAvgMinHeartRate
+    }
+    
+    var averageHeartRateInOrHold: Double {
+        hertzModel.averageHeartRateInOrHold
+    }
+    
     var crownFactor: Double {
         hertzModel.crownFactor
     }

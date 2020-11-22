@@ -48,7 +48,7 @@ struct ContentView: View {
                 Dot(circleRadius: 6)
                     .fill(Color(red: 1, green: 0, blue: 0))
                     .rotationEffect(model.currentAngle)
-                    .padding(5)
+                    .padding(6)
 
                 if !model.isRunning {
                     Button {
@@ -72,10 +72,18 @@ struct ContentView: View {
                                     design: .default
                                 ).monospacedDigit()
                             )
+                        Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") A♥")
+                            .font(
+                                Font.system(
+                                    size: 14,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
                         Text("Scroll: \(model.digitalScrollAmount)")
                             .font(
                                 Font.system(
-                                    size: 18,
+                                    size: 16,
                                     weight: .regular,
                                     design: .default
                                 ).monospacedDigit()
@@ -83,7 +91,15 @@ struct ContentView: View {
                         Text("\(model.factor, specifier: "%.3f")")
                             .font(
                                 Font.system(
-                                    size: 18,
+                                    size: 16,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 16,
                                     weight: .regular,
                                     design: .default
                                 ).monospacedDigit()

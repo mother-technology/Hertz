@@ -52,9 +52,10 @@ public struct HertzModel {
     var targetFactor: Double = 1
     var factorIncrement: Double = 0.001
     var diffAvgMinHeartRate: Double = 0.0
+    var isInsideBreatheOut: Bool = false
     var ticks: [Tick] = []
+    var averageHeartRateInOrHold: Double = 0.0
     
-    private var averageHeartRateInOrHold: Double = 0.0
     private var heartRatesInOrHold:[Double] = []
     private var heartRatesOut:[Double] = []
     private var minHeartRateOut: Double = 0.0
@@ -89,49 +90,48 @@ public struct HertzModel {
         
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
-        let nextTick = circularArray(array: ticks, index: currentTickIndex + 1)
         
         let currentHalfRevolution = ceil(2 * elapsedTime / Double(totalTicks))
         
         if case .breatheOut = currentTick.segment {
-            targetFactor = 1 - ( currentHalfRevolution / 40 ) - ( diffAvgMinHeartRate / 7)
-        } else {
-            targetFactor = 1
-        }
-            
-        if case .breatheHold = currentTick.segment {
-            if case .breatheIn = nextTick.segment {
-                insideSpeedUpAngle = true
-            }
-        } else if case .breatheOut = currentTick.segment {
-            if case .breatheOut = nextTick.segment {
+            if !isInsideBreatheOut {
+                isInsideBreatheOut = true
                 insideSpeedDownAngle = true
+                targetFactor = initialFactor - ( currentHalfRevolution / 40 ) - ( diffAvgMinHeartRate / 7)
+                targetFactor = max(targetFactor, 0.5)
+                factor = initialFactor
+                factorIncrement = (initialFactor - targetFactor) * withTimeInterval / ( currentTick.segment.getSeconds() / 2 )
             }
+        } else {
+            targetFactor = initialFactor
+            isInsideBreatheOut = false
         }
             
-        if insideSpeedUpAngle {
-            if factor < targetFactor {
-                let newFactor = factor + factorIncrement
-                factor = min(newFactor, targetFactor)
-            } else {
-                insideSpeedUpAngle = false
-                factor = targetFactor
-            }
-        } else if insideSpeedDownAngle {
+        if insideSpeedDownAngle {
             if factor > targetFactor {
                 let newFactor = factor - factorIncrement
                 factor = max(newFactor, targetFactor)
             } else {
                 insideSpeedDownAngle = false
+                insideSpeedUpAngle = true
                 factor = targetFactor
             }
+        } else if insideSpeedUpAngle {
+            if factor < initialFactor {
+                let newFactor = factor + factorIncrement
+                factor = min(newFactor, initialFactor)
+            } else {
+                insideSpeedUpAngle = false
+                targetFactor = initialFactor
+            }
+        } else {
+            factor = targetFactor
         }
         
-        elapsedTime += (withTimeInterval * (factor + ( digitalCrown / 7) ))
-        print("elapsedTime: ", elapsedTime)
-        print("factor: ", factor )
-        print("currentSegment: ", currentTick.segment)
-        
+        elapsedTime += withTimeInterval * (factor + ( digitalCrown / 7) )
+        //print("elapsedTime: ", elapsedTime)
+        if case .breatheOut = currentTick.segment {            
+        }        
     }
     
     mutating func update(digitalCrown withValue: Double) {
@@ -179,6 +179,9 @@ public struct HertzModel {
         absoluteStartTime = time
         elapsedTime = 0
         heartRatesInOrHold.removeAll()
+        heartRatesOut.removeAll()
+        minHeartRateOut = 0.0
+        diffAvgMinHeartRate = 0.0
     }
     
     mutating func stop() {
@@ -191,8 +194,8 @@ public struct HertzModel {
             result + cycleSegment.getSeconds()
         }
         
-        totalTicks = Int(Double(maxCycles) * secondsForCycle)
-        degressPerTick = 360.0 / Double(totalTicks)
+        totalTicks = Int(Double(maxCycles) * secondsForCycle) //move to start func?
+        degressPerTick = 360.0 / Double(totalTicks) //move to start func?
         
         var count = 0
         for _ in 1 ... Int(maxCycles) {
