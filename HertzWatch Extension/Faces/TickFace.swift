@@ -11,7 +11,8 @@ struct TickFace: View {
                         .fill(
                             self.model.getColor(for: tick.segment)
                         )
-                        .frame(width: 7, height: 20)
+                        .shadow(color:self.model.getColor(for: tick.segment), radius:1, x: 0, y: 0)
+                        .frame(width: 8, height: 20)
                     Spacer()
                 }
                 .rotationEffect(tick.angle)

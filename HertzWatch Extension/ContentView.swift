@@ -28,12 +28,12 @@ struct ContentView: View {
                                         .clear,
                                         Color.gray.opacity(0.1),
                                         Color.gray.opacity(0.2),
-                                        Color.gray.opacity(0.7),
-                                        Color.gray.opacity(0.8),
-                                        Color.gray.opacity(1),
+                                        Color.gray.opacity(0.3),
+                                        Color.gray.opacity(0.6),
                                         Color.gray.opacity(0.9),
-                                        Color.gray.opacity(0.8),
-                                        Color.gray.opacity(0.2),
+                                        Color.gray.opacity(0.5),
+                                        Color.gray.opacity(0.4),
+                                        Color.gray.opacity(0.3),
                                         Color.gray.opacity(0.1),
                                         .clear,
                                     ]
@@ -45,10 +45,11 @@ struct ContentView: View {
                         .rotationEffect(model.currentAngle)
                     )
                 
-                Dot(circleRadius: 6)
-                    .fill(Color(red: 1, green: 0, blue: 0))
+                Dot(circleRadius:7)
+                    .fill(Color(red: 0.777, green: 0, blue: 0))
                     .rotationEffect(model.currentAngle)
-                    .padding(6)
+                    .padding(7.2)
+                    .shadow(color: .red, radius: 0.1, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
 
                 if !model.isRunning {
                     Button {
@@ -64,10 +65,18 @@ struct ContentView: View {
                     )
                 } else {
                     VStack {
+                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 18,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
                         Text("\(model.heartRate, specifier: "%.1f") ♥")
                             .font(
                                 Font.system(
-                                    size: 20,
+                                    size: 16,
                                     weight: .regular,
                                     design: .default
                                 ).monospacedDigit()
@@ -75,7 +84,7 @@ struct ContentView: View {
                         Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") A♥")
                             .font(
                                 Font.system(
-                                    size: 14,
+                                    size: 16,
                                     weight: .regular,
                                     design: .default
                                 ).monospacedDigit()
@@ -96,14 +105,7 @@ struct ContentView: View {
                                     design: .default
                                 ).monospacedDigit()
                             )
-                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
+          
                         
                     }
                     .transition(
