@@ -22,6 +22,9 @@
 		9E63D2162512B83E006B5643 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63D20F2512B752006B5643 /* NSNotification.swift */; };
 		9E729E4824CF00DB0000D408 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4724CF00DB0000D408 /* CGRect.swift */; };
 		9E729E4D24CF60DA0000D408 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */; };
+		9E88A9B9256BAABF00011C67 /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88A9B8256BAABF00011C67 /* Instructions.swift */; };
+		9E88A9C6256BD7EE00011C67 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E88A9C5256BD7EE00011C67 /* Colors.xcassets */; };
+		9E88A9CD256BD81800011C67 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88A9CC256BD81800011C67 /* Colors.swift */; };
 		9E8D7BCD24F0361D00EF7E98 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BCB24F0361D00EF7E98 /* Interface.storyboard */; };
 		9E8D7BCF24F0361E00EF7E98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8D7BCE24F0361E00EF7E98 /* Assets.xcassets */; };
 		9E8D7BD624F0361E00EF7E98 /* HertzWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9E8D7BD524F0361E00EF7E98 /* HertzWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -122,6 +125,9 @@
 		9E729E4724CF00DB0000D408 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		9E7B97F124CEF98A004F1304 /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
+		9E88A9B8256BAABF00011C67 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
+		9E88A9C5256BD7EE00011C67 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		9E88A9CC256BD81800011C67 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9E8D7BC924F0361D00EF7E98 /* HertzWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HertzWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8D7BCC24F0361D00EF7E98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		9E8D7BCE24F0361E00EF7E98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +213,16 @@
 				9E531391255B07A8004AACE3 /* OnBoardingData.swift */,
 			);
 			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		9E88A9BF256BD7C600011C67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9EFA836524CEED5F00A0A156 /* Assets.xcassets */,
+				9E88A9C5256BD7EE00011C67 /* Colors.xcassets */,
+				9E88A9CC256BD81800011C67 /* Colors.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		9E8D7BCA24F0361D00EF7E98 /* HertzWatch */ = {
@@ -300,15 +316,16 @@
 		9EFA835B24CEED5E00A0A156 /* Hertz */ = {
 			isa = PBXGroup;
 			children = (
+				9E88A9BF256BD7C600011C67 /* Resources */,
 				9EFA835C24CEED5E00A0A156 /* AppDelegate.swift */,
 				9EFA835E24CEED5E00A0A156 /* SceneDelegate.swift */,
 				9EFA836324CEED5E00A0A156 /* ContentView.swift */,
-				9EFA836524CEED5F00A0A156 /* Assets.xcassets */,
 				9EFA836A24CEED5F00A0A156 /* LaunchScreen.storyboard */,
 				9EFA836D24CEED5F00A0A156 /* Info.plist */,
 				9EFA836024CEED5E00A0A156 /* Hertz.xcdatamodeld */,
 				9EFA836724CEED5F00A0A156 /* Preview Content */,
 				9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */,
+				9E88A9B8256BAABF00011C67 /* Instructions.swift */,
 			);
 			path = Hertz;
 			sourceTree = "<group>";
@@ -518,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFA836C24CEED5F00A0A156 /* LaunchScreen.storyboard in Resources */,
+				9E88A9C6256BD7EE00011C67 /* Colors.xcassets in Resources */,
 				9EFA836924CEED5F00A0A156 /* Preview Assets.xcassets in Resources */,
 				9EFA836624CEED5F00A0A156 /* Assets.xcassets in Resources */,
 			);
@@ -630,6 +648,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFA835D24CEED5E00A0A156 /* AppDelegate.swift in Sources */,
+				9E88A9CD256BD81800011C67 /* Colors.swift in Sources */,
+				9E88A9B9256BAABF00011C67 /* Instructions.swift in Sources */,
 				9EFA835F24CEED5E00A0A156 /* SceneDelegate.swift in Sources */,
 				9EFA836424CEED5E00A0A156 /* ContentView.swift in Sources */,
 				9EBB1D5024F057420079F1C3 /* Array.swift in Sources */,
