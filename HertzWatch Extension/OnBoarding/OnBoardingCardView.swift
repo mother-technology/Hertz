@@ -13,7 +13,7 @@ struct OnBoardingCardView: View {
                     .frame(width: card.width, height: card.height)
                     .scaledToFill()
                 Text(card.text)
-                    .font(.system(size: 15, weight: .medium))
+                    .font(.system(size: 15, weight: .light))
                 Spacer()
             }
             .padding(.horizontal)
@@ -25,7 +25,7 @@ struct OnBoardingCardView: View {
                     isShowing = false
                 }
             }
-            .padding(.top, 3)
+            .padding(.top, 1)
         }
     }
 }

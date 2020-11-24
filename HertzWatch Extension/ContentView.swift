@@ -81,7 +81,7 @@ struct ContentView: View {
                                     design: .default
                                 ).monospacedDigit()
                             )
-                        Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") A♥")
+                        Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") Avg.♥")
                             .font(
                                 Font.system(
                                     size: 16,
@@ -89,7 +89,7 @@ struct ContentView: View {
                                     design: .default
                                 ).monospacedDigit()
                             )
-                        Text("Scroll: \(model.digitalScrollAmount)")
+                        Text("Scroll: \(model.digitalScrollAmount, specifier: "%.1f") Scr")
                             .font(
                                 Font.system(
                                     size: 16,
