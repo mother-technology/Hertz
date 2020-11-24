@@ -1,27 +1,46 @@
 import Foundation
 import SwiftUI
 
-struct PageOne: View {
-    let b = """
-        Welcome to Hertz!
-
-        ANS system - Anxiety treatment
-        
-        Hertz can be used to reduce anxiety, develop mental health resilience to stress, and with a sustained practise it can bring a greater level of conscious control to your anxiety levels. It should not be seen as a replacement for clinical treatment of mental health disorders, but as a safe and effective aid in nurturing mental health, and should be used as a component within a holistic strategy of caring for your mental health.
-    """
+struct PageTwo: View {
+    
     var body: some View {
         ScrollView {
-            Text(b)
+            Image("csd-white-black") //change to font + logo + font image
+                .resizable()
+                .frame(width:150, height:57, alignment: .center)
+                .padding(.bottom, 25)
+            Text("""
+                Hertz can be used to reduce anxiety, develop mental health resilience to stress, and with a sustained practise it can bring a greater level of conscious control to your anxiety levels. It should not be seen as a replacement for clinical treatment of mental health disorders, but as a safe and effective aid in nurturing mental health, and should be used as a component within a holistic strategy of caring for your mental health.
+                """)
+                .lineSpacing(5)
         }
     }
 }
-struct PageTwo: View {
+struct PageOne: View {
     var body: some View {
         ScrollView {
             Text("""
                 What Hertz. is and what it’s used for.
-                Hertz. is an application that provides biofeedback from your PNS to your brain. It has two components, a breathing component and a focus component.
+                """)
+                .font(Font.system(size: 18))
+                .fontWeight(.black)
+            Image("csd-white-black")
+                .resizable()
+                .frame(width:50, height:50, alignment: .center)
+                .padding(15)
+            Text("""
+            Hertz. is an application that provides biofeedback from your PNS to your brain. It has two components, a breathing component and a focus component.
+            """)
+                .font(Font.system(size: 14))
+            Image("csd-white-black")
+                .resizable()
+                .frame(width:50, height:50, alignment: .center)
+                .padding(15)
+            Text("""
                 The breathing.
+            """)
+                .fontWeight(.black)
+            Text("""
                 • The app coaches you to breath in a certain way which causes you to stimulate your vagus nerve just as you would with any meditative
                 breathing exercise, or with relaxing activities such as yoga.
                 The focus.
@@ -71,63 +90,59 @@ struct CardGroupBoxStyle: GroupBoxStyle {
             configuration.label
             configuration.content
         }
-        .padding()
-        .background(Color.black)
-        .clipShape(
-            RoundedRectangle(cornerRadius: 10, style: .circular)
-        )
+        .padding(30)
     }
 }
 
-struct Instuctions: View {
+struct Instructions: View {
     var body: some View {
-        ZStack {
-            Image("background")
+        VStack {
+            Image("csd-white-black")
                 .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-
-            TabView {
-                GroupBox {
-                    PageOne()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(width:150, height:57, alignment: .center)
+                .padding(.top, 50)
+                .padding(.bottom, 25)
+            ZStack {
+                TabView {
+                    GroupBox {
+                        PageOne()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    .groupBoxStyle(CardGroupBoxStyle())
+                    
+                    GroupBox {
+                        PageTwo()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    .groupBoxStyle(CardGroupBoxStyle())
+                    .shadow(radius: 10)
+                    .padding(.all, 50)
+                    GroupBox {
+                        PageThree()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    .groupBoxStyle(CardGroupBoxStyle())
+                    .shadow(radius: 10)
+                    .padding(.all, 50)
+                    GroupBox {
+                        PageFour()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    .groupBoxStyle(CardGroupBoxStyle())
+                    .shadow(radius: 10)
+                    .padding(.all, 50)
                 }
-                .groupBoxStyle(CardGroupBoxStyle())
-                .shadow(radius: 10)
-                .padding(.top, 111)
-
-                GroupBox {
-                    PageTwo()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .groupBoxStyle(CardGroupBoxStyle())
-                .shadow(radius: 10)
-                .padding(.all, 50)
-                GroupBox {
-                    PageThree()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .groupBoxStyle(CardGroupBoxStyle())
-                .shadow(radius: 10)
-                .padding(.all, 50)
-                GroupBox {
-                    PageFour()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .groupBoxStyle(CardGroupBoxStyle())
-                .shadow(radius: 10)
-                .padding(.all, 50)
             }
-            
             .foregroundColor(.init(red: 0.888, green: 0.888, blue: 0.888))
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         }
+        .background(Color.black)
     }
 }
 
-struct Instuctions_Previews: PreviewProvider {
+struct Instructions_Previews: PreviewProvider {
     static var previews: some View {
-        Instuctions()
+        Instructions()
     }
 }
