@@ -28,7 +28,7 @@ struct PageOne: View {
                 .padding(.top, 1)
             Image("brains")
                 .resizable()
-            .frame(width:90, height:90, alignment: .center)
+                .frame(width:90, height:90, alignment: .center)
                 .padding(.top, 20)
             Text("""
                 The Focus.
