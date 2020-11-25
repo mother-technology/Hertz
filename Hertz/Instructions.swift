@@ -1,6 +1,49 @@
 import Foundation
 import SwiftUI
 
+struct PageOne: View {
+    var body: some View {
+        ScrollView {
+            Image("what")
+                .resizable()
+                .frame(width:380, height:33, alignment: .center)
+            Text("""
+            Hertz. provides biofeedback from your vagus nerve to your brain. It has two components, a breathing component and a focus component.
+            """)
+                .font(Font.system(size: 16))
+            Image("lungs")
+                .resizable()
+                .frame(width:90, height:90, alignment: .center)
+                .padding(.top, 20)
+            Text("""
+                The breathing.
+            """)
+                .fontWeight(.black)
+                .font(Font.system(size: 20))
+                .padding(.top, 5)
+            Text("""
+            The app coaches you to breath in a certain way which causes you to stimulate your vagus nerve just as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
+            """)
+                .font(Font.system(size: 16))
+                .padding(.top, 1)
+            Image("brains")
+                .resizable()
+            .frame(width:90, height:90, alignment: .center)
+                .padding(.top, 20)
+            Text("""
+                The Focus.
+            """)
+                .fontWeight(.black)
+                .font(Font.system(size: 20))
+                .padding(.top, 5)
+            Text("""
+                The app has a red target which you should track with your eyes as it sweeps around the dial. The speed of this target changes as it moves, in sync with the breathing exercise. This level of change is controlled by your HRV.
+                """)
+                .font(Font.system(size: 16))
+                .padding(.top, 1)
+        }
+    }
+}
 struct PageTwo: View {
     
     var body: some View {
@@ -13,45 +56,6 @@ struct PageTwo: View {
                 Hertz can be used to reduce anxiety, develop mental health resilience to stress, and with a sustained practise it can bring a greater level of conscious control to your anxiety levels. It should not be seen as a replacement for clinical treatment of mental health disorders, but as a safe and effective aid in nurturing mental health, and should be used as a component within a holistic strategy of caring for your mental health.
                 """)
                 .lineSpacing(5)
-        }
-    }
-}
-struct PageOne: View {
-    var body: some View {
-        ScrollView {
-            Image("what")
-                .resizable()
-            .frame(width:400, height:34, alignment: .center)
-            Image("Hertz")
-                .resizable()
-                .frame(width:100, height:100, alignment: .center)
-            Text("""
-            Hertz. provides biofeedback from your PNS to your brain. It has two components, a breathing component and a focus component.
-            """)
-                .font(Font.system(size: 14))
-                .padding(15)
-            Image("lungs")
-                .resizable()
-            .frame(width:90, height:90, alignment: .center)
-            Text("""
-                The breathing.
-            """)
-                .fontWeight(.black)
-            Text("""
-            The app coaches you to breath in a certain way which causes you to stimulate your vagus nerve just as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
-            """)
-                .font(Font.system(size: 14))
-            Image("brains")
-                .resizable()
-            .frame(width:90, height:90, alignment: .center)
-            Text("""
-                The Focus.
-            """)
-                .fontWeight(.black)
-            Text("""
-                The app has a red target which you should track with your eyes as it sweeps around the dial. The speed of this target changes as it moves, in sync with the breathing exercise. This level of change is controlled by your HRV.
-                """)
-                .font(Font.system(size: 14))
         }
     }
 }
@@ -122,11 +126,11 @@ struct CardGroupBoxStyle: GroupBoxStyle {
 struct Instructions: View {
     var body: some View {
         VStack {
-            Image("csd-white-black")
+            Image("Hertz")
                 .resizable()
-                .frame(width:150, height:57, alignment: .center)
-                .padding(.top, 50)
-                .padding(.bottom, 25)
+                .frame(width:100, height:100, alignment: .center)
+                .padding(.top, 40)
+                .padding(.bottom, 2)
             ZStack {
                 TabView {
                     GroupBox {
