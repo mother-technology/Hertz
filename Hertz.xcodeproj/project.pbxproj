@@ -11,6 +11,7 @@
 		84B1C3A225686C55005375B2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1C3A125686C55005375B2 /* Color.swift */; };
 		9E0A8F6A253B5D90004E1184 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */; };
 		9E0A8F76253B5DE5004E1184 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */; };
+		9E20DF19256F037C00D8B9C0 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E20DF18256F037C00D8B9C0 /* PagerView.swift */; };
 		9E3B8D1F24FA391400C3C103 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */; };
 		9E3B8D2324FA44FF00C3C103 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3B8D2224FA44FF00C3C103 /* HealthKit.framework */; };
 		9E53136B255AEF8A004AACE3 /* OnBoardingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E53136A255AEF8A004AACE3 /* OnBoardingScreenView.swift */; };
@@ -113,6 +114,7 @@
 		84B1C39A25683D09005375B2 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		84B1C3A125686C55005375B2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		9E20DF18256F037C00D8B9C0 /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		9E3B8D1E24FA391400C3C103 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9E3B8D2024FA44FF00C3C103 /* HertzWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HertzWatch Extension.entitlements"; sourceTree = "<group>"; };
 		9E3B8D2224FA44FF00C3C103 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -326,6 +328,7 @@
 				9EFA836724CEED5F00A0A156 /* Preview Content */,
 				9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */,
 				9E88A9B8256BAABF00011C67 /* Instructions.swift */,
+				9E20DF18256F037C00D8B9C0 /* PagerView.swift */,
 			);
 			path = Hertz;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFA835D24CEED5E00A0A156 /* AppDelegate.swift in Sources */,
+				9E20DF19256F037C00D8B9C0 /* PagerView.swift in Sources */,
 				9E88A9CD256BD81800011C67 /* Colors.swift in Sources */,
 				9E88A9B9256BAABF00011C67 /* Instructions.swift in Sources */,
 				9EFA835F24CEED5E00A0A156 /* SceneDelegate.swift in Sources */,
