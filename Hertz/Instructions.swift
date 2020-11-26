@@ -13,21 +13,21 @@ struct PageOne: View {
                     What it is and what it's used for.
                 """)
                     .fontWeight(.black)
-                    .font(.system(size: 19))
-                    .padding(.top, 5)
+                    .font(.system(size: 20))
+                    .padding(.top, 44)
                 Text("Hertz. provides biofeedback from your vagus nerve to your brain. It has two components, one for breathing and one for focus.")
                     .font(Font.system(size: 16))
-                    .padding(.top, 5)
+                    .padding(.top, 1)
                 Image("lungs")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
-                    .padding(.top, 20)
+                    .padding(.top, 33)
                 Text("""
                     The breathing.
                 """)
                     .fontWeight(.black)
-                    .font(Font.system(size: 20))
-                    .padding(.top, 5)
+                    .font(Font.system(size: 18))
+                    .padding(.top, 1)
                 Text("""
                 The app coaches you to breath in a certain way which causes you to stimulate your vagus nerve just as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
                 """)
@@ -36,13 +36,13 @@ struct PageOne: View {
                 Image("brains")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
-                    .padding(.top, 20)
+                    .padding(.top, 33)
                 Text("""
                     The Focus.
                 """)
                     .fontWeight(.black)
-                    .font(Font.system(size: 20))
-                    .padding(.top, 5)
+                    .font(Font.system(size: 18))
+                    .padding(.top, 1)
                 Text("""
                     The app has a red target which you should track with your eyes as it sweeps around the dial. The speed of this target changes as it moves, in sync with the breathing exercise. The level of change is controlled by your heart rate variability.
                     """)
@@ -60,44 +60,43 @@ struct PageTwo: View {
                     A little background...
                 """)
                     .fontWeight(.black)
-                    .font(.system(size: 19))
+                    .font(.system(size: 16))
                     .padding(.top, 44)
                 Text("""
-                    ANS - Autonomic Nervous System.
+                    Autonomic Nervous System.
                    """)
                     .font(Font.system(size: 20))
                     .fontWeight(.heavy)
-                    .padding(.top, 24)
+                    .padding(.top, 11)
                 Text("""
                     The ANS runs all your background processes, such as digestion, heart rate, salivating, breathing and the diameter of your pupils. You largely can’t consciously affect these processes, with breathing as an important exception. The ANS controls your anxiety state. It has two forces controlling that state, the SNS and PNS.
                     """)
                     .font(Font.system(size: 15))
-                    .padding(.top, 12)
-                Text("""
-                       SNS - Sympathetic Nervous System.
-                       """)
-                    .font(Font.system(size: 20))
-                    .fontWeight(.heavy)
-                    .padding(.top, 24)
-                Text("""
-                    The SNS activates the ‘Flight or Fight’ state, preparing the body for action. The lungs open up, heart-rate increases, digestion is put on pause, the pupils dilate.
-                    """)
-                    .font(Font.system(size: 15))
-                    .padding(.top, 12)
+                    .padding(.top, 1)
                 Image("ans")
                     .resizable()
                     .frame(width:333, height:242, alignment: .center)
                 Text("""
-                        PNS - Parasympathetic Nervous System.
+                       Sympathetic Nervous System.
                        """)
                     .font(Font.system(size: 20))
                     .fontWeight(.heavy)
-                    .padding(.top, 24)
+                    .padding(.top, 22)
+                Text("""
+                    The SNS activates the ‘Flight or Fight’ state, preparing the body for action. The lungs open up, heart-rate increases, digestion is put on pause, the pupils dilate.
+                    """)
+                    .font(Font.system(size: 15))
+                Text("""
+                        Parasympathetic Nervous System.
+                       """)
+                    .font(Font.system(size: 20))
+                    .fontWeight(.heavy)
+                    .padding(.top, 22)
                 Text("""
                        The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, the lungs close down a little and breathing slows. The heart relaxes and slows down, more blood is directed towards the digestive system, which gets more active. The PNS is largely controlled by the Vagus nerve.
                        """)
                     .font(Font.system(size: 15))
-                    .padding(.top, 12)
+                    .padding(.top, 1)
             }
         }
     }
@@ -110,12 +109,12 @@ struct PageThree: View {
                     A little more background...
                 """)
                     .fontWeight(.black)
-                    .font(.system(size: 19))
+                    .font(.system(size: 16))
                     .padding(.top, 44)
                 Image("vagus")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
-                    .padding(.top, 2)
+                    .padding(.top, 24)
                 Text("""
                    The Vagus nerve.
                    """)
@@ -175,12 +174,12 @@ struct PageFour: View {
                 The end of the background.
                 """)
                     .fontWeight(.black)
-                    .font(.system(size: 19))
+                    .font(.system(size: 16))
                     .padding(.top, 44)
                 Image("cvc")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
-                    .padding(.top, 35)
+                    .padding(.top, 24)
                 Text("""
                    CVC - Cardiac Vagal Control.
                    """)
@@ -224,33 +223,44 @@ struct PageFive: View {
             ScrollView {
                 Text("""
                     Tips and tricks.
-                   """)
-                    .font(Font.system(size: 20))
-                    .fontWeight(.heavy)
+                """)
+                    .fontWeight(.black)
+                    .font(.system(size: 24))
                     .padding(.top, 44)
-                Image("onboarding-use")
+                Text("""
+                Regular short sessions beat sporadic long ones.
+                """)
+                .font(Font.system(size:15))
+                .padding(.top, 1)
+                Image("morning")
                     .resizable()
-                    .frame(width:266, height:60, alignment: .center)
-                    .padding(.top, 22)
+                    .frame(width:333, height:100, alignment: .center)
+                    .padding(.top, 33)
                 Text("""
-                    Best to practise directly after waking, just before sleep and straight after exercise, in a calm, comfortable environment without distractions. Regular short sessions are preferred to sporadic longer sessions.
-                    """)
+                Best to practise directly after waking, straight after exercise, and just before sleep in a calm, comfortable environment without distractions.
+                """)
                     .font(Font.system(size: 15))
-                    .padding(.top, 12)
+                    .padding(.top, 1)
                 Text("""
-                The more you practise, the more rapid progress will be. Don’t forget to not depend on the app, the goal is to easily activate your vagus at any time. Once you learn the sensation of activating your vagus, practise its activation also without the app.
+                The more you practise, the more rapid progress will be.
+                """)
+                    .font(Font.system(size: 15))
+                    .padding(.top, 1)
+                Text("""
+                Don’t forget to not depend on the app, the goal is to easily activate your vagus at any time. Once you learn the sensation of activating your vagus, practise its activation also without the app, especially when performing physical activities.
                 """)
                 .font(Font.system(size: 15))
-                .padding(.top, 12)
-                Image("csd-white-black")
-                    .resizable()
-                    .frame(width:122, height:50, alignment: .center)
-                    .padding(.top, 22)
+                .padding(.top, 1)
                 Text("""
                 Visit us at CSD.red
                 """)
-                    .font(Font.system(size: 15))
-                    .padding(.top, 12)
+                .fontWeight(.black)
+                .font(Font.system(size: 16))
+                .padding(.top, 66)
+                Image("csd-white-black")
+                    .resizable()
+                    .frame(width:195, height:44, alignment: .center)
+                    .padding(.top, 33)
             }
         }
     }
