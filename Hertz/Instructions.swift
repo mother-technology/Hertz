@@ -95,7 +95,7 @@ struct PageTwo: View {
                     .fontWeight(.heavy)
                     .padding(.top, 22)
                 Text("""
-                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, the lungs close down a little and breathing slows. The heart relaxes and slows down, more blood is directed towards the digestive system, which gets more active. The PNS is largely controlled by the Vagus nerve.
+                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, the lungs close down a little and breathing slows. The heart relaxes and slows down, more blood is directed towards the digestive system, which gets more active. The PNS is largely controlled by the vagus nerve.
                        """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
@@ -199,7 +199,7 @@ struct PageFour: View {
                     .frame(width:90, height:90, alignment: .center)
                     .padding(.top, 20)
                 Text("""
-                Hertz. stimulates your vagus, reducing anxiety directly. This will tone your vagus, building resilience to future stress. Over time, with consistent practise, the biofeedback will set up a connection between your conscious breath control and the vagal nerve stimulation, increasing your CVC, developing within yourself a powerful ability to consciously relax. Consistent practise over around one month is the minimum length of time needed to develop control of the vagus.
+                Hertz. stimulates your vagus, reducing anxiety directly. This will tone your vagus, building resilience to future stress. Over time the biofeedback will set up a connection between your conscious breath control and the vagal nerve stimulation, increasing your CVC and developing within yourself a powerful ability to consciously relax.
                 """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
@@ -231,11 +231,6 @@ struct PageFive: View {
                     .fontWeight(.black)
                     .font(.system(size: 23))
                     .padding(.top, 44)
-                Text("""
-                Regular short sessions beat sporadic long ones.
-                """)
-                .font(Font.system(size:14))
-                .padding(.top, 1)
                 Image("morning")
                     .resizable()
                     .frame(width:333, height:100, alignment: .center)
@@ -245,6 +240,11 @@ struct PageFive: View {
                 """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
+                Text("""
+                Regular short sessions beat sporadic long ones.
+                """)
+                .font(Font.system(size:14))
+                .padding(.top, 1)
                 Text("""
                 Practise in a calm, comfortable environment without distractions.
                 """)
@@ -268,7 +268,7 @@ struct PageFive: View {
                 .padding(.top, 44)
                 Image("csd-white-black")
                     .resizable()
-                    .frame(width:195, height:44, alignment: .center)
+                    .frame(width:343, height:77, alignment: .center)
                     .padding(.top, 33)
             }
         }
