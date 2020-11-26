@@ -8,18 +8,16 @@ struct PageOne: View {
                 Image("Hertz")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
-                    .padding(.top, 10)
-                
+                    .padding(.top, 24)
                 Text("""
-                    What Hertz. is and what it's used for.
+                    What it is and what it's used for.
                 """)
                     .fontWeight(.black)
-                    .font(.system(size: 20))
+                    .font(.system(size: 19))
                     .padding(.top, 5)
-                
-                Text("Hertz. provides biofeedback from your vagus nerve to your brain. It has two components, a breathing component and a focus component.")
+                Text("Hertz. provides biofeedback from your vagus nerve to your brain. It has two components, one for breathing and one for focus.")
                     .font(Font.system(size: 16))
-                
+                    .padding(.top, 5)
                 Image("lungs")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
@@ -58,6 +56,12 @@ struct PageTwo: View {
     var body: some View {
         VStack {
             ScrollView {
+                Text("""
+                    A little background...
+                """)
+                    .fontWeight(.black)
+                    .font(.system(size: 19))
+                    .padding(.top, 44)
                 Text("""
                     ANS - Autonomic Nervous System.
                    """)
@@ -102,6 +106,12 @@ struct PageThree: View {
     var body: some View {
         VStack {
             ScrollView {
+                Text("""
+                    A little more background...
+                """)
+                    .fontWeight(.black)
+                    .font(.system(size: 19))
+                    .padding(.top, 44)
                 Image("vagus")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
@@ -111,9 +121,8 @@ struct PageThree: View {
                    """)
                     .font(Font.system(size: 20))
                     .fontWeight(.heavy)
-                    .padding(.top, 1)
                 Text("""
-                   The main muscle behind the PNS force. When activated it slows your heart rate, relaxes your muscles and calms you down. You can stimulate your vagus by holding your breath for around 30 seconds, dipping your face in cold water, or coughing. Each time it's stimulated, your heart pauses, changing your heart rate variability.
+                   The main muscle behind the PNS force. When activated it relaxes your muscles, slows your heart rate and calms you down. You can stimulate your vagus by holding your breath for around 30 seconds, dipping your face in cold water, coughing, deep breathing or yoga. Each time it's stimulated, your heart pauses, changing your heart rate variability.
                    """)
                     .font(Font.system(size: 15))
                     .padding(.top, 1)
@@ -121,7 +130,7 @@ struct PageThree: View {
                HRV - Heart Rate Variability.
                """)
                     .fontWeight(.heavy)
-                    .padding(.top, 14)
+                    .padding(.top, 24)
                 Text("""
                 Your heart doesn’t beat as regularly as a drum machine. Every beat is a little different, this difference is your HRV.
                 """)
@@ -132,21 +141,28 @@ struct PageThree: View {
                 """)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.top,1)
+                Image("low-hrv")
+                    .resizable()
+                    .frame(width:333, height:48, alignment: .center)
+                    .padding(.top, 2)
                 Text("""
                 The differences can be low, when your SNS has hit the ‘Fight or Flight’ alarm and your heart kicks into high gear. Then the beats come regularly, like techno. Your heart is ready for an emergency.
                 """)
                     .font(Font.system(size: 15))
-                //                .padding(.top, 1)
+                                .padding(.top, 1)
                 Text("""
                 High HRV.
                 """)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.top,1)
-                Text("""
-                The differences can be high, when your PNS is dominant, and your heart is recuperating. It slows down its beats, and they come at irregular intervals, like jazz. Your heart is relaxing, and actually building resilience for future crises.
-            """)
-                    .font(Font.system(size: 15))
-                //                .padding(.top, 1)
+//            Image("high-hrv")
+//                .resizable()
+//                .frame(width:333, height:48, alignment: .center)
+//                .padding(.top, 2)
+//                Text("""
+//                The differences can be high, when your PNS is dominant, and your heart is recuperating. It slows down its beats, and they come at irregular intervals, like jazz. Your heart is relaxing, and actually building resilience for future crises.
+//            """)
+//                    .font(Font.system(size: 15))
             }
         }
     }
@@ -155,41 +171,86 @@ struct PageFour: View {
     var body: some View {
         VStack {
             ScrollView {
+                Text("""
+                The end of the background.
+                """)
+                    .fontWeight(.black)
+                    .font(.system(size: 19))
+                    .padding(.top, 44)
+                Image("cvc")
+                    .resizable()
+                    .frame(width:90, height:90, alignment: .center)
+                    .padding(.top, 35)
+                Text("""
+                   CVC - Cardiac Vagal Control.
+                   """)
+                    .font(Font.system(size: 20))
+                    .fontWeight(.heavy)
+                Text("""
+                   CVC indicates how well controlled your heart is by your vagus. A high value indicates a responsive, sensitive and rapidly changing system and correlates with good health, positive emotions, effective executive function and overall better self-regulation. Think of it as a measure of how much emotional unflappability you have in reserve.
+                   """)
+                    .font(Font.system(size: 15))
+                    .padding(.top, 1)
                 Image("Hertz")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
-                    .padding(.top, 33)
+                    .padding(.top, 20)
                 Text("""
-                Hertz can be used to reduce anxiety, develop mental health resilience to stress, and with a sustained practise it can bring a greater level of conscious control to your anxiety levels. It should not be seen as a replacement for clinical treatment of mental health disorders, but as a safe and effective aid in nurturing mental health, and should be used as a component within a holistic strategy of caring for your mental health.
+                Hertz. stimulates your vagus, reducing anxiety directly. This will tone your vagus, building resilience to future stress. Over time, with consistent practise, the biofeedback will set up a connection between your conscious breath control and the vagal nerve stimulation, increasing your CVC, developing within yourself a powerful ability to consciously relax. Consistent practise over around one month is the minimum length of time needed to develop control of the vagus.
                 """)
-                    .font(Font.system(size: 10))
+                    .font(Font.system(size: 15))
                     .padding(.top, 1)
+                Image("month")
+                    .resizable()
+                    .frame(width:80, height:63, alignment: .center)
+                    .padding(.top, 20)
                 Text("""
-                 1. What Hertz. is and what it’s used for.Hertz. is an application that provides biofeedback from your PNS to your brain. It has two components, a breathing component and a focus component.The breathing.• The app coaches you to breath in a certain way which causes you to stimulate your vagus nerve just as you would with any meditativebreathing exercise, or with relaxing activities such as yoga.The focus.• The app has a red target which you should track with your eyes as it sweeps around the dial. The speed of this target changes as it moves, insync with the breathing exercise. This level of change is controlled by your HRV.As you use the app, it will stimulate the Vagus and reduce your anxiety directly. This will tone your Vagus and build resilience to future stress. Additionally, over time and with consistent practise, the biofeedback will set up an association with your conscious breath control, and the vagal nerve stimulation. This increases your direct control of your Vagus, building within yourself a powerful ability to consciously relax.
+                Consistent daily practise over around one month is the minimum length of time needed to develop control of the vagus.
                 """)
-                    .font(Font.system(size: 9))
+                    .font(Font.system(size: 15))
                     .padding(.top, 1)
+//                Text("""
+//                The Apple Watch insists on showing the time on the upper right of the display, and older models shut off the screen after a short time. In the iPhone Watch app, go to: General > Wake Screen - under On Tap, select Wake for 70 Seconds. You can also rest a finger on the display to both hide the time and keep the screen on as you practise.
+//                """)
+//                    .font(Font.system(size: 15))
+//                    .padding(.top, 1)
+            }
+        }
+    }
+}
+struct PageFive: View {
+    var body: some View {
+        VStack {
+            ScrollView {
                 Text("""
-                2. What you should know before you use Hertz.- Although you will notice improvements in your anxiety levels directly from the first practise, these are only the effects of the breathing exercise.- Consistent practise over around one month is the minimum length of time needed to develop control of the Vagus.- The Apple Watch insists on showing the time on the upper right of the display, and older models shut off the screen after a short time. In theiPhone Watch app, go to: General > Wake Screen - under On Tap, select Wake for 70 Seconds. You can also rest a finger on the display to both hide the time and keep the screen on as you practise.
-                """)
-                    .font(Font.system(size: 8))
-                    .padding(.top, 1)
+                    Tips and tricks.
+                   """)
+                    .font(Font.system(size: 20))
+                    .fontWeight(.heavy)
+                    .padding(.top, 44)
+                Image("onboarding-use")
+                    .resizable()
+                    .frame(width:266, height:60, alignment: .center)
+                    .padding(.top, 22)
                 Text("""
-                3. How to use Hertz.Follow the bright red dot with your focused attention. As it passes the blue ticks, breath in, filling your belly, then your chest. As it passes the white tick, arrest your breathing without tensing. As it passes the brown ticks, slowly breath out through your nose, empty your lungs from the top down, drop your shoulders and relax.It’s best to practise directly after waking, before sleep and directly after exercise, in a calm, comfortable environment without distractions. Regular short sessions are preferred to sporadic longer sessions.
-                """)
-                    .font(Font.system(size: 7))
-                    .padding(.top, 1)
+                    Best to practise directly after waking, just before sleep and straight after exercise, in a calm, comfortable environment without distractions. Regular short sessions are preferred to sporadic longer sessions.
+                    """)
+                    .font(Font.system(size: 15))
+                    .padding(.top, 12)
                 Text("""
-                4. Further information.Hertz is developed by Cybernetic Systems Development, a division of Mother. AB. For more information contact us at hertz@csd.red    As you use the app, it will stimulate the Vagus and reduce your anxiety directly. This will tone your Vagus and build resilience to future stress. Additionally, over time and with consistent practise, the biofeedback will set up an association with your conscious breath control, and the vagal nerve stimulation. This increases your direct control of your Vagus, building within yourself a powerful ability to consciously relax."
+                The more you practise, the more rapid progress will be. Don’t forget to not depend on the app, the goal is to easily activate your vagus at any time. Once you learn the sensation of activating your vagus, practise its activation also without the app.
                 """)
-                    .lineSpacing(1)
-                    .padding(.top, 1)
-                    .font(Font.system(size: 6))
-                
+                .font(Font.system(size: 15))
+                .padding(.top, 12)
                 Image("csd-white-black")
                     .resizable()
                     .frame(width:122, height:50, alignment: .center)
                     .padding(.top, 22)
+                Text("""
+                Visit us at CSD.red
+                """)
+                    .font(Font.system(size: 15))
+                    .padding(.top, 12)
             }
         }
     }
@@ -199,7 +260,7 @@ struct Instructions: View {
     
     var body: some View {
         VStack {
-            PagerView(pageCount: 4, currentIndex: $currentPage) {
+            PagerView(pageCount: 5, currentIndex: $currentPage) {
                 PageOne()
                     .padding(40)
                 PageTwo()
@@ -208,7 +269,8 @@ struct Instructions: View {
                     .padding(40)
                 PageFour()
                     .padding(40)
-            }
+                PageFive()
+                    .padding(40)            }
         }
         .foregroundColor(.init(red: 0.888, green: 0.888, blue: 0.888))
         .background(Color.black.edgesIgnoringSafeArea(.bottom))
