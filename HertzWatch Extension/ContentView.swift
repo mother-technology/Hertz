@@ -65,47 +65,47 @@ struct ContentView: View {
                     )
                 } else {
                     VStack {
-                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
-                            .font(
-                                Font.system(
-                                    size: 18,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                        Text("\(model.heartRate, specifier: "%.1f") ♥")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                        Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") Avg.♥")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                        Text("Scroll: \(model.digitalScrollAmount, specifier: "%.1f") Scr")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                        Text("\(model.factor, specifier: "%.3f")")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-          
+//                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
+//                            .font(
+//                                Font.system(
+//                                    size: 18,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                        Text("\(model.heartRate, specifier: "%.1f") ♥")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                        Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") Avg.♥")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                        Text("Scroll: \(model.digitalScrollAmount, specifier: "%.1f") Scr")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                        Text("\(model.factor, specifier: "%.3f")")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//
                         
                     }
                     .transition(

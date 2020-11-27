@@ -1,9 +1,10 @@
 import Foundation
 import SwiftUI
+import AVKit
 
 struct PageOne: View {
     var body: some View {
-        VStack {
+        VStack (alignment: .leading){
             ScrollView {
                 Image("Hertz")
                     .resizable()
@@ -49,6 +50,11 @@ struct PageOne: View {
                     .font(Font.system(size: 15))
                     .padding(.top, 5)
             }
+            .frame(minWidth: 0,
+                   maxWidth: .infinity,
+                   minHeight: 0,
+                   maxHeight: .infinity,
+                   alignment: .topLeading)
         }
     } 
 }
@@ -73,14 +79,10 @@ struct PageTwo: View {
                     """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
-                Image("ans")
-                    .resizable()
-                    .frame(width:333, height:242, alignment: .center)
-                    .padding(.top, 11)
                 Text("""
                        Sympathetic Nervous System.
                        """)
-                    .font(Font.system(size: 19))
+                    .font(Font.system(size: 17))
                     .fontWeight(.heavy)
                     .padding(.top, 22)
                 Text("""
@@ -88,14 +90,23 @@ struct PageTwo: View {
                     """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
+                Image("ans")
+                    .resizable()
+                    .frame(width:333, height:242, alignment: .center)
+                    .padding(.top, 11)
                 Text("""
                         Parasympathetic Nervous System.
                        """)
-                    .font(Font.system(size: 19))
+                    .font(Font.system(size: 17))
                     .fontWeight(.heavy)
                     .padding(.top, 22)
                 Text("""
-                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, the lungs close down a little and breathing slows. The heart relaxes and slows down, more blood is directed towards the digestive system, which gets more active. The PNS is largely controlled by the vagus nerve.
+                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, breathing slows, the heart slows its beating, blood is directed towards the digestive system, which gets busy.
+                       """)
+                    .font(Font.system(size: 14))
+                    .padding(.top, 5)
+                Text("""
+                       The PNS is largely controlled by the vagus nerve.
                        """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
@@ -105,6 +116,7 @@ struct PageTwo: View {
 }
 struct PageThree: View {
     var body: some View {
+        Group {
         VStack {
             ScrollView {
                 Text("""
@@ -116,7 +128,7 @@ struct PageThree: View {
                 Image("vagus")
                     .resizable()
                     .frame(width:90, height:90, alignment: .center)
-                    .padding(.top, 24)
+                    .padding(.top, 44)
                 Text("""
                    The Vagus nerve.
                    """)
@@ -124,15 +136,14 @@ struct PageThree: View {
                     .fontWeight(.heavy)
                     .padding(.top, 5)
                 Text("""
-                   The main muscle behind the PNS force. When activated it relaxes your muscles, slows your heart rate and calms you down. You can stimulate your vagus by holding your breath for around 30 seconds, dipping your face in cold water, coughing, deep breathing or yoga. Each time it's stimulated, your heart pauses, changing your heart rate variability.
+                   The main power behind the relaxing PNS force. When activated it relaxes your muscles, slows your heart rate and calms you down. You can stimulate your vagus by holding your breath for around 30 seconds, dipping your face in cold water, coughing, deep breathing or yoga. Each time it's stimulated, your heart pauses, changing your heart rate variability.
                    """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
                 Text("""
                HRV - Heart Rate Variability.
-               """)
-                    .fontWeight(.heavy)
-                    .padding(.top, 24)
+               """)                    .fontWeight(.heavy)
+                    .padding(.top, 44)
                 Text("""
                 Your heart doesn’t beat as regularly as a drum machine. Every beat is a little different, this difference is your HRV.
                 """)
@@ -143,15 +154,17 @@ struct PageThree: View {
                 """)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.top, 5)
+            }
+            Group{
                 Image("low-hrv")
                     .resizable()
                     .frame(width:333, height:48, alignment: .center)
                     .padding(.top, 5)
-//                Text("""
-//                The differences can be low, when your SNS has hit the ‘Fight or Flight’ alarm and your heart kicks into high gear. Then the beats come regularly, like techno. Your heart is ready for an emergency.
-//                """)
-//                    .font(Font.system(size: 14))
-//                    .padding(.top, 1)
+                Text("""
+                The differences can be low, when your SNS has hit the ‘Fight or Flight’ alarm and your heart kicks into high gear. Then the beats come regularly, like techno. Your heart is ready for an emergency.
+                """)
+                    .font(Font.system(size: 14))
+                    .padding(.top, 1)
                 Text("""
                 High HRV.
                 """)
@@ -161,11 +174,12 @@ struct PageThree: View {
                 .resizable()
                 .frame(width:333, height:48, alignment: .center)
                 .padding(.top, 5)
-//                Text("""
-//                The differences can be high, when your PNS is dominant, and your heart is recuperating. It slows down its beats, and they come at irregular intervals, like jazz. Your heart is relaxing, and actually building resilience for future crises.
-//            """)
-//                    .font(Font.system(size: 15))
-            }
+                Text("""
+                The differences can be high, when your PNS is dominant, and your heart is recuperating. It slows down its beats, and they come at irregular intervals, like jazz. Your heart is relaxing, and actually building resilience for future crises.
+                """)
+                    .font(Font.system(size: 15))
+        }
+        }
         }
     }
 }
@@ -223,40 +237,51 @@ struct PageFour: View {
 }
 struct PageFive: View {
     var body: some View {
-        VStack {
+        Group {
+        VStack (alignment: .center){
             ScrollView {
                 Text("""
                     Tips and tricks.
                 """)
-                    .fontWeight(.black)
-                    .font(.system(size: 23))
-                    .padding(.top, 44)
+                .fontWeight(.black)
+                .font(.system(size: 23))
+                .padding(.top, 111)
                 Image("morning")
-                    .resizable()
-                    .frame(width:333, height:100, alignment: .center)
-                    .padding(.top, 33)
+                .resizable()
+                .frame(width:355, height:70, alignment: .center)
+                .padding(.top, 111)
+            }
+            Group {
+                VStack (alignment: .leading){
                 Text("""
                 Best to practise directly after waking, straight after exercise, and just before sleep.
                 """)
-                    .font(Font.system(size: 14))
-                    .padding(.top, 5)
+                .font(Font.system(size: 14))
+                .multilineTextAlignment(.leading)
                 Text("""
                 Regular short sessions beat sporadic long ones.
                 """)
                 .font(Font.system(size:14))
-                .padding(.top, 1)
+                .padding(.top, 5)
+                .multilineTextAlignment(.leading)
                 Text("""
                 Practise in a calm, comfortable environment without distractions.
                 """)
-                    .font(Font.system(size: 14))
-                    .padding(.top, 5)
+                .font(Font.system(size: 14))
+                .padding(.top, 5)
                 Text("""
                 The more you practise, the more rapid progress will be.
                 """)
-                    .font(Font.system(size: 14))
-                    .padding(.top, 5)
+                .font(Font.system(size: 14))
+                .padding(.top, 5)
                 Text("""
-                Try not to grow dependent on the app, the goal is to easily activate your vagus at any time. Once you learn the sensation of activating your vagus, practise its activation also without the app, especially when performing physical activities.
+                Try to 'will' the dot to slow down as you breath out.
+                """)
+                .font(Font.system(size: 14))
+                .padding(.top, 5)
+                .multilineTextAlignment(.leading)
+                Text("""
+                As you recognise the sensation of activating your vagus, practise its activation also without the app.
                 """)
                 .font(Font.system(size: 14))
                 .padding(.top, 5)
@@ -266,18 +291,29 @@ struct PageFive: View {
                 .font(Font.system(size: 16))
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding(.top, 44)
-                Image("csd-white-black")
+                Link(destination: URL(string: "https://cyberneticsystemsdevelopment.com")!, label: {
+                    Image("csd-white-black")
                     .resizable()
                     .frame(width:343, height:77, alignment: .center)
-                    .padding(.top, 33)
+                })
+                }
             }
+//                Spacer()
+            }
+//            Spacer()
+//            .frame(minWidth: 0,
+//                   maxWidth: .infinity,
+//                   minHeight: 0,
+//                   maxHeight: .infinity,
+//                   alignment: .topLeading)
         }
+//        .background(Color.red)
     }
 }
 struct Instructions: View {
     @State private var currentPage = 0
-    
     var body: some View {
+//        VideoPlayer(player: AVPlayer(url:  Bundle.main.url(forResource: "Resources/App Preview", withExtension: "mp4")!))
         VStack {
             PagerView(pageCount: 5, currentIndex: $currentPage) {
                 PageOne()
