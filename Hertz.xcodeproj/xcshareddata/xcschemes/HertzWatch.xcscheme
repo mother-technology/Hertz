@@ -54,8 +54,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Hertz">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E8D7BC824F0361D00EF7E98"
@@ -63,7 +65,7 @@
             BlueprintName = "HertzWatch"
             ReferencedContainer = "container:Hertz.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -71,8 +73,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Hertz">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E8D7BC824F0361D00EF7E98"
@@ -80,7 +84,16 @@
             BlueprintName = "HertzWatch"
             ReferencedContainer = "container:Hertz.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9E8D7BC824F0361D00EF7E98"
+            BuildableName = "HertzWatch.app"
+            BlueprintName = "HertzWatch"
+            ReferencedContainer = "container:Hertz.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
