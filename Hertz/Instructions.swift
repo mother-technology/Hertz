@@ -32,7 +32,7 @@ struct PageOne: View {
                     .font(Font.system(size: 17))
                     .padding(.top, 5)
                 Text("""
-                    The app coaches you to breath in a certain way which causes you to stimulate your vagus nerve just as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
+                    The app coaches you to breath in a certain way which stimulates your vagus nerve, as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
                     """)
                     .font(Font.system(size: 15))
                     .padding(.top, 5)
@@ -48,7 +48,7 @@ struct PageOne: View {
                     .font(Font.system(size: 17))
                     .padding(.top, 5)
                 Text("""
-                        The app has a red target which you should track with your eyes as it sweeps around the dial. The speed of this target changes as it moves, in sync with the breathing exercise. The level of change is controlled by your heart rate variability.
+                        The app has a red target which you should track with your gaze as it sweeps around the dial. The speed of the dot changes in sync with your breathing. The level of change is controlled by your heart rate variability.
                         """)
                     .font(Font.system(size: 15))
                     .padding(.top, 5)
@@ -79,7 +79,7 @@ struct PageTwo: View {
                     .fontWeight(.heavy)
                     .padding(.top, 11)
                 Text("""
-                    The ANS runs all your background processes, such as digestion, heart rate, salivating, breathing and the diameter of your pupils. You largely can’t consciously affect these processes, with breathing as an important exception. The ANS controls your anxiety state. It has two forces controlling that state, the SNS and PNS.
+                    The ANS runs your background processes, such as digestion, heart rate, salivating and breathing. You largely can’t consciously affect these processes, with breathing as an important exception. The ANS controls your anxiety state. It has two opposing forces controlling that state, the SNS and PNS.
                     """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
@@ -107,7 +107,7 @@ struct PageTwo: View {
                     .fontWeight(.heavy)
                     .padding(.top, 22)
                 Text("""
-                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, breathing slows, the heart slows its beating, blood is directed towards the digestive system, which gets busy.
+                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, breathing and heart rate slow down, blood is directed towards the digestive system, which gets busy.
                        """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
@@ -148,7 +148,7 @@ struct PageThree: View {
                         .fontWeight(.heavy)
                         .padding(.top, 5)
                     Text("""
-                   The main power behind the relaxing PNS force, itx relaxes your muscles, slows your heart and calms you down. Stimulate your vagus by holding your breath for around 30 seconds, dipping your face in cold water or coughing. Each time it's stimulated, your heart pauses, changing your heart rate variability.
+                   The main power behind the relaxing PNS force, the vagus relaxes your muscles, slows your heart and calms you down. Stimulate your vagus by holding your breath for around 30 seconds, dipping your face in cold water or coughing. Each time it's stimulated, your heart pauses, changing your heart rate variability.
                    """)
                         .font(Font.system(size: 14))
                         .padding(.top, 5)
@@ -170,7 +170,7 @@ struct PageThree: View {
                         //.fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .font(Font.system(size: 12))
                         .frame(maxWidth: .infinity, alignment:.center)
-                        .padding(.top, 5)
+                        .padding(.top, 15)
                 }
                 Group {
                     Image("low-hrv")
@@ -189,13 +189,13 @@ struct PageThree: View {
                         //.fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .font(Font.system(size: 12))
                         .frame(maxWidth: .infinity, alignment:.center)
-                        .padding(.top, 5)
+                        .padding(.top, 15)
                     Image("high-hrv")
                         .resizable()
                         .frame(width:333, height:48, alignment: .center)
                         .padding(.top, 5)
                     Text("""
-                The differences can be high, when your PNS is dominant, and your heart is recuperating. It slows down its beats, and they come at irregular intervals, like jazz. Your heart is relaxing, and actually building resilience for future crises.
+                The differences can be high, when your PNS is dominant, and your heart is recuperating. It slows down its beats, and they come at irregular intervals, like jazz. Your heart is relaxing and building resilience for future crises.
                 """)
                         .font(Font.system(size: 15))
                         .frame(maxWidth: .infinity, alignment:.leading)
@@ -251,11 +251,11 @@ struct PageFour: View {
                         .font(Font.system(size: 14))
                         .padding(.top, 5)
                         .frame(maxWidth: .infinity, alignment:.leading)
-                    Text("""
-                    The Apple Watch insists on showing the time on the upper right of the display, and older models shut off the screen after a short time. In the iPhone Watch app, go to: General > Wake Screen - under On Tap, select Wake for 70 Seconds. You can also rest a finger on the display to both hide the time and keep the screen on as you practise.
-                    """)
-                        .font(Font.system(size: 15))
-                        .padding(.top, 1)
+//                    Text("""
+//                    The Apple Watch insists on showing the time on the upper right of the display, and older models shut off the screen after a short time. In the iPhone Watch app, go to: General > Wake Screen - under On Tap, select Wake for 70 Seconds. You can also rest a finger on the display to both hide the time and keep the screen on as you practise.
+//                    """)
+//                        .font(Font.system(size: 14))
+//                        .padding(.top, 1)
                 }
             }
         }
