@@ -312,7 +312,7 @@ struct PageFive: View {
                 Good luck!
                 """)
                         .font(Font.system(size: 16))
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
                         .padding(.top, 44)
                     Link(destination: URL(string: "https://cyberneticsystemsdevelopment.com")!, label: {
                         Image("csd-white-black")
@@ -326,12 +326,18 @@ struct PageFive: View {
         }
     }
 }
+struct PageSix: View {
+    var body: some View {
+            VideoPlayer(player: AVPlayer(url:  Bundle.main.url(forResource: "preview", withExtension: "mp4")!))
+    }
+}
+
 struct Instructions: View {
     @State private var currentPage = 0
     var body: some View {
         //        VideoPlayer(player: AVPlayer(url:  Bundle.main.url(forResource: "Resources/App Preview", withExtension: "mp4")!))
         VStack {
-            PagerView(pageCount: 5, currentIndex: $currentPage) {
+            PagerView(pageCount: 6, currentIndex: $currentPage) {
                 PageOne()
                     .padding(20)
                 PageTwo()
@@ -341,7 +347,10 @@ struct Instructions: View {
                 PageFour()
                     .padding(20)
                 PageFive()
-                    .padding(20)            }
+                    .padding(20)
+                PageSix()
+                    .padding(20)
+            }
         }
         .foregroundColor(.init(red: 0.888, green: 0.888, blue: 0.888))
         .background(Color.black.edgesIgnoringSafeArea(.bottom))
