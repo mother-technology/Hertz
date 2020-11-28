@@ -38,6 +38,17 @@ enum CycleSegment: Hashable {
             return seconds
         }
     }
+    
+    func toString() -> String {
+        switch self {
+        case .breatheIn(_):
+            return "breatheIn"
+        case .breatheOut(_):
+            return "breatheOut"
+        case .breatheHold(_):
+            return "breatheHold"
+        }
+    }
 }
 
 public struct HertzModel {
@@ -86,10 +97,18 @@ public struct HertzModel {
         return Angle.degrees(degressPerTick * s)
     }
     
+    let workOutManager: WorkoutManager = .shared
+
+    private var previousTickSegment: String?
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
-        
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
+        
+        let currentTickSegment = currentTick.segment.toString()
+        if previousTickSegment != currentTickSegment && heartRate > 0 {
+            workOutManager.addInterval(for: self.heartRate, with: [currentTickSegment:1])
+            previousTickSegment = currentTickSegment
+        }
         
         let currentHalfRevolution = ceil(2 * elapsedTime / Double(totalTicks))
         
@@ -129,9 +148,6 @@ public struct HertzModel {
         }
         
         elapsedTime += withTimeInterval * (factor + ( digitalCrown / 7) )
-        //print("elapsedTime: ", elapsedTime)
-        if case .breatheOut = currentTick.segment {            
-        }        
     }
     
     mutating func update(digitalCrown withValue: Double) {
@@ -141,8 +157,8 @@ public struct HertzModel {
     mutating func update(heartRate withHeartRate: Double) {
         heartRate = withHeartRate
         
-        let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks)))) //move to a place where it can be used by both update functions!
-        let currentTick = ticks[currentTickIndex] //same here
+        let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
+        let currentTick = ticks[currentTickIndex]
         
         if case .breatheHold = currentTick.segment {
             heartRatesInOrHold.append(heartRate)
@@ -150,15 +166,13 @@ public struct HertzModel {
                 minHeartRateOut = heartRatesOut.min()!
                 heartRatesOut.removeAll()
             }
-        }
-        else if case .breatheIn = currentTick.segment { //don't know how to do an OR so duplicated right now but should be merged with above
+        } else if case .breatheIn = currentTick.segment {
             heartRatesInOrHold.append(heartRate)
             if heartRatesOut.count > 0 {
                 minHeartRateOut = heartRatesOut.min()!
                 heartRatesOut.removeAll()
             }
-        }
-        else if case .breatheOut = currentTick.segment {
+        } else if case .breatheOut = currentTick.segment {
             heartRatesOut.append(heartRate)
         }
         

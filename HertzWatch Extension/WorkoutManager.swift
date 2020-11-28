@@ -87,6 +87,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         }
         
         let typesToShare: Set = [
+            HKQuantityType.quantityType(forIdentifier: .heartRate)!,
             HKQuantityType.workoutType()
         ]
         
@@ -148,17 +149,16 @@ final class WorkoutManager: NSObject, ObservableObject {
         }
     }
     
-    func update(baseline withValue: Double) {
+    func addInterval(for heartRate: Double, with metaData:[String: Any]) {
         guard let heartRateQuantityType = HKSampleType.quantityType(forIdentifier: .heartRate) else {
             // TODO: - Error handling, Mikael
             fatalError("*** Heartrate Type Not Available ***")
         }
 
-        let metadata: [String: Any] = [HeartrateMetadataBaseLine: 1]
         let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
         let now = Date()
         
-        let sample = HKQuantitySample(type: heartRateQuantityType, quantity: .init(unit: heartRateUnit, doubleValue: withValue), start: now, end: now, metadata: metadata)
+        let sample = HKQuantitySample(type: heartRateQuantityType, quantity: .init(unit: heartRateUnit, doubleValue: heartRate), start: now, end: now, metadata: metaData)
         
         heartRateSamples.append(sample)
     }
@@ -173,10 +173,8 @@ final class WorkoutManager: NSObject, ObservableObject {
             
             builder?.add(heartRateSamples, completion: { [self] (success, error) in
                 // TODO: - Error handling, Mikael
-                
                 builder?.endCollection(withEnd: Date()) { [self] success, error in
                     // TODO: - Error handling, Mikael
-                    
                     builder?.finishWorkout { [self] workout, error in
                         // TODO: - Error handling, Mikael
                     }
@@ -197,10 +195,6 @@ final class WorkoutManager: NSObject, ObservableObject {
             guard let value = statistics?.mostRecentQuantity()?.doubleValue(for: heartRateUnit) else { return }
             let roundedValue = Double(round(1 * value) / 1)
 
-            let now = Date()
-            let sample = HKQuantitySample(type: heartRateQuantityType, quantity: .init(unit: heartRateUnit, doubleValue: roundedValue), start: now, end: now)
-            heartRateSamples.append(sample)
-            
             self.subject.send(roundedValue)
         default:
             return
