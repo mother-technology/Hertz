@@ -116,7 +116,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         
         guard let healthStore = healthStore else {
             // TODO: - Error handling, Mikael
-            fatalError("*** Healthstore Not Available ***")
+            return
         }
         
         heartRateSamples.removeAll()
@@ -152,7 +152,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     func addInterval(for heartRate: Double, with metaData:[String: Any]) {
         guard let heartRateQuantityType = HKSampleType.quantityType(forIdentifier: .heartRate) else {
             // TODO: - Error handling, Mikael
-            fatalError("*** Heartrate Type Not Available ***")
+            return
         }
 
         let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
@@ -186,7 +186,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     private func updateForStatistics(_ statistics: HKStatistics?) {
         guard let heartRateQuantityType = HKSampleType.quantityType(forIdentifier: .heartRate) else {
             // TODO: - Error handling, Mikael
-            fatalError("*** Heartrate Type Not Available ***")
+            return
         }
         
         switch statistics?.quantityType {
