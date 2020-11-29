@@ -98,6 +98,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         
         healthStore?.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
             // TODO: - Error handling, Mikael
+
         }
     }
     
@@ -150,6 +151,10 @@ final class WorkoutManager: NSObject, ObservableObject {
     }
     
     func addInterval(for heartRate: Double, with metaData:[String: Any]) {
+        if !HKHealthStore.isHealthDataAvailable() {
+            return
+        }
+        
         guard let heartRateQuantityType = HKSampleType.quantityType(forIdentifier: .heartRate) else {
             // TODO: - Error handling, Mikael
             return
