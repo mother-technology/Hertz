@@ -127,7 +127,6 @@ struct ContentView: View {
             .edgesIgnoringSafeArea(.all)
         )
         .onAppear {
-            hasOnboarded = false // DEBUG
             if !hasOnboarded {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     withAnimation {
