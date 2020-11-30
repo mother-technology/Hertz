@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		845AEDF62571A6F70035E066 /* preview.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 845AEDF52571A6F70035E066 /* preview.mp4 */; };
+		844056AF2575402A007E5F4F /* volkhov.bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 844056AE2575402A007E5F4F /* volkhov.bold.ttf */; };
+		844056E92575792D007E5F4F /* preview.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 844056E82575792D007E5F4F /* preview.mp4 */; };
 		84B1C39B25683D09005375B2 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1C39A25683D09005375B2 /* InstructionView.swift */; };
 		84B1C3A225686C55005375B2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1C3A125686C55005375B2 /* Color.swift */; };
 		9E0A8F6A253B5D90004E1184 /* HertzModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEA987253B5C8F00F9EF80 /* HertzModel.swift */; };
@@ -112,7 +113,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		845AEDF52571A6F70035E066 /* preview.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview.mp4; sourceTree = "<group>"; };
+		844056AE2575402A007E5F4F /* volkhov.bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = volkhov.bold.ttf; sourceTree = "<group>"; };
+		844056E82575792D007E5F4F /* preview.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview.mp4; sourceTree = "<group>"; };
 		84B1C39A25683D09005375B2 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		84B1C3A125686C55005375B2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9E0A8F75253B5DE5004E1184 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
@@ -222,10 +224,10 @@
 		9E88A9BF256BD7C600011C67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				844056E82575792D007E5F4F /* preview.mp4 */,
 				9EFA836524CEED5F00A0A156 /* Assets.xcassets */,
 				9E88A9C5256BD7EE00011C67 /* Colors.xcassets */,
 				9E88A9CC256BD81800011C67 /* Colors.swift */,
-				845AEDF52571A6F70035E066 /* preview.mp4 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -331,6 +333,7 @@
 				9EFA836724CEED5F00A0A156 /* Preview Content */,
 				9E729E4C24CF60DA0000D408 /* LocalNotificationManager.swift */,
 				9E88A9B8256BAABF00011C67 /* Instructions.swift */,
+				844056AE2575402A007E5F4F /* volkhov.bold.ttf */,
 				9E20DF18256F037C00D8B9C0 /* PagerView.swift */,
 			);
 			path = Hertz;
@@ -542,8 +545,9 @@
 			files = (
 				9EFA836C24CEED5F00A0A156 /* LaunchScreen.storyboard in Resources */,
 				9E88A9C6256BD7EE00011C67 /* Colors.xcassets in Resources */,
+				844056E92575792D007E5F4F /* preview.mp4 in Resources */,
 				9EFA836924CEED5F00A0A156 /* Preview Assets.xcassets in Resources */,
-				845AEDF62571A6F70035E066 /* preview.mp4 in Resources */,
+				844056AF2575402A007E5F4F /* volkhov.bold.ttf in Resources */,
 				9EFA836624CEED5F00A0A156 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

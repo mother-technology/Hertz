@@ -12,11 +12,11 @@ struct PageOne: View {
                     .frame(width:180, height:180, alignment: .center)
                     .padding(.top, 24)
                 Text("""
-                        What it is and what it's used for.
+                    What does it do?
                     """)
                     .fontWeight(.black)
-                    .font(.system(size: 19))
-                    .padding(.top, 20) //44
+                    .padding(.top, 22)
+                    .font(Font.custom("volkhov", size: 26))
                 Text("Hertz. provides biofeedback from your vagus nerve to your brain. It has two components, one for breathing and one for focus.")
                     .font(Font.system(size: 15))
                     .padding(.top, 10)
@@ -29,8 +29,8 @@ struct PageOne: View {
                         The breathing.
                     """)
                     .fontWeight(.black)
-                    .font(Font.system(size: 17))
                     .padding(.top, 5)
+                    .font(Font.custom("volkhov", size: 20))
                 Text("""
                     The app coaches you to breath in a certain way which stimulates your vagus nerve, as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
                     """)
@@ -45,7 +45,7 @@ struct PageOne: View {
                         The Focus.
                     """)
                     .fontWeight(.black)
-                    .font(Font.system(size: 17))
+                    .font(Font.custom("volkhov", size: 20))
                     .padding(.top, 5)
                 Text("""
                         The app has a red target which you should track with your gaze as it sweeps around the dial. The speed of the dot changes in sync with your breathing. The level of change is controlled by your heart rate variability.
@@ -69,14 +69,12 @@ struct PageTwo: View {
                 Text("""
                     A LITTLE BACKGROUND...
                 """)
-                    //.fontWeight(.black)
                     .font(.system(size: 12))
                     .padding(.top, 44)
                 Text("""
                     Autonomic Nervous System.
                    """)
-                    .font(Font.system(size: 19))
-                    .fontWeight(.heavy)
+                    .font(Font.custom("volkhov", size: 24))
                     .padding(.top, 11)
                 Text("""
                     The ANS runs your background processes, such as digestion, heart rate, salivating and breathing. You largely can’t consciously affect these processes, with breathing as an important exception. The ANS controls your anxiety state. It has two opposing forces controlling that state, the SNS and PNS.
@@ -87,8 +85,7 @@ struct PageTwo: View {
                 Text("""
                        Sympathetic Nervous System.
                        """)
-                    .font(Font.system(size: 17))
-                    .fontWeight(.heavy)
+                    .font(Font.custom("volkhov", size: 20))
                     .padding(.top, 22)
                 Text("""
                     The SNS activates the ‘Flight or Fight’ state, preparing the body for action. The lungs open up, heart-rate increases, digestion is put on pause, the pupils dilate.
@@ -103,8 +100,7 @@ struct PageTwo: View {
                 Text("""
                         Parasympathetic Nervous System.
                        """)
-                    .font(Font.system(size: 17))
-                    .fontWeight(.heavy)
+                    .font(Font.custom("volkhov", size: 20))
                     .padding(.top, 22)
                 Text("""
                        The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, breathing and heart rate slow down, blood is directed towards the digestive system, which gets busy.
@@ -144,7 +140,7 @@ struct PageThree: View {
                     Text("""
                    The Vagus nerve.
                    """)
-                        .font(Font.system(size: 19))
+                        .font(Font.custom("volkhov", size: 24))
                         .fontWeight(.heavy)
                         .padding(.top, 5)
                     Text("""
@@ -156,7 +152,7 @@ struct PageThree: View {
                     Text("""
                HRV - Heart Rate Variability.
                """)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("volkhov", size: 20))
                         .padding(.top, 44)
                     Text("""
                 Your heart doesn’t beat as regularly as a drum machine. Every beat is a little different, this difference is your HRV.
@@ -167,8 +163,7 @@ struct PageThree: View {
                     Text("""
                 LOW HRV.
                 """)
-                        //.fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        .font(Font.system(size: 12))
+                        .font(Font.system(size: 14))
                         .frame(maxWidth: .infinity, alignment:.center)
                         .padding(.top, 15)
                 }
@@ -186,8 +181,7 @@ struct PageThree: View {
                     Text("""
                 HIGH HRV.
                 """)
-                        //.fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        .font(Font.system(size: 12))
+                        .font(Font.system(size: 14))
                         .frame(maxWidth: .infinity, alignment:.center)
                         .padding(.top, 15)
                     Image("high-hrv")
@@ -222,8 +216,7 @@ struct PageFour: View {
                     Text("""
                    CVC - Cardiac Vagal Control.
                    """)
-                        .font(Font.system(size: 19))
-                        .fontWeight(.heavy)
+                        .font(Font.custom("volkhov", size: 24))
                         .padding(.top, 5)
                     Text("""
                    CVC indicates how well controlled your heart is by your vagus. A high value indicates a responsive, sensitive and rapidly changing system and correlates with good health, positive emotions, effective executive function and overall better self-regulation. Think of it as a measure of how much emotional unflappability you have in reserve.
@@ -273,7 +266,7 @@ struct PageFive: View {
                     Text("""
                     Tips and tricks.
                 """)
-                        .fontWeight(.black)
+                        .font(Font.custom("volkhov", size: 24))
                         .font(.system(size: 23))
                         .padding(.top, 22)
                 }
@@ -311,9 +304,9 @@ struct PageFive: View {
                     Text("""
                 Good luck!
                 """)
-                        .font(Font.system(size: 16))
-                        .fontWeight(.bold)
+                        .font(Font.custom("volkhov", size: 20))
                         .padding(.top, 44)
+                        .frame(alignment: .center)
                     Link(destination: URL(string: "https://cyberneticsystemsdevelopment.com")!, label: {
                         Image("csd-white-black")
                         .resizable()
@@ -335,7 +328,6 @@ struct PageSix: View {
 struct Instructions: View {
     @State private var currentPage = 0
     var body: some View {
-        //        VideoPlayer(player: AVPlayer(url:  Bundle.main.url(forResource: "Resources/App Preview", withExtension: "mp4")!))
         VStack {
             PagerView(pageCount: 6, currentIndex: $currentPage) {
                 PageOne()
