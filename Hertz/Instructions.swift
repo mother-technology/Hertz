@@ -32,7 +32,7 @@ struct PageOne: View {
                     .padding(.top, 5)
                     .font(Font.custom("volkhov", size: 20))
                 Text("""
-                    The app coaches you to breath in a certain way which stimulates your vagus nerve, as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
+                        Hertz. coaches you to breath in a certain way which stimulates your vagus nerve, as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
                     """)
                     .font(Font.system(size: 15))
                     .padding(.top, 5)
@@ -77,7 +77,7 @@ struct PageTwo: View {
                     .font(Font.custom("volkhov", size: 24))
                     .padding(.top, 11)
                 Text("""
-                    The ANS runs your background processes, such as digestion, heart rate, salivating and breathing. You largely can’t consciously affect these processes, with breathing as an important exception. The ANS controls your anxiety state. It has two opposing forces controlling that state, the SNS and PNS.
+                    The ANS runs your background processes, such as digestion, heart rate, salivation and breathing. You largely can’t consciously affect these processes, with breathing as an important exception. The ANS controls your anxiety state. It has two opposing forces controlling that state, the SNS and PNS.
                     """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
@@ -103,7 +103,7 @@ struct PageTwo: View {
                     .font(Font.custom("volkhov", size: 20))
                     .padding(.top, 22)
                 Text("""
-                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, breathing and heart rate slow down, blood is directed towards the digestive system, which gets busy.
+                       The PNS brings you towards the ‘Rest and Digest’ state. The body relaxes, breathing and heart rate slow down, and blood is directed towards the digestive system.
                        """)
                     .font(Font.system(size: 14))
                     .padding(.top, 5)
