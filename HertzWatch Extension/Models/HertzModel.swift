@@ -116,8 +116,8 @@ public struct HertzModel {
             if !isInsideBreatheOut {
                 isInsideBreatheOut = true
                 insideSpeedDownAngle = true
-                targetFactor = initialFactor - ( currentHalfRevolution / 40 ) - ( diffAvgMinHeartRate / 7)
-                targetFactor = max(targetFactor, 0.5)
+                targetFactor = initialFactor - ( currentHalfRevolution / 55 ) - ( diffAvgMinHeartRate / 7)
+                targetFactor = max(targetFactor, 0.77)
                 factor = initialFactor
                 factorIncrement = (initialFactor - targetFactor) * withTimeInterval / ( currentTick.segment.getSeconds() / 2 )
             }

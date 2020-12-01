@@ -106,7 +106,7 @@ struct ContentView: View {
 //                                ).monospacedDigit()
 //                            )
 //
-                        
+//
                     }
                     .transition(
                         AnyTransition.opacity.animation(.easeInOut(duration: 1.0))

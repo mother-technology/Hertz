@@ -48,7 +48,7 @@ struct PageOne: View {
                     .font(Font.custom("volkhov", size: 20))
                     .padding(.top, 5)
                 Text("""
-                        The app has a red target which you should track with your gaze as it sweeps around the dial. The speed of the dot changes in sync with your breathing. The level of change is controlled by your heart rate variability.
+                        The app has a red target which you should track with your gaze as it sweeps around the dial. The speed of the dot changes in sync with your breathing. The level of change is affected by your heart rate variability.
                         """)
                     .font(Font.system(size: 15))
                     .padding(.top, 5)
