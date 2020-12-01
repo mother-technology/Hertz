@@ -32,7 +32,7 @@ struct PageOne: View {
                     .padding(.top, 5)
                     .font(Font.custom("volkhov", size: 20))
                 Text("""
-                        Hertz. coaches you to breath in a certain way which stimulates your vagus nerve, as you would with any meditative breathing exercise, or with relaxing activities such as yoga.
+                        Hertz. coaches you to breath in a way which stimulates your vagus nerve, as you would with a meditative breathing exercise, or with activities such as yoga.
                     """)
                     .font(Font.system(size: 15))
                     .padding(.top, 5)
