@@ -54,14 +54,14 @@ struct InstructionView: View {
                         design: .default
                     ).monospacedDigit())
                 .foregroundColor(Color("BreathIn"))
-            Text(" ticks, breath in slowly.")
+            Text(" ticks, breath in.")
                 .font(
                     Font.system(
                         size: 14,
                         weight: .ultraLight,
                         design: .default
                     ).monospacedDigit())
-            Text("As it passes over ")
+            Text("As it passes ")
                 .font(
                     Font.system(
                         size: 14,
@@ -76,7 +76,7 @@ struct InstructionView: View {
                         design: .default
                     ).monospacedDigit())
                 .foregroundColor(Color("BreathHold"))
-            Text(" ticks, arrest breathing without tensing. ")
+            Text(" ticks, pause breathing. ")
                 .font(
                     Font.system(
                         size: 14,
@@ -90,7 +90,7 @@ struct InstructionView: View {
                         weight: .ultraLight,
                         design: .default
                     ).monospacedDigit()) +
-            Text("brown")
+            Text("dark red")
                 .font(
                     Font.system(
                         size: 14,
@@ -98,7 +98,7 @@ struct InstructionView: View {
                         design: .default
                     ).monospacedDigit())
                 .foregroundColor(Color("BreathOut"))
-            Text(" ticks, breath out through your nose.")
+            Text(" ticks, breath out, drop your shoulders, and relax.")
                 .font(
                     Font.system(
                         size: 14,
