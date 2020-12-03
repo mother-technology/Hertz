@@ -247,6 +247,7 @@
 			buildPhases = (
 				9E08D73625783B0900B4673F /* Resources */,
 				9E08D76225783B0B00B4673F /* Embed Watch Content */,
+				9E793BEC257966360058937A /* Set Build Version */,
 			);
 			buildRules = (
 			);
@@ -264,6 +265,7 @@
 			buildPhases = (
 				9E08D73A25783B0900B4673F /* Resources */,
 				9E08D75E25783B0B00B4673F /* Embed App Extensions */,
+				9E793BF825796A310058937A /* Set Build Version */,
 			);
 			buildRules = (
 			);
@@ -282,6 +284,7 @@
 				9E08D74425783B0A00B4673F /* Sources */,
 				9E08D74525783B0A00B4673F /* Frameworks */,
 				9E08D74625783B0A00B4673F /* Resources */,
+				9E793BF925796A4A0058937A /* Set Build Version */,
 			);
 			buildRules = (
 			);
@@ -360,6 +363,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9E793BEC257966360058937A /* Set Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PLB=/usr/libexec/PlistBuddy\nBRANCH=${1:-'master'}\nBUILDNUMBER=$(expr $(git -C ${PROJECT_DIR} rev-list $BRANCH --count) + $(git -C ${PROJECT_DIR} rev-list $BRANCH..HEAD --count))\n\n$PLB -c \"Set :CFBundleVersion $BUILDNUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		9E793BF825796A310058937A /* Set Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PLB=/usr/libexec/PlistBuddy\nBRANCH=${1:-'master'}\nBUILDNUMBER=$(expr $(git -C ${PROJECT_DIR} rev-list $BRANCH --count) + $(git -C ${PROJECT_DIR} rev-list $BRANCH..HEAD --count))\n\n$PLB -c \"Set :CFBundleVersion $BUILDNUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		9E793BF925796A4A0058937A /* Set Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PLB=/usr/libexec/PlistBuddy\nBRANCH=${1:-'master'}\nBUILDNUMBER=$(expr $(git -C ${PROJECT_DIR} rev-list $BRANCH --count) + $(git -C ${PROJECT_DIR} rev-list $BRANCH..HEAD --count))\n\n$PLB -c \"Set :CFBundleVersion $BUILDNUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9E08D74425783B0A00B4673F /* Sources */ = {
