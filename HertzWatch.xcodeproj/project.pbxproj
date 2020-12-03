@@ -108,6 +108,7 @@
 		9E16F1C92579245D0037B616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E16F1CA2579245D0037B616 /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		9E16F1CC2579245D0037B616 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9EEAA35C25797F3C00CCD0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +126,7 @@
 		9E08D73125783B0900B4673F = {
 			isa = PBXGroup;
 			children = (
+				9EEAA35C25797F3C00CCD0A7 /* Info.plist */,
 				9E08D74025783B0900B4673F /* HertzWatch WatchKit App */,
 				9E08D74C25783B0A00B4673F /* HertzWatch WatchKit Extension */,
 				9E08D73925783B0900B4673F /* Products */,
@@ -673,6 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 58262W9GL8;
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -686,6 +689,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 58262W9GL8;
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
