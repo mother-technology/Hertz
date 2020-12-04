@@ -6,5 +6,7 @@
 	<string>Your workout related data will be used to display your HRV in Hertz.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>HRV tracked by Hertz on Apple Watch will be saved to HealthKit.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
