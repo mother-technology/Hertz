@@ -5,6 +5,7 @@ import SwiftUI
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
     @Published var digitalScrollAmount: Double = 0
+    @Published var digitalScrollAmountForRevolutions: Double = 10.0
 
     private var timer: Timer?
 
@@ -30,6 +31,12 @@ class ContentViewModel: ObservableObject {
                 self.hertzModel.update(digitalCrown: value)
             }
             .store(in: &cancellables)
+        $digitalScrollAmountForRevolutions
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                self.hertzModel.update(digitalCrownForRevolutions: value)
+            }
+            .store(in: &cancellables)
     }
 
     deinit {
@@ -40,6 +47,10 @@ class ContentViewModel: ObservableObject {
     
     var isRunning: Bool {
         hertzModel.absoluteStartTime != nil
+    }
+    
+    var isFinished: Bool {
+        hertzModel.isFinished == true
     }
 
     var currentAngle: Angle {

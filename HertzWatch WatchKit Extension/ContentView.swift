@@ -54,51 +54,38 @@ struct ContentView: View {
                     .shadow(color: .red, radius: 0.1, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
 
                 if !model.isRunning {
-                    Button {
-                        model.start()
-                    } label: {
-                        Image(systemName: "arrowtriangle.right.circle")
+                    if model.isFinished {
+                        //TODO: Add stuff for when finished
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.white)
-                    .font(Font.system(size: 50, weight: .ultraLight, design: .default))
-                    .transition(
-                        AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
-                    )
+                    else {
+                        VStack {
+                            Button {
+                                model.start()
+                            } label: {
+                                Image(systemName: "arrowtriangle.right.circle")
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .foregroundColor(.white)
+                            .font(Font.system(size: 50, weight: .ultraLight, design: .default))
+                            .transition(
+                                AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
+                            )
+                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f") revolutions")
+                                .font(
+                                    Font.system(
+                                        size: 16,
+                                        weight: .regular,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+                                .padding(.top, 5)
+                            .focusable()
+                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 2, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                        }
+                    }
                 } else {
                     VStack {
-//                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
-//                            .font(
-//                                Font.system(
-//                                    size: 18,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("\(model.heartRate, specifier: "%.1f") ♥")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") Avg.♥")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("Scroll: \(model.digitalScrollAmount, specifier: "%.1f") Scr")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
+                        
 //                        Text("\(model.factor, specifier: "%.3f")")
 //                            .font(
 //                                Font.system(
@@ -107,12 +94,15 @@ struct ContentView: View {
 //                                    design: .default
 //                                ).monospacedDigit()
 //                            )
-//
-//
-                    }
+                        
+                        Text("") //Mikey - how do I remove without getting error on focusable and crownRotation below?
+                        .focusable()
+                        .digitalCrownRotation($model.digitalScrollAmount, from: -2, through: 2, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                     }
                     .transition(
                         AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                     )
+                    
                 }
             }
             .disabled(showOnboarding)
@@ -122,8 +112,6 @@ struct ContentView: View {
                 OnBoardingScreenView(isPresenting: $showOnboarding, model: onBoardingModel)
             }
         }
-        .focusable()
-        .digitalCrownRotation($model.digitalScrollAmount, from: -2, through: 2, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
         .background(
             Color(.black)
             .edgesIgnoringSafeArea(.all)

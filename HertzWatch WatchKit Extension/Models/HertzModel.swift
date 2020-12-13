@@ -66,6 +66,7 @@ public struct HertzModel {
     var isInsideBreatheOut: Bool = false
     var ticks: [Tick] = []
     var averageHeartRateInOrHold: Double = 0.0
+    var isFinished: Bool = false
     
     private var heartRatesInOrHold:[Double] = []
     private var heartRatesOut:[Double] = []
@@ -77,6 +78,7 @@ public struct HertzModel {
     var heartRate: Double = 0
     
     private var digitalCrown: Double = 0
+    private var digitalCrownForRevolutions: Double = 0
     
     var insideSpeedUpAngle: Bool = false
     var insideSpeedDownAngle: Bool = false
@@ -101,57 +103,69 @@ public struct HertzModel {
 
     private var previousTickSegment: String?
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
-        let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
-        let currentTick = ticks[currentTickIndex]
-        
-        let currentTickSegment = currentTick.segment.toString()
-        if previousTickSegment != currentTickSegment && heartRate > 0 {
-            workOutManager.addInterval(for: self.heartRate, with: [currentTickSegment:1])
-            previousTickSegment = currentTickSegment
-        }
-        
-        let currentHalfRevolution = ceil(2 * elapsedTime / Double(totalTicks))
-        
-        if case .breatheOut = currentTick.segment {
-            if !isInsideBreatheOut {
-                isInsideBreatheOut = true
-                insideSpeedDownAngle = true
-                targetFactor = initialFactor - ( currentHalfRevolution / 55 ) - ( diffAvgMinHeartRate / 7)
-                targetFactor = max(targetFactor, 0.77)
-                factor = initialFactor
-                factorIncrement = (initialFactor - targetFactor) * withTimeInterval / ( currentTick.segment.getSeconds() / 2 )
-            }
-        } else {
-            targetFactor = initialFactor
-            isInsideBreatheOut = false
-        }
+        if (!isFinished) {
+            let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
+            let currentTick = ticks[currentTickIndex]
             
-        if insideSpeedDownAngle {
-            if factor > targetFactor {
-                let newFactor = factor - factorIncrement
-                factor = max(newFactor, targetFactor)
+            let currentTickSegment = currentTick.segment.toString()
+            if previousTickSegment != currentTickSegment && heartRate > 0 {
+                workOutManager.addInterval(for: self.heartRate, with: [currentTickSegment:1])
+                previousTickSegment = currentTickSegment
+            }
+            
+            let currentHalfRevolution = ceil(2 * elapsedTime / Double(totalTicks))
+            
+            if currentHalfRevolution > digitalCrownForRevolutions * 2 {
+                workOutManager.endWorkout()
+                isFinished = true
+                stop()
+            }
+            
+            if case .breatheOut = currentTick.segment {
+                if !isInsideBreatheOut {
+                    isInsideBreatheOut = true
+                    insideSpeedDownAngle = true
+                    targetFactor = initialFactor - ( currentHalfRevolution / 55 ) - ( diffAvgMinHeartRate / 7)
+                    targetFactor = max(targetFactor, 0.77)
+                    factor = initialFactor
+                    factorIncrement = (initialFactor - targetFactor) * withTimeInterval / ( currentTick.segment.getSeconds() / 2 )
+                }
             } else {
-                insideSpeedDownAngle = false
-                insideSpeedUpAngle = true
+                targetFactor = initialFactor
+                isInsideBreatheOut = false
+            }
+                
+            if insideSpeedDownAngle {
+                if factor > targetFactor {
+                    let newFactor = factor - factorIncrement
+                    factor = max(newFactor, targetFactor)
+                } else {
+                    insideSpeedDownAngle = false
+                    insideSpeedUpAngle = true
+                    factor = targetFactor
+                }
+            } else if insideSpeedUpAngle {
+                if factor < initialFactor {
+                    let newFactor = factor + factorIncrement
+                    factor = min(newFactor, initialFactor)
+                } else {
+                    insideSpeedUpAngle = false
+                    targetFactor = initialFactor
+                }
+            } else {
                 factor = targetFactor
             }
-        } else if insideSpeedUpAngle {
-            if factor < initialFactor {
-                let newFactor = factor + factorIncrement
-                factor = min(newFactor, initialFactor)
-            } else {
-                insideSpeedUpAngle = false
-                targetFactor = initialFactor
-            }
-        } else {
-            factor = targetFactor
+            
+            elapsedTime += withTimeInterval * (factor + ( digitalCrown / 7) )
         }
-        
-        elapsedTime += withTimeInterval * (factor + ( digitalCrown / 7) )
     }
     
     mutating func update(digitalCrown withValue: Double) {
         digitalCrown = withValue
+    }
+    
+    mutating func update(digitalCrownForRevolutions withValue: Double) {
+        digitalCrownForRevolutions = withValue
     }
     
     mutating func update(heartRate withHeartRate: Double) {
@@ -192,10 +206,12 @@ public struct HertzModel {
     mutating func start(at time: TimeInterval) {
         absoluteStartTime = time
         elapsedTime = 0
+        //TODO: Remove below?
         heartRatesInOrHold.removeAll()
         heartRatesOut.removeAll()
         minHeartRateOut = 0.0
         diffAvgMinHeartRate = 0.0
+        //End TODO
     }
     
     mutating func stop() {
