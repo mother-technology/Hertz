@@ -12,6 +12,8 @@ struct ContentView: View {
     
     @Environment(\.scenePhase) var scenePhase
     
+    @State private var offset = CGSize.zero
+    
     var body: some View {
         ZStack {
             Group {
@@ -134,6 +136,18 @@ struct ContentView: View {
                 }
             }
         }
+        .gesture(DragGesture()
+                            .onChanged { gesture in
+                                    self.offset = gesture.translation
+                            }
+                            .onEnded { gesture in
+                                if abs(self.offset.height) > 20 {
+                                    InstructionView()
+                                } else {
+                                    self.offset = .zero
+                                }
+                            }
+                    )
     }
 }
 
