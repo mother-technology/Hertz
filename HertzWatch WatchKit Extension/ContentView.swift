@@ -57,10 +57,37 @@ struct ContentView: View {
 
                 if !model.isRunning {
                     if model.isFinished {
-                        //TODO: Add stuff for when finished
+                        VStack(alignment: .center) {
+                            //Spacer()
+                            Image("success-1").resizable()
+                                .frame(width: 75.0, height: 55.0)
+                            Text("TRAINING SCORE: 20")
+                                .kerning(0.7)
+                                .padding(.top, 5)
+                                .font(
+                                    Font.system(
+                                        size: 14,
+                                        weight: .black,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+//                            Text("Largest difference")
+//                                .font(
+//                                    Font.system(
+//                                        size: 12,
+//                                        weight: .light,
+//                                        design: .default
+//                                        ).monospacedDigit()
+//                                     )
+//                                .italic()
+//                                .foregroundColor(.gray)
+//                                .padding(.top, 1)
+//                                .multilineTextAlignment(.center)
+                        }
                     }
                     else {
                         VStack {
+                            Spacer()
                             Button {
                                 model.start()
                             } label: {
@@ -68,19 +95,34 @@ struct ContentView: View {
                             }
                             .buttonStyle(PlainButtonStyle())
                             .foregroundColor(.white)
+                            .padding(.top, 20)
                             .font(Font.system(size: 50, weight: .ultraLight, design: .default))
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
-                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f") revolutions")
+                            Spacer()
+                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f") ROTATIONS")
+                                .kerning(1)
                                 .font(
                                     Font.system(
-                                        size: 16,
-                                        weight: .regular,
+                                        size: 14,
+                                        weight: .black,
                                         design: .default
                                         ).monospacedDigit()
                                      )
-                                .padding(.top, 5)
+                                //.padding(.top, 15)
+                            Text("Adjust revolutions with the digital crown")
+                                .font(
+                                    Font.system(
+                                        size: 12,
+                                        weight: .light,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+                                .italic()
+                                .foregroundColor(.gray)
+                                .padding(.top, 1)
+                                .multilineTextAlignment(.center)
                             .focusable()
                             .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 2, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                         }
