@@ -106,6 +106,10 @@ struct InstructionView: View {
                         design: .default
                     ).monospacedDigit())
         }
+        .background(
+            Color(.black)
+            .edgesIgnoringSafeArea(.all)
+        )
     }
 }
                 

@@ -5,7 +5,7 @@ import SwiftUI
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
     @Published var digitalScrollAmount: Double = 0
-    @Published var digitalScrollAmountForRevolutions: Double = 10.0
+    @Published var digitalScrollAmountForRevolutions: Double = 3.0
 
     private var timer: Timer?
 
@@ -79,6 +79,18 @@ class ContentViewModel: ObservableObject {
     
     var crownFactor: Double {
         hertzModel.crownFactor
+    }
+    
+    var averageOfAllDifferences: Double {
+        hertzModel.averageOfAllDifferences
+    }
+    
+    var maxOfAllDifferences: Double {
+        hertzModel.maxOfAllDifferences
+    }
+    
+    var successImageIndex: Int {
+        hertzModel.successImageIndex
     }
 
     func stop() {

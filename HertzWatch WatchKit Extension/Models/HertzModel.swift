@@ -8,7 +8,7 @@ func circularArray<Element>(array: [Element], index: Int) -> Element {
         if i == 0 {
             return array[i]
         }
-        
+    
         return array[array.count - i]
     } else if index >= array.count {
         return array[index % array.count]
@@ -72,6 +72,10 @@ public struct HertzModel {
     private var heartRatesOut:[Double] = []
     private var minHeartRateOut: Double = 0.0
     private var rollingAverageHeartRateNumber: Int = 3
+    var allDifferences: [Double] = []
+    var averageOfAllDifferences: Double = 0
+    var maxOfAllDifferences: Double = 0
+    var successImageIndex: Int = 1
     
     private var initialFactor: Double = 1
     
@@ -200,7 +204,9 @@ public struct HertzModel {
         
         if averageHeartRateInOrHold > minHeartRateOut {
             diffAvgMinHeartRate = averageHeartRateInOrHold - minHeartRateOut
+            allDifferences.append(diffAvgMinHeartRate)
         }
+        
     }
     
     mutating func start(at time: TimeInterval) {
@@ -217,6 +223,30 @@ public struct HertzModel {
     mutating func stop() {
         absoluteStartTime = nil
         elapsedTime = 0
+        
+        let countAllDifferences: Double = Double(allDifferences.count)
+        let sumAllDifferences: Double = allDifferences.reduce(0, +)
+                
+        if sumAllDifferences > 0 {
+            averageOfAllDifferences = sumAllDifferences / countAllDifferences
+            maxOfAllDifferences = allDifferences.max() ?? 0
+        }
+                
+        if maxOfAllDifferences >= 0 && maxOfAllDifferences < 3 {
+            successImageIndex = 1
+        } else if maxOfAllDifferences >= 3 && maxOfAllDifferences < 6 {
+            successImageIndex = 2
+        } else if maxOfAllDifferences >= 6 && maxOfAllDifferences < 9 {
+            successImageIndex = 3
+        } else if maxOfAllDifferences >= 9 && maxOfAllDifferences < 12 {
+            successImageIndex = 4
+        } else if maxOfAllDifferences >= 12 && maxOfAllDifferences < 15 {
+            successImageIndex = 5
+        } else if maxOfAllDifferences >= 15 && maxOfAllDifferences < 18 {
+            successImageIndex = 6
+        } else {
+            successImageIndex = 7
+        }
     }
     
     mutating func generateTicks() {

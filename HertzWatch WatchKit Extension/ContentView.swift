@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showOnboarding = false
+    @State private var swipeDown: Bool = false
     
     @AppStorage("OnboardBeenViewed") var hasOnboarded = false
     let onBoardingModel = OnBoardingData.build()
@@ -59,9 +60,10 @@ struct ContentView: View {
                     if model.isFinished {
                         VStack(alignment: .center) {
                             //Spacer()
-                            Image("success-1").resizable()
+                            Image("success-\(model.successImageIndex)").resizable()
                                 .frame(width: 75.0, height: 55.0)
-                            Text("TRAINING SCORE: 20")
+                            if model.averageOfAllDifferences > 0 {
+                                Text("AVERAGE SCORE: \(model.averageOfAllDifferences, specifier: "%.0f")" )
                                 .kerning(0.7)
                                 .padding(.top, 5)
                                 .font(
@@ -71,18 +73,31 @@ struct ContentView: View {
                                         design: .default
                                         ).monospacedDigit()
                                      )
-//                            Text("Largest difference")
-//                                .font(
-//                                    Font.system(
-//                                        size: 12,
-//                                        weight: .light,
-//                                        design: .default
-//                                        ).monospacedDigit()
-//                                     )
-//                                .italic()
-//                                .foregroundColor(.gray)
-//                                .padding(.top, 1)
-//                                .multilineTextAlignment(.center)
+                            }
+                            if model.maxOfAllDifferences > 0 {
+                                Text("MAX SCORE: \(model.maxOfAllDifferences, specifier: "%.0f")")
+                                    .kerning(0.7)
+                                    .padding(.top, 5)
+                                    .font(
+                                        Font.system(
+                                            size: 14,
+                                            weight: .black,
+                                            design: .default
+                                            ).monospacedDigit()
+                                         )
+                            }
+                            Text("I love Tomás!")
+                                .font(
+                                    Font.system(
+                                        size: 12,
+                                        weight: .light,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+                                .italic()
+                                .foregroundColor(.gray)
+                                .padding(.top, 1)
+                                .multilineTextAlignment(.center)
                         }
                     }
                     else {
@@ -124,20 +139,28 @@ struct ContentView: View {
                                 .padding(.top, 1)
                                 .multilineTextAlignment(.center)
                             .focusable()
-                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 2, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                         }
                     }
                 } else {
                     VStack {
                         
-//                        Text("\(model.factor, specifier: "%.3f")")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
+                        Text("\(model.factor, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 16,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 16,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
                         
                         Text("") //Mikey - how do I remove without getting error on focusable and crownRotation below?
                         .focusable()
@@ -154,6 +177,9 @@ struct ContentView: View {
             
             if showOnboarding {
                 OnBoardingScreenView(isPresenting: $showOnboarding, model: onBoardingModel)
+            }
+            if swipeDown {
+                InstructionView()
             }
         }
         .background(
@@ -183,8 +209,11 @@ struct ContentView: View {
                                     self.offset = gesture.translation
                             }
                             .onEnded { gesture in
-                                if abs(self.offset.height) > 20 {
-                                    InstructionView()
+                                if self.offset.height < -20 {
+                                    self.swipeDown = true
+                                    //print("\(self.offset.height)")
+                                } else if self.offset.height > 20 {
+                                    self.swipeDown = false
                                 } else {
                                     self.offset = .zero
                                 }
