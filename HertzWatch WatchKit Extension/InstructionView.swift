@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct InstructionView: View {
-
     var body: some View {
         ScrollView {
         VStack {

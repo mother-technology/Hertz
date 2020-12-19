@@ -33,6 +33,7 @@
 		9E16F1DB2579245E0037B616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E16F1C92579245D0037B616 /* Assets.xcassets */; };
 		9E16F1DC2579245E0037B616 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16F1CA2579245D0037B616 /* InstructionView.swift */; };
 		9E16F1DD2579245E0037B616 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E16F1CC2579245D0037B616 /* Preview Assets.xcassets */; };
+		9E1CD202258E92C3004071BA /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1CD201258E92C3004071BA /* BottomSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		9E16F1C92579245D0037B616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E16F1CA2579245D0037B616 /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		9E16F1CC2579245D0037B616 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9E1CD201258E92C3004071BA /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		9EEAA35C25797F3C00CCD0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,7 @@
 				9E08D75325783B0B00B4673F /* Assets.xcassets */,
 				9E08D75825783B0B00B4673F /* Info.plist */,
 				9E08D75525783B0B00B4673F /* Preview Content */,
+				9E1CD201258E92C3004071BA /* BottomSheetView.swift */,
 			);
 			path = "HertzWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				9E16F1D12579245E0037B616 /* OnBoardCard.swift in Sources */,
 				9E16F1D22579245E0037B616 /* OnBoardingData.swift in Sources */,
 				9E16F1D52579245E0037B616 /* OnBoardingScreenView.swift in Sources */,
+				9E1CD202258E92C3004071BA /* BottomSheetView.swift in Sources */,
 				9E16F1B3257924400037B616 /* Arc.swift in Sources */,
 				9E16F1D62579245E0037B616 /* TickFace.swift in Sources */,
 				9E16F1D32579245E0037B616 /* OnBoardingCardView.swift in Sources */,

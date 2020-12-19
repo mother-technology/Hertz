@@ -3,7 +3,6 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showOnboarding = false
-    @State private var swipeDown: Bool = false
     
     @AppStorage("OnboardBeenViewed") var hasOnboarded = false
     let onBoardingModel = OnBoardingData.build()
@@ -13,8 +12,12 @@ struct ContentView: View {
     
     @Environment(\.scenePhase) var scenePhase
     
-    @State private var offset = CGSize.zero
-    
+    @State private var instructionsIsOpen: Bool = false
+    @GestureState private var instructionsTranslation: CGFloat = 0
+    private var offset: CGFloat {
+        instructionsIsOpen ? 0 : 170
+    }
+
     var body: some View {
         ZStack {
             Group {
@@ -172,15 +175,20 @@ struct ContentView: View {
                     
                 }
             }
-            .disabled(showOnboarding)
-            .blur(radius: showOnboarding ? 3.0 : 0)
+            .disabled(showOnboarding || instructionsIsOpen)
+            .blur(radius: (showOnboarding || instructionsIsOpen) ? 3.0 : 0)
             
             if showOnboarding {
                 OnBoardingScreenView(isPresenting: $showOnboarding, model: onBoardingModel)
             }
-            if swipeDown {
-                InstructionView()
+            
+            BottomSheetView(isOpen: $instructionsIsOpen, maxHeight: 150, minHeight: 0) {
+                VStack {
+                    InstructionView()
+                        .padding()
+                }
             }
+            .disabled(showOnboarding)
         }
         .background(
             Color(.black)
@@ -204,21 +212,6 @@ struct ContentView: View {
                 }
             }
         }
-        .gesture(DragGesture()
-                            .onChanged { gesture in
-                                    self.offset = gesture.translation
-                            }
-                            .onEnded { gesture in
-                                if self.offset.height < -20 {
-                                    self.swipeDown = true
-                                    //print("\(self.offset.height)")
-                                } else if self.offset.height > 20 {
-                                    self.swipeDown = false
-                                } else {
-                                    self.offset = .zero
-                                }
-                            }
-                    )
     }
 }
 
