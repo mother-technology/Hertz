@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showOnboarding = false
+    @State private var swipeDown: Bool = false
     
     @AppStorage("OnboardBeenViewed") var hasOnboarded = false
     let onBoardingModel = OnBoardingData.build()
@@ -11,6 +12,8 @@ struct ContentView: View {
     @ObservedObject var workoutManager: WorkoutManager = .shared
     
     @Environment(\.scenePhase) var scenePhase
+    
+    @State private var offset = CGSize.zero
     
     var body: some View {
         ZStack {
@@ -54,65 +57,119 @@ struct ContentView: View {
                     .shadow(color: .red, radius: 0.1, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
 
                 if !model.isRunning {
-                    Button {
-                        model.start()
-                    } label: {
-                        Image(systemName: "arrowtriangle.right.circle")
+                    if model.isFinished {
+                        VStack(alignment: .center) {
+                            //Spacer()
+                            Image("success-\(model.successImageIndex)").resizable()
+                                .frame(width: 75.0, height: 55.0)
+                            if model.averageOfAllDifferences > 0 {
+                                Text("AVERAGE SCORE: \(model.averageOfAllDifferences, specifier: "%.0f")" )
+                                .kerning(0.7)
+                                .padding(.top, 5)
+                                .font(
+                                    Font.system(
+                                        size: 14,
+                                        weight: .black,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+                            }
+                            if model.maxOfAllDifferences > 0 {
+                                Text("MAX SCORE: \(model.maxOfAllDifferences, specifier: "%.0f")")
+                                    .kerning(0.7)
+                                    .padding(.top, 5)
+                                    .font(
+                                        Font.system(
+                                            size: 14,
+                                            weight: .black,
+                                            design: .default
+                                            ).monospacedDigit()
+                                         )
+                            }
+                            Text("I love Tomás!")
+                                .font(
+                                    Font.system(
+                                        size: 12,
+                                        weight: .light,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+                                .italic()
+                                .foregroundColor(.gray)
+                                .padding(.top, 1)
+                                .multilineTextAlignment(.center)
+                        }
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.white)
-                    .font(Font.system(size: 50, weight: .ultraLight, design: .default))
-                    .transition(
-                        AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
-                    )
+                    else {
+                        VStack {
+                            Spacer()
+                            Button {
+                                model.start()
+                            } label: {
+                                Image(systemName: "arrowtriangle.right.circle")
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .foregroundColor(.white)
+                            .padding(.top, 20)
+                            .font(Font.system(size: 50, weight: .ultraLight, design: .default))
+                            .transition(
+                                AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
+                            )
+                            Spacer()
+                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f") ROTATIONS")
+                                .kerning(1)
+                                .font(
+                                    Font.system(
+                                        size: 14,
+                                        weight: .black,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+                                //.padding(.top, 15)
+                            Text("Adjust revolutions with the digital crown")
+                                .font(
+                                    Font.system(
+                                        size: 12,
+                                        weight: .light,
+                                        design: .default
+                                        ).monospacedDigit()
+                                     )
+                                .italic()
+                                .foregroundColor(.gray)
+                                .padding(.top, 1)
+                                .multilineTextAlignment(.center)
+                            .focusable()
+                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                        }
+                    }
                 } else {
                     VStack {
-//                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
-//                            .font(
-//                                Font.system(
-//                                    size: 18,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("\(model.heartRate, specifier: "%.1f") ♥")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("\(model.averageHeartRateInOrHold, specifier: "%.1f") Avg.♥")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("Scroll: \(model.digitalScrollAmount, specifier: "%.1f") Scr")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("\(model.factor, specifier: "%.3f")")
-//                            .font(
-//                                Font.system(
-//                                    size: 16,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//
-//
-                    }
+                        
+                        Text("\(model.factor, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 16,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 16,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        
+                        Text("") //Mikey - how do I remove without getting error on focusable and crownRotation below?
+                        .focusable()
+                        .digitalCrownRotation($model.digitalScrollAmount, from: -2, through: 2, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                     }
                     .transition(
                         AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                     )
+                    
                 }
             }
             .disabled(showOnboarding)
@@ -121,9 +178,10 @@ struct ContentView: View {
             if showOnboarding {
                 OnBoardingScreenView(isPresenting: $showOnboarding, model: onBoardingModel)
             }
+            if swipeDown {
+                InstructionView()
+            }
         }
-        .focusable()
-        .digitalCrownRotation($model.digitalScrollAmount, from: -2, through: 2, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
         .background(
             Color(.black)
             .edgesIgnoringSafeArea(.all)
@@ -146,6 +204,21 @@ struct ContentView: View {
                 }
             }
         }
+        .gesture(DragGesture()
+                            .onChanged { gesture in
+                                    self.offset = gesture.translation
+                            }
+                            .onEnded { gesture in
+                                if self.offset.height < -20 {
+                                    self.swipeDown = true
+                                    //print("\(self.offset.height)")
+                                } else if self.offset.height > 20 {
+                                    self.swipeDown = false
+                                } else {
+                                    self.offset = .zero
+                                }
+                            }
+                    )
     }
 }
 

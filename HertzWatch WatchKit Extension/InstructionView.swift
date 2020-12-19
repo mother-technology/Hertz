@@ -3,11 +3,12 @@ import SwiftUI
 struct InstructionView: View {
 
     var body: some View {
+        ScrollView {
         VStack {
             Text("Instructions")
                 .font(
                     Font.system(
-                        size: 18,
+                        size: 16,
                         weight: .bold,
                         design: .default
                         ).monospacedDigit().smallCaps()
@@ -39,7 +40,7 @@ struct InstructionView: View {
                         design: .default
                     ).monospacedDigit()
                 )
-            Text("As it passes over ")
+            Text("Breath in over ")
                 .font(
                     Font.system(
                         size: 14,
@@ -54,36 +55,36 @@ struct InstructionView: View {
                         design: .default
                     ).monospacedDigit())
                 .foregroundColor(Color("BreathIn"))
-            Text(" ticks, breath in.")
-                .font(
-                    Font.system(
-                        size: 14,
-                        weight: .ultraLight,
-                        design: .default
-                    ).monospacedDigit())
-            Text("As it passes ")
+            Text(" ticks. ")
                 .font(
                     Font.system(
                         size: 14,
                         weight: .ultraLight,
                         design: .default
                     ).monospacedDigit()) +
-            Text("white")
+            Text("Pause breathing over ")
+                .font(
+                    Font.system(
+                        size: 14,
+                        weight: .ultraLight,
+                        design: .default
+                    ).monospacedDigit()) +
+            Text("white ")
                 .font(
                     Font.system(
                         size: 14,
                         weight: .bold,
                         design: .default
                     ).monospacedDigit())
-                .foregroundColor(Color("BreathHold"))
-            Text(" ticks, pause breathing. ")
+                .foregroundColor(Color("BreathHold")) +
+            Text("ticks. ")
                 .font(
                     Font.system(
                         size: 14,
                         weight: .ultraLight,
                         design: .default
                     ).monospacedDigit())
-            Text("As it passes over ")
+            Text("Breath out over ")
                 .font(
                     Font.system(
                         size: 14,
@@ -98,13 +99,18 @@ struct InstructionView: View {
                         design: .default
                     ).monospacedDigit())
                 .foregroundColor(Color("BreathOut"))
-            Text(" ticks, breath out, drop your shoulders, and relax.")
+            Text(" ticks, drop your shoulders, and relax.")
                 .font(
                     Font.system(
                         size: 14,
                         weight: .ultraLight,
                         design: .default
                     ).monospacedDigit())
+        }
+        .background(
+            Color(.black)
+            .edgesIgnoringSafeArea(.all)
+        )
         }
     }
 }
