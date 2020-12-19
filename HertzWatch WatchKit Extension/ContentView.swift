@@ -13,10 +13,6 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @State private var instructionsIsOpen: Bool = false
-    @GestureState private var instructionsTranslation: CGFloat = 0
-    private var offset: CGFloat {
-        instructionsIsOpen ? 0 : 170
-    }
 
     var body: some View {
         ZStack {
