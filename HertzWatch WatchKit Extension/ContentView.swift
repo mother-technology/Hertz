@@ -53,7 +53,7 @@ struct ContentView: View {
                     .fill(Color(red: 0.777, green: 0, blue: 0))
                     .rotationEffect(model.currentAngle)
                     .padding(7.2)
-                    .shadow(color: .red, radius: 0.1, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
+                    .shadow(color: .red, radius: 0.1, x: 0.0, y: 0.0)
 
                 if !model.isRunning {
                     if model.isFinished {
