@@ -62,7 +62,7 @@ struct ContentView: View {
                             Image("success-\(model.successImageIndex)").resizable()
                                 .frame(width: 75.0, height: 55.0)
                             if model.averageOfAllDifferences > 0 {
-                                Text("SCORE A/M: \(model.averageOfAllDifferences, specifier: "%.0f") / \(model.maxOfAllDifferences, specifier: "%.0f")" ) //Temp solution until Tomás has decided which score he likes the most!
+                                Text("PEAK SCORE: \(model.maxOfAllDifferences, specifier: "%.0f")" ) 
                                 .kerning(0.7)
                                 .padding(.top, 5)
                                 .font(
@@ -126,7 +126,7 @@ struct ContentView: View {
                                 .padding(.top, 1)
                                 .multilineTextAlignment(.center)
                             .focusable()
-                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 2, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                         }
                     }
                 } else {
