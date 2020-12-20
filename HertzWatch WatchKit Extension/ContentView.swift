@@ -62,7 +62,7 @@ struct ContentView: View {
                             Image("success-\(model.successImageIndex)").resizable()
                                 .frame(width: 75.0, height: 55.0)
                             if model.averageOfAllDifferences > 0 {
-                                Text("AVERAGE SCORE: \(model.averageOfAllDifferences, specifier: "%.0f")" )
+                                Text("SCORE A/M: \(model.averageOfAllDifferences, specifier: "%.0f") / \(model.maxOfAllDifferences, specifier: "%.0f")" ) //Temp solution until Tomás has decided which score he likes the most!
                                 .kerning(0.7)
                                 .padding(.top, 5)
                                 .font(
@@ -73,30 +73,18 @@ struct ContentView: View {
                                         ).monospacedDigit()
                                      )
                             }
-                            if model.maxOfAllDifferences > 0 {
-                                Text("MAX SCORE: \(model.maxOfAllDifferences, specifier: "%.0f")")
-                                    .kerning(0.7)
-                                    .padding(.top, 5)
-                                    .font(
-                                        Font.system(
-                                            size: 14,
-                                            weight: .black,
-                                            design: .default
-                                            ).monospacedDigit()
-                                         )
-                            }
-                            Text("I love Tomás!")
-                                .font(
-                                    Font.system(
-                                        size: 12,
-                                        weight: .light,
-                                        design: .default
-                                        ).monospacedDigit()
-                                     )
-                                .italic()
-                                .foregroundColor(.gray)
-                                .padding(.top, 1)
-                                .multilineTextAlignment(.center)
+//                            Text("Great work!")
+//                                .font(
+//                                    Font.system(
+//                                        size: 12,
+//                                        weight: .light,
+//                                        design: .default
+//                                        ).monospacedDigit()
+//                                     )
+//                                .italic()
+//                                .foregroundColor(.gray)
+//                                .padding(.top, 1)
+//                                .multilineTextAlignment(.center)
                         }
                     }
                     else {
@@ -160,10 +148,6 @@ struct ContentView: View {
                                     design: .default
                                 ).monospacedDigit()
                             )
-                        
-                        Text("") //Mikey - how do I remove without getting error on focusable and crownRotation below?
-                        .focusable()
-                        .digitalCrownRotation($model.digitalScrollAmount, from: -2, through: 2, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                      }
                     .transition(
                         AnyTransition.opacity.animation(.easeInOut(duration: 1.0))

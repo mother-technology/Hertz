@@ -4,7 +4,6 @@ import SwiftUI
 
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
-    @Published var digitalScrollAmount: Double = 0
     @Published var digitalScrollAmountForRevolutions: Double = 3.0
 
     private var timer: Timer?
@@ -25,12 +24,6 @@ class ContentViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
-        $digitalScrollAmount
-            .receive(on: RunLoop.main)
-            .sink { [unowned self] value in
-                self.hertzModel.update(digitalCrown: value)
-            }
-            .store(in: &cancellables)
         $digitalScrollAmountForRevolutions
             .receive(on: RunLoop.main)
             .sink { [unowned self] value in
