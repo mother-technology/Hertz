@@ -81,7 +81,6 @@ public struct HertzModel {
     
     var heartRate: Double = 0
     
-    private var digitalCrown: Double = 0
     private var digitalCrownForRevolutions: Double = 0
     
     var insideSpeedUpAngle: Bool = false
@@ -160,12 +159,8 @@ public struct HertzModel {
                 factor = targetFactor
             }
             
-            elapsedTime += withTimeInterval * (factor + ( digitalCrown / 7) )
+            elapsedTime += withTimeInterval * factor
         }
-    }
-    
-    mutating func update(digitalCrown withValue: Double) {
-        digitalCrown = withValue
     }
     
     mutating func update(digitalCrownForRevolutions withValue: Double) {
