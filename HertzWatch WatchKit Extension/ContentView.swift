@@ -4,7 +4,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var showOnboarding = false
     
-    @AppStorage("OnboardBeenViewed") var hasOnboarded = false
+    @AppStorage("OnBoardVersionViewed") var onBoardVersionViewed: Double = 0
+    
     let onBoardingModel = OnBoardingData.build()
     
     @ObservedObject var model = ContentViewModel(hertzModel: HertzModel())
@@ -199,11 +200,11 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            if !hasOnboarded {
+            if onBoardVersionViewed < Bundle.main.bundleShortVersion {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     withAnimation {
                         showOnboarding.toggle()
-                        hasOnboarded = true
+                        onBoardVersionViewed = Bundle.main.bundleShortVersion
                     }
                 }
             }

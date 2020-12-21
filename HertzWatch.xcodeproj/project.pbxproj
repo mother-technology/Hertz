@@ -34,6 +34,7 @@
 		9E16F1DC2579245E0037B616 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16F1CA2579245D0037B616 /* InstructionView.swift */; };
 		9E16F1DD2579245E0037B616 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E16F1CC2579245D0037B616 /* Preview Assets.xcassets */; };
 		9E1CD202258E92C3004071BA /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1CD201258E92C3004071BA /* BottomSheetView.swift */; };
+		9E842A402590F2890023902A /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E842A3F2590F2890023902A /* Bundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		9E16F1CA2579245D0037B616 /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		9E16F1CC2579245D0037B616 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9E1CD201258E92C3004071BA /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		9E842A3F2590F2890023902A /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		9EEAA35C25797F3C00CCD0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +233,7 @@
 				9E16F1C62579245D0037B616 /* Array.swift */,
 				9E16F1C72579245D0037B616 /* CGRect.swift */,
 				9E16F1C82579245D0037B616 /* Color.swift */,
+				9E842A3F2590F2890023902A /* Bundle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				9E1CD202258E92C3004071BA /* BottomSheetView.swift in Sources */,
 				9E16F1B3257924400037B616 /* Arc.swift in Sources */,
 				9E16F1D62579245E0037B616 /* TickFace.swift in Sources */,
+				9E842A402590F2890023902A /* Bundle.swift in Sources */,
 				9E16F1D32579245E0037B616 /* OnBoardingCardView.swift in Sources */,
 				9E08D75225783B0A00B4673F /* ComplicationController.swift in Sources */,
 				9E16F1CF2579245E0037B616 /* HertzModel.swift in Sources */,
