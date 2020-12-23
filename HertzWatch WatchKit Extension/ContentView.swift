@@ -14,7 +14,12 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @State private var instructionsIsOpen: Bool = false
-
+    @State private var isSpeedSelected = false
+    @State private var isRevolutionSelected = false
+    
+    @State private var buttonColorSpeed: Color = Color.white
+    @State private var buttonColorRevolutions: Color = Color.white
+    
     var body: some View {
         ZStack {
             Group {
@@ -55,27 +60,15 @@ struct ContentView: View {
                     .rotationEffect(model.currentAngle)
                     .padding(7.2)
                     .shadow(color: .red, radius: 0.1, x: 0.0, y: 0.0)
-
+                
                 if !model.isRunning {
                     if model.isFinished {
                         VStack(alignment: .center) {
                             //Spacer()
                             Image("success-\(model.successImageIndex)").resizable()
                                 .frame(width: 75.0, height: 55.0)
-                            if model.averageOfAllDifferences > 0 {
-                                Text("AVERAGE SCORE: \(model.averageOfAllDifferences, specifier: "%.0f")" )
-                                .kerning(0.7)
-                                .padding(.top, 5)
-                                .font(
-                                    Font.system(
-                                        size: 14,
-                                        weight: .black,
-                                        design: .default
-                                        ).monospacedDigit()
-                                     )
-                            }
                             if model.maxOfAllDifferences > 0 {
-                                Text("MAX SCORE: \(model.maxOfAllDifferences, specifier: "%.0f")")
+                                Text("PEAK SCORE: \(model.maxOfAllDifferences, specifier: "%.0f")")
                                     .kerning(0.7)
                                     .padding(.top, 5)
                                     .font(
@@ -83,21 +76,9 @@ struct ContentView: View {
                                             size: 14,
                                             weight: .black,
                                             design: .default
-                                            ).monospacedDigit()
-                                         )
-                            }
-                            Text("I love Tomás!")
-                                .font(
-                                    Font.system(
-                                        size: 12,
-                                        weight: .light,
-                                        design: .default
                                         ).monospacedDigit()
-                                     )
-                                .italic()
-                                .foregroundColor(.gray)
-                                .padding(.top, 1)
-                                .multilineTextAlignment(.center)
+                                    )
+                            }
                         }
                     }
                     else {
@@ -109,39 +90,97 @@ struct ContentView: View {
                                 Image(systemName: "arrowtriangle.right.circle")
                             }
                             .buttonStyle(PlainButtonStyle())
-                            .foregroundColor(.white)
-                            .padding(.top, 20)
                             .font(Font.system(size: 50, weight: .ultraLight, design: .default))
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
-                            Spacer()
-                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f") ROTATIONS")
-                                .kerning(1)
-                                .font(
-                                    Font.system(
-                                        size: 14,
-                                        weight: .black,
-                                        design: .default
-                                        ).monospacedDigit()
-                                     )
-                                //.padding(.top, 15)
-                            Text("Adjust revolutions with the digital crown")
-                                .font(
-                                    Font.system(
-                                        size: 12,
-                                        weight: .light,
-                                        design: .default
-                                        ).monospacedDigit()
-                                     )
-                                .italic()
-                                .foregroundColor(.gray)
-                                .padding(.top, 1)
-                                .multilineTextAlignment(.center)
-                            .focusable()
-                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                            
+                            HStack {
+                                VStack {
+                                    Text("SPEED")
+                                        .font(
+                                            Font.system(
+                                                size: 11,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .kerning(0.5)
+                                        .padding(.bottom, 2)
+                                    Button(action: {
+                                        self.buttonColorSpeed = Color("SliderGreen")
+                                        self.buttonColorRevolutions = Color.white
+                                        isSpeedSelected = true
+                                        isRevolutionSelected = false
+                                    }) {
+                                        Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
+                                            .frame(width:40, height: 40)
+                                            .background(Color.black)
+                                            .font(
+                                                Font.system(
+                                                    size: 20,
+                                                    weight: .regular,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                    }
+                                    .frame(width:40, height: 40)
+                                    .overlay(
+                                                RoundedRectangle(cornerRadius: 7)
+                                                    .stroke(buttonColorSpeed, lineWidth: 1)
+                                            )
+                                }
+                                .padding(.trailing, 3)
+                                VStack {
+                                    Text("REVS")
+                                        .font(
+                                            Font.system(
+                                                size: 11,
+                                                weight: .light,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .kerning(0.5)
+                                        .padding(.bottom, 2)
+                                    Button(action: {
+                                        self.buttonColorRevolutions = Color("SliderGreen")
+                                        self.buttonColorSpeed = Color.white
+                                        isSpeedSelected = false
+                                        isRevolutionSelected = true
+                                    
+                                    }) {
+                                        Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
+                                            .frame(width:40, height: 40)
+                                            .background(Color.black)
+                                            .font(
+                                                Font.system(
+                                                    size: 20,
+                                                    weight: .regular,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                    }
+                                    .frame(width:40, height: 40)
+                                    .overlay(
+                                                RoundedRectangle(cornerRadius: 7)
+                                                    .stroke(buttonColorRevolutions, lineWidth: 1)
+                                            )
+                                }
+                                .padding(.leading, 3)
+                            }
+                            .padding(.top, 5)
                         }
+                        
+//                        if isSpeedSelected {
+//                            self.focusable(true)
+//                            self.digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 2, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+//                        }
+//                        if isRevolutionSelected {
+//                            self.focusable(true)
+//                            self.digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+//                        }
                     }
+                    
                 } else {
                     VStack {
                         
@@ -161,11 +200,7 @@ struct ContentView: View {
                                     design: .default
                                 ).monospacedDigit()
                             )
-                        
-                        Text("") //Mikey - how do I remove without getting error on focusable and crownRotation below?
-                        .focusable()
-                        .digitalCrownRotation($model.digitalScrollAmount, from: -2, through: 2, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-                     }
+                    }
                     .transition(
                         AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                     )
@@ -189,7 +224,7 @@ struct ContentView: View {
         }
         .background(
             Color(.black)
-            .edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.all)
         )
         .onAppear {
             workoutManager.requestAuthorization()
