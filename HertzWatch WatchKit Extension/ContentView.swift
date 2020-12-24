@@ -126,11 +126,12 @@ struct ContentView: View {
                                     }
                                     .frame(width:40, height: 40)
                                     .overlay(
-                                                RoundedRectangle(cornerRadius: 7)
-                                                    .stroke(buttonColorSpeed, lineWidth: 1)
-                                            )
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .stroke(buttonColorSpeed, lineWidth: 1)
+                                    )
                                 }
                                 .padding(.trailing, 3)
+                                
                                 VStack {
                                     Text("REVS")
                                         .font(
@@ -147,7 +148,7 @@ struct ContentView: View {
                                         self.buttonColorSpeed = Color.white
                                         isSpeedSelected = false
                                         isRevolutionSelected = true
-                                    
+                                        
                                     }) {
                                         Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
                                             .frame(width:40, height: 40)
@@ -162,24 +163,22 @@ struct ContentView: View {
                                     }
                                     .frame(width:40, height: 40)
                                     .overlay(
-                                                RoundedRectangle(cornerRadius: 7)
-                                                    .stroke(buttonColorRevolutions, lineWidth: 1)
-                                            )
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .stroke(buttonColorRevolutions, lineWidth: 1)
+                                    )
                                 }
                                 .padding(.leading, 3)
                             }
                             .padding(.top, 5)
                         }
+                        .focusable(isSpeedSelected)
+                        .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 2, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                         
-//                        if isSpeedSelected {
-//                            self.focusable(true)
-//                            self.digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 2, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-//                        }
-//                        if isRevolutionSelected {
-//                            self.focusable(true)
-//                            self.digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-//                        }
+                        .focusable(isRevolutionSelected)
+                        .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                        
                     }
+                    
                     
                 } else {
                     VStack {
