@@ -13,8 +13,6 @@
 		9E08D74E25783B0A00B4673F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E08D74D25783B0A00B4673F /* ContentView.swift */; };
 		9E08D75025783B0A00B4673F /* HertzWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E08D74F25783B0A00B4673F /* HertzWatchApp.swift */; };
 		9E08D75225783B0A00B4673F /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E08D75125783B0A00B4673F /* ComplicationController.swift */; };
-		9E08D75425783B0B00B4673F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E08D75325783B0B00B4673F /* Assets.xcassets */; };
-		9E08D75725783B0B00B4673F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E08D75625783B0B00B4673F /* Preview Assets.xcassets */; };
 		9E08D76F25783D5300B4673F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E08D76E25783D5300B4673F /* HealthKit.framework */; };
 		9E16F1B3257924400037B616 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16F1B2257924400037B616 /* Arc.swift */; };
 		9E16F1CD2579245E0037B616 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16F1B72579245D0037B616 /* WorkoutManager.swift */; };
@@ -310,7 +308,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					9E08D73725783B0900B4673F = {
 						CreatedOnToolsVersion = 12.2;
@@ -364,9 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E16F1DD2579245E0037B616 /* Preview Assets.xcassets in Resources */,
-				9E08D75725783B0B00B4673F /* Preview Assets.xcassets in Resources */,
 				9E16F1DB2579245E0037B616 /* Assets.xcassets in Resources */,
-				9E08D75425783B0B00B4673F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
