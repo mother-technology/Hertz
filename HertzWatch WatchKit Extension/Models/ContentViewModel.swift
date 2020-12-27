@@ -3,9 +3,12 @@ import Foundation
 import SwiftUI
 
 class ContentViewModel: ObservableObject {
+    
     @Published private var hertzModel: HertzModel
-    @Published var digitalScrollAmountForSpeed: Double = 5
-    @Published var digitalScrollAmountForRevolutions: Double = 3.0
+    @Published var digitalScrollAmountForSpeed: Double =   UserDefaults.standard.object(forKey: "speed") as? Double ?? 0
+    
+    @Published var digitalScrollAmountForRevolutions: Double =
+        UserDefaults.standard.object(forKey: "revs") as? Double ?? 7.0
 
     private var timer: Timer?
 
@@ -16,7 +19,7 @@ class ContentViewModel: ObservableObject {
     init(hertzModel: HertzModel) {
         self.hertzModel = hertzModel
         self.hertzModel.generateTicks()
-
+        
         workOutManager
             .publisher
             .receive(on: RunLoop.main)
@@ -106,6 +109,9 @@ class ContentViewModel: ObservableObject {
         }
 
         hertzModel.start(at: Date().timeIntervalSinceReferenceDate)
+        
+        UserDefaults.standard.set(digitalScrollAmountForSpeed, forKey: "speed")
+        UserDefaults.standard.set(digitalScrollAmountForRevolutions, forKey: "revs")
         workOutManager.startWorkout()
     }
 

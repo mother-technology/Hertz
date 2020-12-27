@@ -14,12 +14,10 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @State private var instructionsIsOpen: Bool = false
-    @State private var isSpeedSelected = false
-    @State private var isRevolutionSelected = false
     
     @State private var buttonColorSpeed: Color = Color.white
     @State private var buttonColorRevolutions: Color = Color.white
-    
+        
     var body: some View {
         ZStack {
             Group {
@@ -110,8 +108,6 @@ struct ContentView: View {
                                     Button(action: {
                                         self.buttonColorSpeed = Color("SliderGreen")
                                         self.buttonColorRevolutions = Color.white
-                                        isSpeedSelected = true
-                                        isRevolutionSelected = false
                                     }) {
                                         Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
                                             .frame(width:40, height: 40)
@@ -123,6 +119,8 @@ struct ContentView: View {
                                                     design: .default
                                                 ).monospacedDigit()
                                             )
+                                            .focusable()
+                                            .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: -3, through: 3, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                                     }
                                     .frame(width:40, height: 40)
                                     .overlay(
@@ -146,20 +144,21 @@ struct ContentView: View {
                                     Button(action: {
                                         self.buttonColorRevolutions = Color("SliderGreen")
                                         self.buttonColorSpeed = Color.white
-                                        isSpeedSelected = false
-                                        isRevolutionSelected = true
                                         
                                     }) {
-                                        Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
-                                            .frame(width:40, height: 40)
-                                            .background(Color.black)
-                                            .font(
-                                                Font.system(
-                                                    size: 20,
-                                                    weight: .regular,
-                                                    design: .default
-                                                ).monospacedDigit()
-                                            )
+                                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
+                                                .frame(width:40, height: 40)
+                                                .background(Color.black)
+                                                .font(
+                                                    Font.system(
+                                                        size: 20,
+                                                        weight: .regular,
+                                                        design: .default
+                                                    ).monospacedDigit()
+                                                )
+                                                .focusable()
+                                                .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 21, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+
                                     }
                                     .frame(width:40, height: 40)
                                     .overlay(
@@ -171,11 +170,6 @@ struct ContentView: View {
                             }
                             .padding(.top, 5)
                         }
-                        .focusable(isSpeedSelected)
-                        .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 2, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-                        
-                        .focusable(isRevolutionSelected)
-                        .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 10, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                         
                     }
                     

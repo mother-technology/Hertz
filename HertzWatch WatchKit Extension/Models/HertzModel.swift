@@ -160,7 +160,7 @@ public struct HertzModel {
                 factor = targetFactor
             }
             
-            elapsedTime += withTimeInterval * (factor + ( digitalCrownForSpeed / 35) )
+            elapsedTime += withTimeInterval * (factor + ( ( digitalCrownForSpeed + 3) / 35) )
         }
     }
     
