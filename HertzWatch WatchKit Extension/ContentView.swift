@@ -62,7 +62,7 @@ struct ContentView: View {
                 if !model.isRunning {
                     if model.isFinished {
                         VStack(alignment: .center) {
-                            //Spacer()
+                            Spacer()
                             Image("success-\(model.successImageIndex)").resizable()
                                 .frame(width: 75.0, height: 55.0)
                             if model.maxOfAllDifferences > 0 {
@@ -77,7 +77,33 @@ struct ContentView: View {
                                         ).monospacedDigit()
                                     )
                             }
+                            Spacer()
+                            Button(action: {
+                                model.returnToStart()
+                                
+                            }) {
+                                    Text("Restart")
+                                        .frame(width:100, height: 40)
+                                        .background(Color.black)
+                                        .font(
+                                            Font.system(
+                                                size: 16,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                            }
+                            .frame(width:100, height: 40)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 7)
+                                    .stroke(Color.white, lineWidth: 1)
+                            )
+                            .padding(.top, 10)
                         }
+                        .background(
+                            Color(.black)
+                                .edgesIgnoringSafeArea(.all)
+                        )
                     }
                     else {
                         VStack {
@@ -94,42 +120,6 @@ struct ContentView: View {
                             )
                             
                             HStack {
-                                VStack {
-                                    Text("SPEED")
-                                        .font(
-                                            Font.system(
-                                                size: 11,
-                                                weight: .regular,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
-                                        .kerning(0.5)
-                                        .padding(.bottom, 2)
-                                    Button(action: {
-                                        self.buttonColorSpeed = Color("SliderGreen")
-                                        self.buttonColorRevolutions = Color.white
-                                    }) {
-                                        Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
-                                            .frame(width:40, height: 40)
-                                            .background(Color.black)
-                                            .font(
-                                                Font.system(
-                                                    size: 20,
-                                                    weight: .regular,
-                                                    design: .default
-                                                ).monospacedDigit()
-                                            )
-                                            .focusable()
-                                            .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: -3, through: 3, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-                                    }
-                                    .frame(width:40, height: 40)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .stroke(buttonColorSpeed, lineWidth: 1)
-                                    )
-                                }
-                                .padding(.trailing, 3)
-                                
                                 VStack {
                                     Text("REVS")
                                         .font(
@@ -166,11 +156,46 @@ struct ContentView: View {
                                             .stroke(buttonColorRevolutions, lineWidth: 1)
                                     )
                                 }
+                                .padding(.trailing, 3)
+                                
+                                VStack {
+                                    Text("SPEED")
+                                        .font(
+                                            Font.system(
+                                                size: 11,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .kerning(0.5)
+                                        .padding(.bottom, 2)
+                                    Button(action: {
+                                        self.buttonColorSpeed = Color("SliderGreen")
+                                        self.buttonColorRevolutions = Color.white
+                                    }) {
+                                        Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
+                                            .frame(width:40, height: 40)
+                                            .background(Color.black)
+                                            .font(
+                                                Font.system(
+                                                    size: 20,
+                                                    weight: .regular,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                            .focusable()
+                                            .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                    }
+                                    .frame(width:40, height: 40)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .stroke(buttonColorSpeed, lineWidth: 1)
+                                    )
+                                }
                                 .padding(.leading, 3)
                             }
                             .padding(.top, 5)
                         }
-                        
                     }
                     
                     

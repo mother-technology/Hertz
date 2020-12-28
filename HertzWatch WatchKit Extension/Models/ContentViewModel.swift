@@ -5,7 +5,7 @@ import SwiftUI
 class ContentViewModel: ObservableObject {
     
     @Published private var hertzModel: HertzModel
-    @Published var digitalScrollAmountForSpeed: Double =   UserDefaults.standard.object(forKey: "speed") as? Double ?? 0
+    @Published var digitalScrollAmountForSpeed: Double =   UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
     
     @Published var digitalScrollAmountForRevolutions: Double =
         UserDefaults.standard.object(forKey: "revs") as? Double ?? 7.0
@@ -94,6 +94,11 @@ class ContentViewModel: ObservableObject {
     
     var successImageIndex: Int {
         hertzModel.successImageIndex
+    }
+    
+    func returnToStart() {
+        hertzModel.returnToStart()
+        stop()
     }
 
     func stop() {
