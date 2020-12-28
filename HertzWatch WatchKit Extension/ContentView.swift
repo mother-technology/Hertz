@@ -3,21 +3,21 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showOnboarding = false
-    
+
     @AppStorage("OnBoardVersionViewed") var onBoardVersionViewed: Double = 0
-    
+
     let onBoardingModel = OnBoardingData.build()
-    
+
     @ObservedObject var model = ContentViewModel(hertzModel: HertzModel())
     @ObservedObject var workoutManager: WorkoutManager = .shared
-    
+
     @Environment(\.scenePhase) var scenePhase
-    
+
     @State private var instructionsIsOpen: Bool = false
-    
-    @State private var buttonColorSpeed: Color = Color.white
-    @State private var buttonColorRevolutions: Color = Color.white
-        
+
+    @State private var buttonColorSpeed = Color.white
+    @State private var buttonColorRevolutions = Color.white
+
     var body: some View {
         ZStack {
             Group {
@@ -52,13 +52,13 @@ struct ContentView: View {
                         )
                         .rotationEffect(model.currentAngle)
                     )
-                
-                Dot(circleRadius:7)
+
+                Dot(circleRadius: 7)
                     .fill(Color(red: 0.777, green: 0, blue: 0))
                     .rotationEffect(model.currentAngle)
                     .padding(7.2)
                     .shadow(color: .red, radius: 0.1, x: 0.0, y: 0.0)
-                
+
                 if !model.isRunning {
                     if model.isFinished {
                         VStack(alignment: .center) {
@@ -80,20 +80,20 @@ struct ContentView: View {
                             Spacer()
                             Button(action: {
                                 model.returnToStart()
-                                
+
                             }) {
-                                    Text("Restart")
-                                        .frame(width:100, height: 40)
-                                        .background(Color.black)
-                                        .font(
-                                            Font.system(
-                                                size: 16,
-                                                weight: .regular,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
+                                Text("Restart")
+                                    .frame(width: 100, height: 40)
+                                    .background(Color.black)
+                                    .font(
+                                        Font.system(
+                                            size: 16,
+                                            weight: .regular,
+                                            design: .default
+                                        ).monospacedDigit()
+                                    )
                             }
-                            .frame(width:100, height: 40)
+                            .frame(width: 100, height: 40)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
                                     .stroke(Color.white, lineWidth: 1)
@@ -104,10 +104,8 @@ struct ContentView: View {
                             Color(.black)
                                 .edgesIgnoringSafeArea(.all)
                         )
-                    }
-                    else {
+                    } else {
                         VStack {
-                            Spacer()
                             Button {
                                 model.start()
                             } label: {
@@ -118,7 +116,8 @@ struct ContentView: View {
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
-                            
+                            .offset(y: 13.0)
+
                             HStack {
                                 VStack {
                                     Text("REVS")
@@ -134,30 +133,29 @@ struct ContentView: View {
                                     Button(action: {
                                         self.buttonColorRevolutions = Color("SliderGreen")
                                         self.buttonColorSpeed = Color.white
-                                        
-                                    }) {
-                                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
-                                                .frame(width:40, height: 40)
-                                                .background(Color.black)
-                                                .font(
-                                                    Font.system(
-                                                        size: 20,
-                                                        weight: .regular,
-                                                        design: .default
-                                                    ).monospacedDigit()
-                                                )
-                                                .focusable()
-                                                .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 21, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
 
+                                    }) {
+                                        Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
+                                            .frame(width: 40, height: 40)
+                                            .background(Color.black)
+                                            .font(
+                                                Font.system(
+                                                    size: 20,
+                                                    weight: .regular,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                            .focusable()
+                                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 21, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                                     }
-                                    .frame(width:40, height: 40)
+                                    .frame(width: 40, height: 40)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 7)
                                             .stroke(buttonColorRevolutions, lineWidth: 1)
                                     )
                                 }
                                 .padding(.trailing, 3)
-                                
+
                                 VStack {
                                     Text("SPEED")
                                         .font(
@@ -174,7 +172,7 @@ struct ContentView: View {
                                         self.buttonColorRevolutions = Color.white
                                     }) {
                                         Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
-                                            .frame(width:40, height: 40)
+                                            .frame(width: 40, height: 40)
                                             .background(Color.black)
                                             .font(
                                                 Font.system(
@@ -186,7 +184,7 @@ struct ContentView: View {
                                             .focusable()
                                             .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                                     }
-                                    .frame(width:40, height: 40)
+                                    .frame(width: 40, height: 40)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 7)
                                             .stroke(buttonColorSpeed, lineWidth: 1)
@@ -197,11 +195,8 @@ struct ContentView: View {
                             .padding(.top, 5)
                         }
                     }
-                    
-                    
                 } else {
                     VStack {
-                        
                         Text("\(model.factor, specifier: "%.3f")")
                             .font(
                                 Font.system(
@@ -222,16 +217,15 @@ struct ContentView: View {
                     .transition(
                         AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                     )
-                    
                 }
             }
             .disabled(showOnboarding || instructionsIsOpen)
             .blur(radius: (showOnboarding || instructionsIsOpen) ? 3.0 : 0)
-            
+
             if showOnboarding {
                 OnBoardingScreenView(isPresenting: $showOnboarding, model: onBoardingModel)
             }
-            
+
             BottomSheetView(isOpen: $instructionsIsOpen, maxHeight: 150, minHeight: 0) {
                 VStack {
                     InstructionView()
