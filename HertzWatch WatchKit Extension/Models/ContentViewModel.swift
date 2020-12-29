@@ -52,6 +52,10 @@ class ContentViewModel: ObservableObject {
         hertzModel.absoluteStartTime != nil
     }
     
+//    var trainingTime: Double {
+//        hertzModel.trainingTime
+//    }
+    
     var isFinished: Bool {
         hertzModel.isFinished == true
     }

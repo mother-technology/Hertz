@@ -67,6 +67,7 @@ public struct HertzModel {
     var ticks: [Tick] = []
     var averageHeartRateInOrHold: Double = 0.0
     var isFinished: Bool = false
+    // var trainingTime: Double = 0
     
     private var heartRatesInOrHold:[Double] = []
     private var heartRatesOut:[Double] = []
@@ -231,6 +232,14 @@ public struct HertzModel {
     }
     
     mutating func stop() {
+        
+//        if let absoluteStartTime = absoluteStartTime {
+//            trainingTime = Date().timeIntervalSinceReferenceDate - absoluteStartTime
+//        }
+//        else {
+//            trainingTime = 0
+//        }
+        
         absoluteStartTime = nil
         elapsedTime = 0
         
