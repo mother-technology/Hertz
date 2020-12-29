@@ -143,8 +143,8 @@ struct ContentView: View {
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
-                            .offset(y: 17.0)
-                            
+                            .offset(y: 27.0)
+                            Spacer()
                             HStack {
                                 VStack {
                                     Text("REVS")
@@ -173,7 +173,7 @@ struct ContentView: View {
                                                 ).monospacedDigit()
                                             )
                                             .focusable()
-                                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 1, through: 21, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 5, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                                     }
                                     .frame(width: 35, height: 32)
                                     .overlay(
@@ -219,7 +219,6 @@ struct ContentView: View {
                                 }
                                 .padding(.leading, 3)
                             }
-                            .padding(.top, 20)
                         }
                     }
                 } else {

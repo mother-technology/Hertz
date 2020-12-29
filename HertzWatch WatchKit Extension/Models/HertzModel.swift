@@ -133,8 +133,8 @@ public struct HertzModel {
                 if !isInsideBreatheOut {
                     isInsideBreatheOut = true
                     insideSpeedDownAngle = true
-                    targetFactor = initialFactorAfterSpeedChange - ( currentHalfRevolution / 55 ) - ( diffAvgMinHeartRate / 7 )
-                    print("targetFactor: \(targetFactor), currentHalfRevolution: \(currentHalfRevolution), diffAvgMinHeartRate: \(diffAvgMinHeartRate), digitalCrownForSpeed: \(digitalCrownForSpeed), initialFactorAfterSpeedChange: \(initialFactorAfterSpeedChange)")
+                    targetFactor = initialFactorAfterSpeedChange - min( ( currentHalfRevolution / 55 ), 0.3) - ( diffAvgMinHeartRate / 7 )
+                    //print("targetFactor: \(targetFactor), currentHalfRevolution: \(currentHalfRevolution), diffAvgMinHeartRate: \(diffAvgMinHeartRate), digitalCrownForSpeed: \(digitalCrownForSpeed), initialFactorAfterSpeedChange: \(initialFactorAfterSpeedChange)")
                     targetFactor = max(targetFactor, 0.5)
                     targetFactor = min(targetFactor, 1.5)
                     factor = initialFactorAfterSpeedChange
@@ -242,14 +242,7 @@ public struct HertzModel {
         
         absoluteStartTime = nil
         elapsedTime = 0
-        
-        let countAllDifferences: Double = Double(allDifferences.count)
-        let sumAllDifferences: Double = allDifferences.reduce(0, +)
-                
-        if sumAllDifferences > 0 {
-            averageOfAllDifferences = sumAllDifferences / countAllDifferences
-            maxOfAllDifferences = allDifferences.max() ?? 0
-        }
+        maxOfAllDifferences = 3 * ( allDifferences.max() ?? 0 ) //adding factor to make the result less low
                 
         if maxOfAllDifferences >= 0 && maxOfAllDifferences < 3 {
             successImageIndex = 1

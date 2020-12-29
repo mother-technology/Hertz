@@ -3,7 +3,7 @@ import SwiftUI
 struct InstructionView: View {
     var body: some View {
         ScrollView {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 5) {
                 Group {
                     Text("Instructions")
                         .font(
@@ -41,6 +41,7 @@ struct InstructionView: View {
                                 design: .default
                             ).monospacedDigit()
                         )
+                        
                     Text("2. Breath in over ")
                         .font(
                             Font.system(
@@ -107,6 +108,13 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
+                        Text("5. Occasionally nudge the digital crown to keep the display active.")
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            ).monospacedDigit())
                 }
                 Group {
                     Text("Tips & Tricks")
@@ -121,7 +129,7 @@ struct InstructionView: View {
                     Text("⏣ ")
                     .font(
                         Font.system(
-                            size: 18,
+                            size: 16,
                             weight: .bold,
                             design: .default
                         )
@@ -140,13 +148,13 @@ struct InstructionView: View {
                     Text("⏣ ")
                     .font(
                         Font.system(
-                            size: 18,
+                            size: 16,
                             weight: .bold,
                             design: .default
                         )
                         .monospacedDigit()
                     )
-                    .foregroundColor(.BreathHold) +
+                    .foregroundColor(.BreathIn) +
                     Text("Regular short sessions beat sporadic long ones.")
                         .font(
                             Font.system(
@@ -159,13 +167,13 @@ struct InstructionView: View {
                     Text("⏣ ")
                     .font(
                         Font.system(
-                            size: 18,
+                            size: 16,
                             weight: .bold,
                             design: .default
                         )
                         .monospacedDigit()
                     )
-                    .foregroundColor(.BreathOut) +
+                    .foregroundColor(.BreathIn) +
                     Text("Practise in a calm, comfortable environment without distractions.")
                         .font(
                             Font.system(
@@ -178,7 +186,7 @@ struct InstructionView: View {
                     Text("⏣ ")
                     .font(
                         Font.system(
-                            size: 18,
+                            size: 16,
                             weight: .bold,
                             design: .default
                         )
@@ -197,13 +205,13 @@ struct InstructionView: View {
                     Text("⏣ ")
                     .font(
                         Font.system(
-                            size: 18,
+                            size: 16,
                             weight: .bold,
                             design: .default
                         )
                         .monospacedDigit()
                     )
-                    .foregroundColor(.BreathHold) +
+                    .foregroundColor(.BreathIn) +
                     Text("Relax your muscles as you breath out.")
                         .font(
                             Font.system(
@@ -216,13 +224,13 @@ struct InstructionView: View {
                     Text("⏣ ")
                     .font(
                         Font.system(
-                            size: 18,
+                            size: 16,
                             weight: .bold,
                             design: .default
                         )
                         .monospacedDigit()
                     )
-                    .foregroundColor(.BreathOut) +
+                    .foregroundColor(.BreathIn) +
                     Text("Try to 'will' the dot to slow down as you breath out.")
                         .font(
                             Font.system(
@@ -235,7 +243,7 @@ struct InstructionView: View {
                     Text("⏣ ")
                     .font(
                         Font.system(
-                            size: 18,
+                            size: 16,
                             weight: .bold,
                             design: .default
                         )
@@ -260,7 +268,7 @@ struct InstructionView: View {
                             ).monospacedDigit().smallCaps()
                         )
                         .frame(maxWidth: .infinity, alignment: .center)
-                    Text("www.CSD.red")
+                    Text("www.csd.red")
                         .font(
                             Font.system(
                                 size: 14,
