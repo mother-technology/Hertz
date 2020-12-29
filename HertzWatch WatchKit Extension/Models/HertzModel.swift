@@ -67,6 +67,7 @@ public struct HertzModel {
     var ticks: [Tick] = []
     var averageHeartRateInOrHold: Double = 0.0
     var isFinished: Bool = false
+    // var trainingTime: Double = 0
     
     private var heartRatesInOrHold:[Double] = []
     private var heartRatesOut:[Double] = []
@@ -78,9 +79,11 @@ public struct HertzModel {
     var successImageIndex: Int = 1
     
     private var initialFactor: Double = 1
+    private var initialFactorAfterSpeedChange: Double = 1
     
     var heartRate: Double = 0
     
+    private var digitalCrownForSpeed: Double = 0
     private var digitalCrownForRevolutions: Double = 0
     
     var insideSpeedUpAngle: Bool = false
@@ -105,6 +108,7 @@ public struct HertzModel {
     let workOutManager: WorkoutManager = .shared
 
     private var previousTickSegment: String?
+    
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
         if (!isFinished) {
             let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
@@ -124,17 +128,20 @@ public struct HertzModel {
                 stop()
             }
             
+            
             if case .breatheOut = currentTick.segment {
                 if !isInsideBreatheOut {
                     isInsideBreatheOut = true
                     insideSpeedDownAngle = true
-                    targetFactor = initialFactor - ( currentHalfRevolution / 55 ) - ( diffAvgMinHeartRate / 7)
-                    targetFactor = max(targetFactor, 0.77)
-                    factor = initialFactor
-                    factorIncrement = (initialFactor - targetFactor) * withTimeInterval / ( currentTick.segment.getSeconds() / 2 )
+                    targetFactor = initialFactorAfterSpeedChange - min( ( currentHalfRevolution / 55 ), 0.3) - ( diffAvgMinHeartRate / 7 )
+                    //print("targetFactor: \(targetFactor), currentHalfRevolution: \(currentHalfRevolution), diffAvgMinHeartRate: \(diffAvgMinHeartRate), digitalCrownForSpeed: \(digitalCrownForSpeed), initialFactorAfterSpeedChange: \(initialFactorAfterSpeedChange)")
+                    targetFactor = max(targetFactor, 0.5)
+                    targetFactor = min(targetFactor, 1.5)
+                    factor = initialFactorAfterSpeedChange
+                    factorIncrement = (initialFactorAfterSpeedChange - targetFactor) * withTimeInterval / ( currentTick.segment.getSeconds() / 2 )
                 }
             } else {
-                targetFactor = initialFactor
+                targetFactor = initialFactorAfterSpeedChange
                 isInsideBreatheOut = false
             }
                 
@@ -148,12 +155,12 @@ public struct HertzModel {
                     factor = targetFactor
                 }
             } else if insideSpeedUpAngle {
-                if factor < initialFactor {
+                if factor < initialFactorAfterSpeedChange {
                     let newFactor = factor + factorIncrement
-                    factor = min(newFactor, initialFactor)
+                    factor = min(newFactor, initialFactorAfterSpeedChange)
                 } else {
                     insideSpeedUpAngle = false
-                    targetFactor = initialFactor
+                    targetFactor = initialFactorAfterSpeedChange
                 }
             } else {
                 factor = targetFactor
@@ -161,6 +168,10 @@ public struct HertzModel {
             
             elapsedTime += withTimeInterval * factor
         }
+    }
+    
+    mutating func update(digitalCrownForSpeed withValue: Double) {
+        digitalCrownForSpeed = withValue
     }
     
     mutating func update(digitalCrownForRevolutions withValue: Double) {
@@ -207,6 +218,7 @@ public struct HertzModel {
     mutating func start(at time: TimeInterval) {
         absoluteStartTime = time
         elapsedTime = 0
+        initialFactorAfterSpeedChange = initialFactor + ( digitalCrownForSpeed - 3) / 35
         //TODO: Remove below?
         heartRatesInOrHold.removeAll()
         heartRatesOut.removeAll()
@@ -215,17 +227,22 @@ public struct HertzModel {
         //End TODO
     }
     
+    mutating func returnToStart() {
+        isFinished = false
+    }
+    
     mutating func stop() {
+        
+//        if let absoluteStartTime = absoluteStartTime {
+//            trainingTime = Date().timeIntervalSinceReferenceDate - absoluteStartTime
+//        }
+//        else {
+//            trainingTime = 0
+//        }
+        
         absoluteStartTime = nil
         elapsedTime = 0
-        
-        let countAllDifferences: Double = Double(allDifferences.count)
-        let sumAllDifferences: Double = allDifferences.reduce(0, +)
-                
-        if sumAllDifferences > 0 {
-            averageOfAllDifferences = sumAllDifferences / countAllDifferences
-            maxOfAllDifferences = allDifferences.max() ?? 0
-        }
+        maxOfAllDifferences = 3 * ( allDifferences.max() ?? 0 ) //adding factor to make the result less low
                 
         if maxOfAllDifferences >= 0 && maxOfAllDifferences < 3 {
             successImageIndex = 1

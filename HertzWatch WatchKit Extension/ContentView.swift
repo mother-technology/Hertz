@@ -14,7 +14,10 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @State private var instructionsIsOpen: Bool = false
-
+    
+    @State private var buttonColorSpeed = Color.white
+    @State private var buttonColorRevolutions = Color.white
+    
     var body: some View {
         ZStack {
             Group {
@@ -50,111 +53,207 @@ struct ContentView: View {
                         .rotationEffect(model.currentAngle)
                     )
                 
-                Dot(circleRadius:7)
+                Dot(circleRadius: 7)
                     .fill(Color(red: 0.777, green: 0, blue: 0))
                     .rotationEffect(model.currentAngle)
                     .padding(7.2)
                     .shadow(color: .red, radius: 0.1, x: 0.0, y: 0.0)
-
+                
                 if !model.isRunning {
                     if model.isFinished {
                         VStack(alignment: .center) {
-                            //Spacer()
+                            Spacer()
                             Image("success-\(model.successImageIndex)").resizable()
                                 .frame(width: 75.0, height: 55.0)
-                            if model.averageOfAllDifferences > 0 {
-                                Text("PEAK SCORE: \(model.maxOfAllDifferences, specifier: "%.0f")" ) 
-                                .kerning(0.7)
-                                .padding(.top, 5)
-                                .font(
-                                    Font.system(
-                                        size: 14,
-                                        weight: .black,
-                                        design: .default
-                                        ).monospacedDigit()
-                                     )
+
+                                VStack {
+                                    if model.maxOfAllDifferences > 0 {
+                                        Text("RESULT")
+                                            .font(
+                                                Font.system(
+                                                    size: 10,
+                                                    weight: .light,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                            .kerning(0.5)
+                                            .padding(.top, 5)
+                                        Text("\(model.maxOfAllDifferences, specifier: "%.0f")")
+                                            .font(
+                                                Font.system(
+                                                    size: 18,
+                                                    weight: .regular,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                    }
+                                // .padding(.trailing, 7)
+//                                VStack {
+//                                    if model.trainingTime > 0 {
+//                                        Text("TIME")
+//                                            .font(
+//                                                Font.system(
+//                                                    size: 10,
+//                                                    weight: .light,
+//                                                    design: .default
+//                                                ).monospacedDigit()
+//                                            )
+//                                            .kerning(0.5)
+//                                            .padding(.top, 5)
+//                                        Text("\(model.trainingTime, specifier: "%.1f")")
+//                                            .font(
+//                                                Font.system(
+//                                                    size: 18,
+//                                                    weight: .regular,
+//                                                    design: .default
+//                                                ).monospacedDigit()
+//                                            )
+//                                    }
+                                // .padding(.leading, 7)
                             }
-//                            Text("Great work!")
-//                                .font(
-//                                    Font.system(
-//                                        size: 12,
-//                                        weight: .light,
-//                                        design: .default
-//                                        ).monospacedDigit()
-//                                     )
-//                                .italic()
-//                                .foregroundColor(.gray)
-//                                .padding(.top, 1)
-//                                .multilineTextAlignment(.center)
-                        }
-                    }
-                    else {
-                        VStack {
                             Spacer()
+                            Button(action: {
+                                model.returnToStart()
+                                                           
+                                                       }) {
+                                                               Text("Once more?")
+                                                                   .frame(width:110, height: 40)
+                                                                   .background(Color.black)
+                                                                   .font(
+                                                                       Font.system(
+                                                                           size: 16,
+                                                                           weight: .regular,
+                                                                           design: .default
+                                                                       ).monospacedDigit()
+                                                                   )
+                                                       }
+                                                       .frame(width:110, height: 40)
+                                                       .overlay(
+                                                           RoundedRectangle(cornerRadius: 7)
+                                                               .stroke(Color.white, lineWidth: 1)
+                                                       )
+                            .padding(.top, 10)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            Color(.black)
+                                .edgesIgnoringSafeArea(.all)
+                        )
+                    } else {
+                        VStack {
                             Button {
                                 model.start()
                             } label: {
                                 Image(systemName: "arrowtriangle.right.circle")
                             }
                             .buttonStyle(PlainButtonStyle())
-                            .foregroundColor(.white)
-                            .padding(.top, 20)
                             .font(Font.system(size: 50, weight: .ultraLight, design: .default))
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
+                            .offset(y: 27.0)
                             Spacer()
-                            Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f") ROTATIONS")
-                                .kerning(1)
-                                .font(
-                                    Font.system(
-                                        size: 14,
-                                        weight: .black,
-                                        design: .default
-                                        ).monospacedDigit()
-                                     )
-                                //.padding(.top, 15)
-                            Text("Adjust revolutions with the digital crown")
-                                .font(
-                                    Font.system(
-                                        size: 12,
-                                        weight: .light,
-                                        design: .default
-                                        ).monospacedDigit()
-                                     )
-                                .italic()
-                                .foregroundColor(.gray)
-                                .padding(.top, 1)
-                                .multilineTextAlignment(.center)
-                            .focusable()
-                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 2, through: 20, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+
+                            HStack {
+                                VStack {
+                                    Text("REVS")
+                                        .font(
+                                            Font.system(
+                                                size: 10,
+                                                weight: .light,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .kerning(0.5)
+                                        .padding(.bottom, 2)
+                                    Button(action: {
+                                        self.buttonColorRevolutions = Color("SliderGreen")
+                                        self.buttonColorSpeed = Color.white
+                                        
+                                    }) {
+                                        Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
+                                            .frame(width: 35, height: 32)
+                                            .background(Color.black)
+                                            .font(
+                                                Font.system(
+                                                    size: 18,
+                                                    weight: .regular,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                            .focusable()
+                                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 7, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                    }
+                                    .frame(width: 35, height: 32)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .stroke(buttonColorRevolutions, lineWidth: 1)
+                                    )
+                                }
+                                .padding(.trailing, 3)
+                                
+                                VStack {
+                                    Text("SPEED")
+                                        .font(
+                                            Font.system(
+                                                size: 10,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .kerning(0.5)
+                                        .padding(.bottom, 2)
+                                    Button(action: {
+                                        self.buttonColorSpeed = Color("SliderGreen")
+                                        self.buttonColorRevolutions = Color.white
+                                    }) {
+                                        Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
+                                            .frame(width: 35, height: 32)
+                                            .background(Color.black)
+                                            .font(
+                                                Font.system(
+                                                    size: 18,
+                                                    weight: .regular,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                            .focusable()
+                                            .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                    }
+                                    .frame(width: 35, height: 32)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .stroke(buttonColorSpeed, lineWidth: 1)
+                                    )
+                                }
+                                .padding(.leading, 3)
+                            }
                         }
                     }
-                } else {
-                    VStack {
-                        
-                        Text("\(model.factor, specifier: "%.3f")")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                     }
-                    .transition(
-                        AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
-                    )
-                    
                 }
+//                else {
+//                    VStack {
+//                        Text("\(model.factor, specifier: "%.3f")")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                    }
+//                    .transition(
+//                        AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
+//                    )
+//                }
             }
             .disabled(showOnboarding || instructionsIsOpen)
             .blur(radius: (showOnboarding || instructionsIsOpen) ? 3.0 : 0)
@@ -173,7 +272,7 @@ struct ContentView: View {
         }
         .background(
             Color(.black)
-            .edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.all)
         )
         .onAppear {
             workoutManager.requestAuthorization()

@@ -3,8 +3,11 @@ import Foundation
 import SwiftUI
 
 class ContentViewModel: ObservableObject {
+    
     @Published private var hertzModel: HertzModel
-    @Published var digitalScrollAmountForRevolutions: Double = 3.0
+    @Published var digitalScrollAmountForSpeed: Double =   UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
+    @Published var digitalScrollAmountForRevolutions: Double =
+        UserDefaults.standard.object(forKey: "revs") as? Double ?? 9.0
 
     private var timer: Timer?
 
@@ -15,12 +18,19 @@ class ContentViewModel: ObservableObject {
     init(hertzModel: HertzModel) {
         self.hertzModel = hertzModel
         self.hertzModel.generateTicks()
-
+        
         workOutManager
             .publisher
             .receive(on: RunLoop.main)
             .sink { [unowned self] value in
                 self.hertzModel.update(heartRate: value)
+            }
+            .store(in: &cancellables)
+
+        $digitalScrollAmountForSpeed
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                self.hertzModel.update(digitalCrownForSpeed: value)
             }
             .store(in: &cancellables)
 
@@ -41,6 +51,10 @@ class ContentViewModel: ObservableObject {
     var isRunning: Bool {
         hertzModel.absoluteStartTime != nil
     }
+    
+//    var trainingTime: Double {
+//        hertzModel.trainingTime
+//    }
     
     var isFinished: Bool {
         hertzModel.isFinished == true
@@ -85,6 +99,11 @@ class ContentViewModel: ObservableObject {
     var successImageIndex: Int {
         hertzModel.successImageIndex
     }
+    
+    func returnToStart() {
+        hertzModel.returnToStart()
+        stop()
+    }
 
     func stop() {
         timer?.invalidate()
@@ -99,6 +118,9 @@ class ContentViewModel: ObservableObject {
         }
 
         hertzModel.start(at: Date().timeIntervalSinceReferenceDate)
+        
+        UserDefaults.standard.set(digitalScrollAmountForSpeed, forKey: "speed")
+        UserDefaults.standard.set(digitalScrollAmountForRevolutions, forKey: "revs")
         workOutManager.startWorkout()
     }
 
