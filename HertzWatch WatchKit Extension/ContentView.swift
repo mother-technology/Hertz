@@ -221,29 +221,30 @@ struct ContentView: View {
                             }
                         }
                     }
-                } else {
-                    VStack {
-                        Text("\(model.factor, specifier: "%.3f")")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
-                            .font(
-                                Font.system(
-                                    size: 16,
-                                    weight: .regular,
-                                    design: .default
-                                ).monospacedDigit()
-                            )
-                    }
-                    .transition(
-                        AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
-                    )
                 }
+//                else {
+//                    VStack {
+//                        Text("\(model.factor, specifier: "%.3f")")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                        Text("\(model.diffAvgMinHeartRate, specifier: "%.3f")")
+//                            .font(
+//                                Font.system(
+//                                    size: 16,
+//                                    weight: .regular,
+//                                    design: .default
+//                                ).monospacedDigit()
+//                            )
+//                    }
+//                    .transition(
+//                        AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
+//                    )
+//                }
             }
             .disabled(showOnboarding || instructionsIsOpen)
             .blur(radius: (showOnboarding || instructionsIsOpen) ? 3.0 : 0)
