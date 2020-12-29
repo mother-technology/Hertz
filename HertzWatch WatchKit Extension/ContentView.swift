@@ -112,18 +112,26 @@ struct ContentView: View {
                                 // .padding(.leading, 7)
                             }
                             Spacer()
-                            Button {
+                            Button(action: {
                                 model.returnToStart()
-                            } label: {
-                                Image(systemName: "hand.thumbsup.fill")
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .font(Font.system(size: 20, weight: .ultraLight, design: .default))
-                            .frame(width: 40, height: 35)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .stroke(Color.white, lineWidth: 1)
-                            )
+                                                           
+                                                       }) {
+                                                               Text("Once more?")
+                                                                   .frame(width:110, height: 40)
+                                                                   .background(Color.black)
+                                                                   .font(
+                                                                       Font.system(
+                                                                           size: 16,
+                                                                           weight: .regular,
+                                                                           design: .default
+                                                                       ).monospacedDigit()
+                                                                   )
+                                                       }
+                                                       .frame(width:110, height: 40)
+                                                       .overlay(
+                                                           RoundedRectangle(cornerRadius: 7)
+                                                               .stroke(Color.white, lineWidth: 1)
+                                                       )
                             .padding(.top, 10)
                         }
                         .frame(maxWidth: .infinity)
