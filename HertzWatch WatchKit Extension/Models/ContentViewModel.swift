@@ -8,7 +8,7 @@ class ContentViewModel: ObservableObject {
     @Published var digitalScrollAmountForSpeed: Double =   UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
     
     @Published var digitalScrollAmountForRevolutions: Double =
-        UserDefaults.standard.object(forKey: "revs") as? Double ?? 7.0
+        UserDefaults.standard.object(forKey: "revs") as? Double ?? 9.0
 
     private var timer: Timer?
 

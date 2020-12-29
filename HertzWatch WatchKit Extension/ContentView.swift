@@ -173,7 +173,7 @@ struct ContentView: View {
                                                 ).monospacedDigit()
                                             )
                                             .focusable()
-                                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 5, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 7, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                                     }
                                     .frame(width: 35, height: 32)
                                     .overlay(

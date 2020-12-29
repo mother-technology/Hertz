@@ -108,7 +108,7 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("5. Occasionally nudge the digital crown to keep the display active.")
+                        Text("5. Periodically nudge the digital crown to keep the screen alive.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -284,6 +284,8 @@ struct InstructionView: View {
                         .edgesIgnoringSafeArea(.all)
                 )
             }
+            
+
         }
     }
 }
