@@ -3,8 +3,7 @@ import SwiftUI
 struct InstructionView: View {
     var body: some View {
         ScrollView {
-
-            VStack (alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 5) {
                 Group {
                     Text("Instructions")
                         .font(
@@ -42,7 +41,7 @@ struct InstructionView: View {
                                 design: .default
                             ).monospacedDigit()
                         )
-                        
+
                     Text("2. Breath in over ")
                         .font(
                             Font.system(
@@ -58,14 +57,14 @@ struct InstructionView: View {
                                 design: .default
                             ).monospacedDigit())
                         .foregroundColor(Color("BreathIn")) +
-                    Text("ticks. ")
+                        Text("ticks. ")
                         .font(
                             Font.system(
                                 size: 14,
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("3. Pause breathing over ")
+                    Text("3. Pause breathing over ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -87,7 +86,7 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("4. Breath out over ")
+                    Text("4. Breath out over ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -109,7 +108,7 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("5. Periodically nudge the digital crown to keep the screen alive.")
+                    Text("5. Periodically nudge the digital crown to keep the screen alive.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -128,16 +127,16 @@ struct InstructionView: View {
                         )
                         .frame(maxWidth: .infinity, alignment: .center)
                     Text("⏣ ")
-                    .font(
-                        Font.system(
-                            size: 16,
-                            weight: .bold,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 16,
+                                weight: .bold,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
-                    .foregroundColor(.BreathIn) +
-                    Text("Best to practise straight after waking, directly after exercise, and just before sleep.")
+                        .foregroundColor(.BreathIn) +
+                        Text("Best to practise straight after waking, directly after exercise, and just before sleep.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -147,16 +146,16 @@ struct InstructionView: View {
                             .monospacedDigit()
                         )
                     Text("⏣ ")
-                    .font(
-                        Font.system(
-                            size: 16,
-                            weight: .bold,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 16,
+                                weight: .bold,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
-                    .foregroundColor(.BreathIn) +
-                    Text("Regular short sessions beat sporadic long ones.")
+                        .foregroundColor(.BreathIn) +
+                        Text("Regular short sessions beat sporadic long ones.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -166,16 +165,16 @@ struct InstructionView: View {
                             .monospacedDigit()
                         )
                     Text("⏣ ")
-                    .font(
-                        Font.system(
-                            size: 16,
-                            weight: .bold,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 16,
+                                weight: .bold,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
-                    .foregroundColor(.BreathIn) +
-                    Text("Practise in a calm, comfortable environment without distractions.")
+                        .foregroundColor(.BreathIn) +
+                        Text("Practise in a calm, comfortable environment without distractions.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -185,16 +184,16 @@ struct InstructionView: View {
                             .monospacedDigit()
                         )
                     Text("⏣ ")
-                    .font(
-                        Font.system(
-                            size: 16,
-                            weight: .bold,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 16,
+                                weight: .bold,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
-                    .foregroundColor(.BreathIn) +
-                    Text("If you feel dizzy, take a moment to rest after pracise.")
+                        .foregroundColor(.BreathIn) +
+                        Text("If you feel dizzy, take a moment to rest after pracise.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -204,16 +203,16 @@ struct InstructionView: View {
                             .monospacedDigit()
                         )
                     Text("⏣ ")
-                    .font(
-                        Font.system(
-                            size: 16,
-                            weight: .bold,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 16,
+                                weight: .bold,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
-                    .foregroundColor(.BreathIn) +
-                    Text("Relax your muscles as you breath out.")
+                        .foregroundColor(.BreathIn) +
+                        Text("Relax your muscles as you breath out.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -223,16 +222,16 @@ struct InstructionView: View {
                             .monospacedDigit()
                         )
                     Text("⏣ ")
-                    .font(
-                        Font.system(
-                            size: 16,
-                            weight: .bold,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 16,
+                                weight: .bold,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
-                    .foregroundColor(.BreathIn) +
-                    Text("Try to 'will' the dot to slow down as you breath out.")
+                        .foregroundColor(.BreathIn) +
+                        Text("Try to 'will' the dot to slow down as you breath out.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -242,16 +241,16 @@ struct InstructionView: View {
                             .monospacedDigit()
                         )
                     Text("⏣ ")
-                    .font(
-                        Font.system(
-                            size: 16,
-                            weight: .bold,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 16,
+                                weight: .bold,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
-                    .foregroundColor(.BreathIn) +
-                    Text("As you recognise the sensation of activating your vagus, practise its activation also without the app.")
+                        .foregroundColor(.BreathIn) +
+                        Text("As you recognise the sensation of activating your vagus, practise its activation also without the app.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -288,7 +287,6 @@ struct InstructionView: View {
         }
     }
 }
-
 
 struct InstructionView_Previews: PreviewProvider {
     static var previews: some View {

@@ -3,7 +3,7 @@ import SwiftUI
 struct OnBoardingScreenView: View {
     @Binding var isPresenting: Bool
     var model: OnBoardingScreenViewModel
-    
+
     var body: some View {
         VStack {
             TabView {

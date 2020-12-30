@@ -2,9 +2,9 @@ import SwiftUI
 
 struct OnBoardingCardView: View {
     @Binding var isShowing: Bool
-    
+
     let card: OnBoardCard
-    
+
     var body: some View {
         ScrollView {
             VStack {
@@ -19,7 +19,7 @@ struct OnBoardingCardView: View {
             }
             .padding(.horizontal)
             .background(Rectangle()
-                            .fill(Color(.black))
+                .fill(Color(.black))
             )
             Button("Dismiss") {
                 withAnimation {

@@ -3,9 +3,8 @@ import Foundation
 import SwiftUI
 
 class ContentViewModel: ObservableObject {
-    
     @Published private var hertzModel: HertzModel
-    @Published var digitalScrollAmountForSpeed: Double =   UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
+    @Published var digitalScrollAmountForSpeed: Double = UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
     @Published var digitalScrollAmountForRevolutions: Double =
         UserDefaults.standard.object(forKey: "revs") as? Double ?? 9.0
 
@@ -14,11 +13,11 @@ class ContentViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable>()
 
     let workOutManager: WorkoutManager = .shared
-    
+
     init(hertzModel: HertzModel) {
         self.hertzModel = hertzModel
         self.hertzModel.generateTicks()
-        
+
         workOutManager
             .publisher
             .receive(on: RunLoop.main)
@@ -47,15 +46,15 @@ class ContentViewModel: ObservableObject {
             c.cancel()
         }
     }
-    
+
     var isRunning: Bool {
         hertzModel.absoluteStartTime != nil
     }
-    
+
 //    var trainingTime: Double {
 //        hertzModel.trainingTime
 //    }
-    
+
     var isFinished: Bool {
         hertzModel.isFinished == true
     }
@@ -75,31 +74,31 @@ class ContentViewModel: ObservableObject {
     var factor: Double {
         hertzModel.factor
     }
-    
+
     var diffAvgMinHeartRate: Double {
         hertzModel.diffAvgMinHeartRate
     }
-    
+
     var averageHeartRateInOrHold: Double {
         hertzModel.averageHeartRateInOrHold
     }
-    
+
     var crownFactor: Double {
         hertzModel.crownFactor
     }
-    
+
     var averageOfAllDifferences: Double {
         hertzModel.averageOfAllDifferences
     }
-    
+
     var maxOfAllDifferences: Double {
         hertzModel.maxOfAllDifferences
     }
-    
+
     var successImageIndex: Int {
         hertzModel.successImageIndex
     }
-    
+
     func returnToStart() {
         hertzModel.returnToStart()
         stop()
@@ -118,7 +117,7 @@ class ContentViewModel: ObservableObject {
         }
 
         hertzModel.start(at: Date().timeIntervalSinceReferenceDate)
-        
+
         UserDefaults.standard.set(digitalScrollAmountForSpeed, forKey: "speed")
         UserDefaults.standard.set(digitalScrollAmountForRevolutions, forKey: "revs")
         workOutManager.startWorkout()
