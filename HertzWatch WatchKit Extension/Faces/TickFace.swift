@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TickFace: View {
     var model: ContentViewModel
-    
+
     var body: some View {
         ZStack {
             ForEach(self.model.ticks, id: \.self) { tick in
@@ -11,7 +11,7 @@ struct TickFace: View {
                         .fill(
                             self.model.getColor(for: tick.segment)
                         )
-                        .shadow(color:self.model.getColor(for: tick.segment), radius:2, x: 0, y: 0)
+                        .shadow(color: self.model.getColor(for: tick.segment), radius: 2, x: 0, y: 0)
                         .frame(width: 8, height: 20)
                     Spacer()
                 }
@@ -22,7 +22,6 @@ struct TickFace: View {
         .aspectRatio(1.0, contentMode: .fit)
         .padding(.top, 1)
     }
-    
 }
 
 struct TickFace_Previews: PreviewProvider {

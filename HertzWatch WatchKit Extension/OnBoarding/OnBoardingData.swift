@@ -1,6 +1,5 @@
-struct OnBoardingData {
+enum OnBoardingData {
     static func build() -> OnBoardingScreenViewModel {
-        
         let model = OnBoardingScreenViewModel()
         model.newCard(image: "hz", text: "Focus on the red dot. Breath in as it passes blue ticks, arrest your breathing over white ticks, and breath out over dark red ticks.")
         model.newCard(image: "onboarding-finger", text: "Swipe up to access instructions.")
