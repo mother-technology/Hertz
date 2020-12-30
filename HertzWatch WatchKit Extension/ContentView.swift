@@ -15,8 +15,8 @@ struct ContentView: View {
 
     @State private var instructionsIsOpen: Bool = false
 
-    @State private var buttonColorSpeed = Color.white
-    @State private var buttonColorRevolutions = Color.white
+    @State private var revsIsFocused = false
+    @State private var speedIsFocused = false
 
     var body: some View {
         ZStack {
@@ -166,29 +166,25 @@ struct ContentView: View {
                                         )
                                         .kerning(0.5)
                                         .padding(.bottom, 2)
-                                    Button(action: {
-                                        self.buttonColorRevolutions = Color("SliderGreen")
-                                        self.buttonColorSpeed = Color.white
-
-                                    }) {
-                                        Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
-                                            .frame(width: 35, height: 32)
-                                            .background(Color.black)
-                                            .font(
-                                                Font.system(
-                                                    size: 18,
-                                                    weight: .regular,
-                                                    design: .default
-                                                ).monospacedDigit()
-                                            )
-                                            .focusable()
-                                            .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 7, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-                                    }
-                                    .frame(width: 35, height: 32)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .stroke(buttonColorRevolutions, lineWidth: 1)
-                                    )
+                                    Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
+                                        .frame(width: 35, height: 32)
+                                        .background(Color.black)
+                                        .font(
+                                            Font.system(
+                                                size: 18,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .focusable(true, onFocusChange: { isFocused in
+                                            revsIsFocused = isFocused
+                                        })
+                                        .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 7, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                        .frame(width: 35, height: 32)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 7)
+                                                .stroke(revsIsFocused ? Color("SliderGreen") : Color.white, lineWidth: 1)
+                                        )
                                 }
                                 .padding(.trailing, 3)
 
@@ -203,27 +199,24 @@ struct ContentView: View {
                                         )
                                         .kerning(0.5)
                                         .padding(.bottom, 2)
-                                    Button(action: {
-                                        self.buttonColorSpeed = Color("SliderGreen")
-                                        self.buttonColorRevolutions = Color.white
-                                    }) {
-                                        Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
-                                            .frame(width: 35, height: 32)
-                                            .background(Color.black)
-                                            .font(
-                                                Font.system(
-                                                    size: 18,
-                                                    weight: .regular,
-                                                    design: .default
-                                                ).monospacedDigit()
-                                            )
-                                            .focusable()
-                                            .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-                                    }
+                                    Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
+                                        .frame(width: 35, height: 32)
+                                        .background(Color.black)
+                                        .font(
+                                            Font.system(
+                                                size: 18,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .focusable(true, onFocusChange: { isFocused in
+                                            speedIsFocused = isFocused
+                                        })
+                                        .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
                                     .frame(width: 35, height: 32)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 7)
-                                            .stroke(buttonColorSpeed, lineWidth: 1)
+                                            .stroke(speedIsFocused ? Color("SliderGreen") : Color.white, lineWidth: 1)
                                     )
                                 }
                                 .padding(.leading, 3)
