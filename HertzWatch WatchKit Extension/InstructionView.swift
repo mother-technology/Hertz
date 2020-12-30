@@ -3,7 +3,6 @@ import SwiftUI
 struct InstructionView: View {
     var body: some View {
         ScrollView {
-
             VStack (alignment: .leading, spacing: 5) {
                 Group {
                     Text("Instructions")
@@ -15,7 +14,18 @@ struct InstructionView: View {
                             ).monospacedDigit().smallCaps()
                         )
                         .frame(maxWidth: .infinity, alignment: .center)
-                    Text("1. Focus on the ")
+                    Text("⏣ Select your speed and number of revolutions.")
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            )
+                            .monospacedDigit()
+                        )
+                }
+                    Group {
+                        Text("⏣ Focus on the ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -43,7 +53,7 @@ struct InstructionView: View {
                             ).monospacedDigit()
                         )
                         
-                    Text("2. Breath in over ")
+                    Text("⏣ Breath in over ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -65,7 +75,7 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("3. Pause breathing over ")
+                        Text("⏣ Pause breathing over ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -87,7 +97,7 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("4. Breath out over ")
+                        Text("⏣ Breath out over ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -109,7 +119,7 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("5. Periodically nudge the digital crown to keep the screen alive.")
+                        Text("⏣ Periodically nudge the digital crown to keep the screen alive.")
                         .font(
                             Font.system(
                                 size: 14,

@@ -54,11 +54,10 @@ struct ContentView: View {
                     )
                 
                 Dot(circleRadius: 7)
-                    .fill(Color(red: 0.777, green: 0, blue: 0))
+                    .fill(Color(red: 0.888, green: 0, blue: 0))
                     .rotationEffect(model.currentAngle)
                     .padding(7.2)
-                    .shadow(color: .red, radius: 0.1, x: 0.0, y: 0.0)
-                
+                    .shadow(color: .black, radius: 0.7, x: 0.7, y: 0.7)
                 if !model.isRunning {
                     if model.isFinished {
                         VStack(alignment: .center) {
