@@ -111,14 +111,11 @@ struct ContentView: View {
 //                                    }
                                 // .padding(.leading, 7)
                             }
-                            Spacer()
                             Button(action: {
                                 model.returnToStart()
 
                             }) {
                                 Text("Once more?")
-                                    .frame(width: 110, height: 40)
-                                    .background(Color.black)
                                     .font(
                                         Font.system(
                                             size: 16,
@@ -126,12 +123,16 @@ struct ContentView: View {
                                             design: .default
                                         ).monospacedDigit()
                                     )
+                                    .frame(width: 110, height: 50)
+                                    .background(Color.black)
                             }
-                            .frame(width: 110, height: 40)
+                            
+                            .frame(width: 110, height: 35)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
                                     .stroke(Color.white, lineWidth: 1)
                             )
+                            .offset(y: -5)
                             .padding(.top, 10)
                         }
                         .frame(maxWidth: .infinity)
