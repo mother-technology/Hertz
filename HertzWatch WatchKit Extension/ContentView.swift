@@ -24,8 +24,8 @@ struct ContentView: View {
                 TickFace(model: model)
                     .mask(
                         Arc(
-                            startAngle: .degrees(312),
-                            endAngle: .degrees(47),
+                            startAngle: .degrees(303),
+                            endAngle: .degrees(57),
                             clockwise: true,
                             radiusOffset: 0
                         )
@@ -34,15 +34,15 @@ struct ContentView: View {
                                 gradient: Gradient(
                                     colors: [
                                         .clear,
-                                        Color.gray.opacity(0.1),
+                                        Color.gray.opacity(0),
                                         Color.gray.opacity(0.2),
                                         Color.gray.opacity(0.3),
-                                        Color.gray.opacity(0.6),
-                                        Color.gray.opacity(0.9),
                                         Color.gray.opacity(0.5),
-                                        Color.gray.opacity(0.4),
+                                        Color.gray.opacity(1),
+                                        Color.gray.opacity(0.7),
                                         Color.gray.opacity(0.3),
-                                        Color.gray.opacity(0.1),
+                                        Color.gray.opacity(0.2),
+                                        Color.gray.opacity(0),
                                         .clear,
                                     ]
                                 ),
@@ -62,10 +62,10 @@ struct ContentView: View {
                 if !model.isRunning {
                     if model.isFinished {
                         VStack(alignment: .center) {
-                            Spacer()
                             Image("success-\(model.successImageIndex)").resizable()
                                 .frame(width: 75.0, height: 55.0)
-
+                                .padding(.top, 10)
+                            Spacer()
                             VStack {
                                 if model.maxOfAllDifferences > 0 {
                                     Text("RESULT")
@@ -87,6 +87,7 @@ struct ContentView: View {
                                             ).monospacedDigit()
                                         )
                                 }
+                                Spacer()
                                 // .padding(.trailing, 7)
 //                                VStack {
 //                                    if model.trainingTime > 0 {
@@ -135,7 +136,7 @@ struct ContentView: View {
                             .offset(y: -5)
                             .padding(.top, 10)
                         }
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(
                             Color(.black)
                                 .edgesIgnoringSafeArea(.all)

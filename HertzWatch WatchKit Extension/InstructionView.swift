@@ -14,7 +14,7 @@ struct InstructionView: View {
                             ).monospacedDigit().smallCaps()
                         )
                         .frame(maxWidth: .infinity, alignment: .center)
-                    Text("⏣ Select your speed and number of revolutions.")
+                    Text("⏣ Select the number of revolutions and speed, then press play.")
                         .font(
                             Font.system(
                                 size: 14,
@@ -206,25 +206,6 @@ struct InstructionView: View {
                         )
                         .foregroundColor(.BreathIn) +
                         Text("If you feel dizzy, take a moment to rest after pracise.")
-                        .font(
-                            Font.system(
-                                size: 14,
-                                weight: .ultraLight,
-                                design: .default
-                            )
-                            .monospacedDigit()
-                        )
-                    Text("⏣ ")
-                        .font(
-                            Font.system(
-                                size: 16,
-                                weight: .bold,
-                                design: .default
-                            )
-                            .monospacedDigit()
-                        )
-                        .foregroundColor(.BreathIn) +
-                        Text("Relax your muscles as you breath out.")
                         .font(
                             Font.system(
                                 size: 14,
