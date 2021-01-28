@@ -149,7 +149,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         }
     }
 
-    func addInterval(for heartRate: Double, with metaData: [String: Any]) {
+    func addInterval(for heartRate: Double, with tickSegment: String) {
         if !HKHealthStore.isHealthDataAvailable() {
             return
         }
@@ -161,8 +161,20 @@ final class WorkoutManager: NSObject, ObservableObject {
 
         let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
         let now = Date()
-
-        let sample = HKQuantitySample(type: heartRateQuantityType, quantity: .init(unit: heartRateUnit, doubleValue: heartRate), start: now, end: now, metadata: metaData)
+        let timeZone = TimeZone.current.identifier
+        let metaData: [String: Any] = [
+            HKMetadataKeyTimeZone: timeZone,
+            "TickSegment": tickSegment, // This is the new way to record TickSegment
+            tickSegment: 1 // This is the old way to record TickSegment
+        ]
+        
+        let sample = HKQuantitySample(
+            type: heartRateQuantityType,
+            quantity: .init(unit: heartRateUnit, doubleValue: heartRate),
+            start: now,
+            end: now,
+            metadata: metaData
+        )
 
         heartRateSamples.append(sample)
     }

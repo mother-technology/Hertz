@@ -116,7 +116,7 @@ public struct HertzModel {
 
             let currentTickSegment = currentTick.segment.toString()
             if previousTickSegment != currentTickSegment && heartRate > 0 {
-                workOutManager.addInterval(for: heartRate, with: [currentTickSegment: 1])
+                workOutManager.addInterval(for: heartRate, with: currentTickSegment)
                 previousTickSegment = currentTickSegment
             }
 
