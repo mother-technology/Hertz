@@ -279,11 +279,11 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            if onBoardVersionViewed < Bundle.main.bundleShortVersion {
+            if onBoardVersionViewed < onBoardingModel.version {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     withAnimation {
                         showOnboarding.toggle()
-                        onBoardVersionViewed = Bundle.main.bundleShortVersion
+                        onBoardVersionViewed = onBoardingModel.version
                     }
                 }
             }
