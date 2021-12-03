@@ -63,7 +63,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     private var healthStore: HKHealthStore?
     private var session: HKWorkoutSession?
     private var builder: HKLiveWorkoutBuilder?
-    private var extendedRunTimeSession: WKExtendedRuntimeSession?
+    //private var extendedRunTimeSession: WKExtendedRuntimeSession?
 
     private let builderDelegate = WorkoutManagerBuilderDelegate()
 
@@ -81,7 +81,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         }
 
         healthStore = HKHealthStore()
-        extendedRunTimeSession = WKExtendedRuntimeSession()
+        //extendedRunTimeSession = WKExtendedRuntimeSession()
     }
 
     func requestAuthorization() {
@@ -145,8 +145,8 @@ final class WorkoutManager: NSObject, ObservableObject {
             workoutConfiguration: workoutConfiguration()
         )
         
-        extendedRunTimeSession?.delegate = self
-        extendedRunTimeSession?.start()
+        //extendedRunTimeSession?.delegate = self
+        //extendedRunTimeSession?.start()
         
         startDate = Date()
         session?.startActivity(with: startDate!)
@@ -190,7 +190,7 @@ final class WorkoutManager: NSObject, ObservableObject {
             return
         }
 
-        extendedRunTimeSession?.invalidate()
+        //extendedRunTimeSession?.invalidate()
 
         if session?.state == .running {
             session?.end()
