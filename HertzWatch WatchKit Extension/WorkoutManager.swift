@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 import HealthKit
+import WatchKit
 
 //// DEBUG
 // let workoutPredicate = HKQuery.predicateForWorkouts(with: .mindAndBody)
@@ -62,6 +63,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     private var healthStore: HKHealthStore?
     private var session: HKWorkoutSession?
     private var builder: HKLiveWorkoutBuilder?
+    private var extendedRunTimeSession: WKExtendedRuntimeSession?
 
     private let builderDelegate = WorkoutManagerBuilderDelegate()
 
@@ -79,6 +81,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         }
 
         healthStore = HKHealthStore()
+        extendedRunTimeSession = WKExtendedRuntimeSession()
     }
 
     func requestAuthorization() {
@@ -141,7 +144,10 @@ final class WorkoutManager: NSObject, ObservableObject {
             healthStore: healthStore,
             workoutConfiguration: workoutConfiguration()
         )
-
+        
+        extendedRunTimeSession?.delegate = self
+        extendedRunTimeSession?.start()
+        
         startDate = Date()
         session?.startActivity(with: startDate!)
         builder?.beginCollection(withStart: startDate!) { _, _ in
@@ -183,6 +189,8 @@ final class WorkoutManager: NSObject, ObservableObject {
         if !HKHealthStore.isHealthDataAvailable() {
             return
         }
+
+        extendedRunTimeSession?.invalidate()
 
         if session?.state == .running {
             session?.end()
@@ -240,4 +248,20 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
                         from _: HKWorkoutSessionState, date _: Date) {}
 
     func workoutSession(_: HKWorkoutSession, didFailWithError _: Error) {}
+}
+
+extension WorkoutManager: WKExtendedRuntimeSessionDelegate {
+    // MARK:- Extended Runtime Session Delegate Methods
+    func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+        // Track when your session starts.
+    }
+
+    func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+        // Finish and clean up any tasks before the session ends.
+    }
+        
+    func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
+        // Track when your session ends.
+        // Also handle errors here.
+    }
 }
