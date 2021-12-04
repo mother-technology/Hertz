@@ -250,18 +250,18 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
     func workoutSession(_: HKWorkoutSession, didFailWithError _: Error) {}
 }
 
-extension WorkoutManager: WKExtendedRuntimeSessionDelegate {
-    // MARK:- Extended Runtime Session Delegate Methods
-    func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
-        // Track when your session starts.
-    }
-
-    func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
-        // Finish and clean up any tasks before the session ends.
-    }
-        
-    func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
-        // Track when your session ends.
-        // Also handle errors here.
-    }
-}
+//extension WorkoutManager: WKExtendedRuntimeSessionDelegate {
+//    // MARK:- Extended Runtime Session Delegate Methods
+//    func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+//        // Track when your session starts.
+//    }
+//
+//    func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+//        // Finish and clean up any tasks before the session ends.
+//    }
+//        
+//    func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
+//        // Track when your session ends.
+//        // Also handle errors here.
+//    }
+//}

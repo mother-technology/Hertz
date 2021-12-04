@@ -11,8 +11,6 @@ struct ContentView: View {
     @ObservedObject var model = ContentViewModel(hertzModel: HertzModel())
     @ObservedObject var workoutManager: WorkoutManager = .shared
 
-    @Environment(\.scenePhase) var scenePhase
-
     @State private var instructionsIsOpen: Bool = false
 
     @State private var revsIsFocused = false
@@ -272,11 +270,6 @@ struct ContentView: View {
         )
         .onAppear {
             workoutManager.requestAuthorization()
-        }
-        .onChange(of: scenePhase) { phase in
-            if phase == .inactive {
-                model.stop()
-            }
         }
         .onAppear {
             if onBoardVersionViewed < onBoardingModel.version {
