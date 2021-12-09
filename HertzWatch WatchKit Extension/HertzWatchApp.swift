@@ -7,7 +7,7 @@ struct HertzWatchApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                TimelineView(AnimationTimelineSchedule(minimumInterval: 1.0 / 30.0, paused: false)) { context in
+                TimelineView(MetricsTimelineSchedule(from: Date())) { context in
                     ContentView(date: context.date)
                 }
             }
