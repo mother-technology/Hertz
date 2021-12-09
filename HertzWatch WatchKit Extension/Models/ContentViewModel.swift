@@ -95,10 +95,6 @@ class ContentViewModel: ObservableObject {
         hertzModel.maxOfAllDifferences
     }
 
-    var successImageIndex: Int {
-        hertzModel.successImageIndex
-    }
-
     func returnToStart() {
         hertzModel.returnToStart()
         stop()

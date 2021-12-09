@@ -240,22 +240,6 @@ public struct HertzModel {
         absoluteStartTime = nil
         elapsedTime = 0
         maxOfAllDifferences = 3 * (allDifferences.max() ?? 0) // adding factor to make the result less low
-
-        if maxOfAllDifferences >= 0 && maxOfAllDifferences < 3 {
-            successImageIndex = 1
-        } else if maxOfAllDifferences >= 3 && maxOfAllDifferences < 6 {
-            successImageIndex = 2
-        } else if maxOfAllDifferences >= 6 && maxOfAllDifferences < 9 {
-            successImageIndex = 3
-        } else if maxOfAllDifferences >= 9 && maxOfAllDifferences < 12 {
-            successImageIndex = 4
-        } else if maxOfAllDifferences >= 12 && maxOfAllDifferences < 15 {
-            successImageIndex = 5
-        } else if maxOfAllDifferences >= 15 && maxOfAllDifferences < 18 {
-            successImageIndex = 6
-        } else {
-            successImageIndex = 7
-        }
     }
 
     mutating func generateTicks() {

@@ -59,88 +59,150 @@ struct ContentView: View {
 
                 if !model.isRunning {
                     if model.isFinished {
-                        VStack(alignment: .center) {
-                            Image("success-\(model.successImageIndex)").resizable()
-                                .frame(width: 75.0, height: 55.0)
-                                .padding(.top, 10)
-                            Spacer()
-                            VStack {
-                                if model.maxOfAllDifferences > 0 {
-                                    Text("RESULT")
+                        ScrollView() {
+                            VStack(alignment: .center) {
+                                Image("success-2").resizable()
+                                    .frame(width: 75.0, height: 55.0)
+                                    .padding(.top, 10)
+                                Spacer()
+                                VStack {
+                                    Text("Well done!")
                                         .font(
                                             Font.system(
-                                                size: 10,
-                                                weight: .light,
+                                                size: 14,
+                                                weight: .bold,
                                                 design: .default
                                             ).monospacedDigit()
                                         )
-                                        .kerning(0.5)
-                                        .padding(.top, 5)
-                                    Text("\(model.maxOfAllDifferences, specifier: "%.0f")")
+                                        .padding(.top, 15)
+                                    Text("Keep up the training and you will notice a difference in your relaxation")
                                         .font(
                                             Font.system(
-                                                size: 18,
+                                                size: 8,
                                                 weight: .regular,
                                                 design: .default
                                             ).monospacedDigit()
                                         )
-                                }
-                                Spacer()
-                                // .padding(.trailing, 7)
-//                                VStack {
-//                                    if model.trainingTime > 0 {
-//                                        Text("TIME")
-//                                            .font(
-//                                                Font.system(
-//                                                    size: 10,
-//                                                    weight: .light,
-//                                                    design: .default
-//                                                ).monospacedDigit()
-//                                            )
-//                                            .kerning(0.5)
-//                                            .padding(.top, 5)
-//                                        Text("\(model.trainingTime, specifier: "%.1f")")
-//                                            .font(
-//                                                Font.system(
-//                                                    size: 18,
-//                                                    weight: .regular,
-//                                                    design: .default
-//                                                ).monospacedDigit()
-//                                            )
-//                                    }
-                                // .padding(.leading, 7)
-                            }
-                            Button(action: {
-                                model.returnToStart()
+                                        .multilineTextAlignment(.center)
+                                        .padding(.top, 3)
+                                        .padding(.bottom, 3)
 
-                            }) {
-                                Text("Once more?")
-                                    .font(
-                                        Font.system(
-                                            size: 16,
-                                            weight: .regular,
-                                            design: .default
-                                        ).monospacedDigit()
-                                    )
-                                    .frame(width: 110, height: 50)
-                                    .background(Color.black)
+                                    
+                                    
+                                    //                                    Divider()
+//                                        .background(Color.gray)
+//                                        .frame(width: 50)
+//                                        .padding(.top, 15)
+//                                        .padding(.bottom, 15)
+                                    
+                                    Text("Your heart rate")
+                                        .font(
+                                            Font.system(
+                                                size: 14,
+                                                weight: .bold,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .padding(.top, 10)
+                                    
+                                    //---- Text for showing heart beat
+                                    HStack {
+                                        VStack {
+                                            Text("BEFORE")
+                                                .font(
+                                                    Font.system(
+                                                        size: 8,
+                                                        weight: .light,
+                                                        design: .default
+                                                    ).monospacedDigit()
+                                                )
+                                                .kerning(0.5)
+                                                .padding(.bottom, 2)
+                                            Text("82")
+                                                .font(
+                                                    Font.system(
+                                                        size: 12,
+                                                        weight: .bold,
+                                                        design: .default
+                                                    ).monospacedDigit()
+                                                )
+                                                .padding()
+                                                .background(Color("LightPink"))
+                                                .cornerRadius(7)
+                                        }
+
+                                        VStack {
+                                            Text("AFTER")
+                                                .font(
+                                                    Font.system(
+                                                        size: 8,
+                                                        weight: .regular,
+                                                        design: .default
+                                                    ).monospacedDigit()
+                                                )
+                                                .kerning(0.5)
+                                                .padding(.bottom, 2)
+                                            Text("80")
+                                                .font(
+                                                    Font.system(
+                                                        size: 12,
+                                                        weight: .bold,
+                                                        design: .default
+                                                    ).monospacedDigit()
+                                                )
+                                                .padding()
+                                                .background(Color("LightPink"))
+                                                .cornerRadius(7)
+                                        }
+                                        .padding(.leading, 3)
+                                    }
+                                    .padding(.top, 15)
+                                    //--- Ending with text to show heart beat
+//                                    Divider()
+//                                        .background(Color.gray)
+//                                        .frame(width: 50)
+//                                        .padding(.top, 15)
+//                                        .padding(.bottom, 15)
+                                    
+                                    Text("Back to start")
+                                        .font(
+                                            Font.system(
+                                                size: 14,
+                                                weight: .bold,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .padding(.top, 15)
+                                    
+                                    Button(action: {
+                                        model.returnToStart()
+                                    }) {
+                                        Text("<<")
+                                            .frame(width: 35, height: 32)
+                                            .background(Color.black)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 7)
+                                                    .stroke(Color("SliderGreen"), lineWidth: 1)
+                                            )
+                                    }
+                                    .frame(width: 35, height: 32)
+                                    .padding(.top, 10)
+                                    
+                                    
+                                }
+                                
                             }
-                            
-                            .frame(width: 110, height: 35)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .stroke(Color.white, lineWidth: 1)
+                            .frame(maxWidth: 110, maxHeight: .infinity)
+                            .background(
+                                Color(.black)
+                                    .edgesIgnoringSafeArea(.all)
                             )
-                            .offset(y: -5)
-                            .padding(.top, 10)
                         }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(
-                            Color(.black)
-                                .edgesIgnoringSafeArea(.all)
-                        )
-                    } else {
+                    }
+                    
+                    else {
                         VStack {
+                            //--- Buttons for starting the app
                             Button {
                                 model.start()
                             } label: {
@@ -152,8 +214,11 @@ struct ContentView: View {
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
                             .offset(y: 27.0)
+                            //--- End button for starting the app
+                            
                             Spacer()
-
+                            
+                            //---- Buttons for adjusting revolution and speed
                             HStack {
                                 VStack {
                                     Text("REVS")
@@ -222,6 +287,7 @@ struct ContentView: View {
                                 .padding(.leading, 3)
                             }
                             .padding(.bottom, 2)
+                            //--- Ending with buttons for adjusting revs and speed
                         }
                     }
                 }
