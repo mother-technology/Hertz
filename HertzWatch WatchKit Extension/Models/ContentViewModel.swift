@@ -8,6 +8,7 @@ class ContentViewModel: ObservableObject {
     @Published var digitalScrollAmountForRevolutions: Double =
         UserDefaults.standard.object(forKey: "revs") as? Double ?? 9.0
 
+    private var timer: Timer?
     var cancellables = Set<AnyCancellable>()
 
     let workOutManager: WorkoutManager = .shared
@@ -99,20 +100,25 @@ class ContentViewModel: ObservableObject {
     }
 
     func stop() {
+        timer?.invalidate()
+        timer = nil
         hertzModel.stop()
         workOutManager.endWorkout()
     }
 
-    func update(date: Date) {
-        guard let absoluteStartTime = hertzModel.absoluteStartTime else {
-            return
-        }
-        
-        let currentElapsedTime = date.timeIntervalSinceReferenceDate - hertzModel.elapsedTime - absoluteStartTime
-        hertzModel.update(elapsedTime: currentElapsedTime)
-    }
+//    func update(date: Date) {
+//        guard let absoluteStartTime = hertzModel.absoluteStartTime else {
+//            return
+//        }
+//
+//        let currentElapsedTime = date.timeIntervalSinceReferenceDate - hertzModel.elapsedTime - absoluteStartTime
+//        hertzModel.update(elapsedTime: currentElapsedTime)
+//    }
 
     func start() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [unowned self] timer in
+            hertzModel.update(elapsedTime: timer.timeInterval)
+        }
         hertzModel.start(at: Date().timeIntervalSinceReferenceDate)
 
         UserDefaults.standard.set(digitalScrollAmountForSpeed, forKey: "speed")
