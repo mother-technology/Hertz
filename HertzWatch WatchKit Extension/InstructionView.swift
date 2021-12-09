@@ -24,8 +24,8 @@ struct InstructionView: View {
                             .monospacedDigit()
                         )
                 }
-                    Group {
-                        Text("⏣ Focus on the ")
+                Group {
+                    Text("⏣ Focus on the ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -74,7 +74,7 @@ struct InstructionView: View {
                                 weight: .ultraLight,
                                 design: .default
                             ).monospacedDigit())
-                        Text("⏣ Pause breathing over ")
+                    Text("⏣ Pause breathing over ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -97,7 +97,7 @@ struct InstructionView: View {
                                 design: .default
                             ).monospacedDigit())
 
-                        Text("⏣ Breath out over ")
+                    Text("⏣ Breath out over ")
                         .font(
                             Font.system(
                                 size: 14,
@@ -120,7 +120,7 @@ struct InstructionView: View {
                                 design: .default
                             ).monospacedDigit())
 
-                        Text("⏣ Periodically nudge the digital crown to keep the screen alive.")
+                    Text("⏣ Periodically nudge the digital crown to keep the screen alive.")
                         .font(
                             Font.system(
                                 size: 14,

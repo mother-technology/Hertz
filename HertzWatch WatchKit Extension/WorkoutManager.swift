@@ -142,7 +142,7 @@ final class WorkoutManager: NSObject, ObservableObject {
             healthStore: healthStore,
             workoutConfiguration: workoutConfiguration()
         )
-        
+
         startDate = Date()
         session?.startActivity(with: startDate!)
         builder?.beginCollection(withStart: startDate!) { _, _ in
@@ -166,9 +166,9 @@ final class WorkoutManager: NSObject, ObservableObject {
         let metaData: [String: Any] = [
             HKMetadataKeyTimeZone: timeZone,
             "TickSegment": tickSegment, // This is the new way to record TickSegment
-            tickSegment: 1 // This is the old way to record TickSegment
+            tickSegment: 1, // This is the old way to record TickSegment
         ]
-        
+
         let sample = HKQuantitySample(
             type: heartRateQuantityType,
             quantity: .init(unit: heartRateUnit, doubleValue: heartRate),

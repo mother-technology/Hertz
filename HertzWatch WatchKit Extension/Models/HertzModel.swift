@@ -111,7 +111,8 @@ public struct HertzModel {
 
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
         if !isFinished {
-            let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
+            var currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
+            currentTickIndex = currentTickIndex < 0 ? 0 : currentTickIndex
             let currentTick = ticks[currentTickIndex]
 
             let currentTickSegment = currentTick.segment.toString()
@@ -243,7 +244,7 @@ public struct HertzModel {
     }
 
     mutating func generateTicks() {
-        let secondsForCycle = cycleSegments.reduce(0) { (result, cycleSegment) -> Double in
+        let secondsForCycle = cycleSegments.reduce(0) { result, cycleSegment -> Double in
             result + cycleSegment.getSeconds()
         }
 
