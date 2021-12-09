@@ -27,4 +27,3 @@ private struct MetricsTimelineSchedule: TimelineSchedule {
             .entries(from: startDate, mode: mode)
     }
 }
-

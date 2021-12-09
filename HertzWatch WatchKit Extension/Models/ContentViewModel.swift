@@ -107,7 +107,7 @@ class ContentViewModel: ObservableObject {
         guard let absoluteStartTime = hertzModel.absoluteStartTime else {
             return
         }
-        
+
         let currentElapsedTime = date.timeIntervalSinceReferenceDate - hertzModel.elapsedTime - absoluteStartTime
         hertzModel.update(elapsedTime: currentElapsedTime)
     }
