@@ -67,10 +67,12 @@ public struct HertzModel {
     var ticks: [Tick] = []
     var averageHeartRateInOrHold: Double = 0.0
     var isFinished: Bool = false
-    // var trainingTime: Double = 0
+    var beforeHeartRate: Int = 0
+    var afterHeartRate: Int = 0
 
     private var heartRatesInOrHold: [Double] = []
     private var heartRatesOut: [Double] = []
+    private var allHeartRates: [Double] = []
     private var minHeartRateOut: Double = 0.0
     private var rollingAverageHeartRateNumber: Int = 3
     var allDifferences: [Double] = []
@@ -104,12 +106,25 @@ public struct HertzModel {
         let s = elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))
         return Angle.degrees(degressPerTick * s)
     }
+    
+    func avgOfArrayElementsFromStartToEnd(arr: [Double], start:Int, end: Int) -> Double {
+        var sum: Double = 0.0
+        let count: Double = Double(1 + end - start)
+        
+        for n in start...end {
+            sum = arr[n] + sum
+        }
+        
+        return sum/count
+    }
+    
 
     let workOutManager: WorkoutManager = .shared
 
     private var previousTickSegment: String?
 
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
+        
         if !isFinished {
             var currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
             currentTickIndex = currentTickIndex < 0 ? 0 : currentTickIndex
@@ -180,7 +195,7 @@ public struct HertzModel {
 
     mutating func update(heartRate withHeartRate: Double) {
         heartRate = withHeartRate
-
+        
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
 
@@ -212,9 +227,12 @@ public struct HertzModel {
             diffAvgMinHeartRate = averageHeartRateInOrHold - minHeartRateOut
             allDifferences.append(diffAvgMinHeartRate)
         }
+        
+        allHeartRates.append(heartRate)
     }
 
     mutating func start(at time: TimeInterval) {
+        
         absoluteStartTime = time
         elapsedTime = 0
         initialFactorAfterSpeedChange = initialFactor + (digitalCrownForSpeed - 3) / 35
@@ -223,6 +241,7 @@ public struct HertzModel {
         heartRatesOut.removeAll()
         minHeartRateOut = 0.0
         diffAvgMinHeartRate = 0.0
+        // allHeartRates = []
         // End TODO
     }
 
@@ -231,25 +250,24 @@ public struct HertzModel {
     }
 
     mutating func stop() {
-//        if let absoluteStartTime = absoluteStartTime {
-//            trainingTime = Date().timeIntervalSinceReferenceDate - absoluteStartTime
-//        }
-//        else {
-//            trainingTime = 0
-//        }
-
         absoluteStartTime = nil
         elapsedTime = 0
-        maxOfAllDifferences = 3 * (allDifferences.max() ?? 0) // adding factor to make the result less low
+        
+        //Calculate before and after heart rate for result screen
+        if (allHeartRates.count >= 10) {
+            beforeHeartRate = Int(round(avgOfArrayElementsFromStartToEnd(arr:allHeartRates, start:0, end:5)))
+            afterHeartRate = Int(round(avgOfArrayElementsFromStartToEnd(arr:allHeartRates, start:allHeartRates.count - 6, end:allHeartRates.count - 1)))
+        }
     }
 
     mutating func generateTicks() {
+        
         let secondsForCycle = cycleSegments.reduce(0) { result, cycleSegment -> Double in
             result + cycleSegment.getSeconds()
         }
 
-        totalTicks = Int(Double(maxCycles) * secondsForCycle) // move to start func?
-        degressPerTick = 360.0 / Double(totalTicks) // move to start func?
+        totalTicks = Int(Double(maxCycles) * secondsForCycle)
+        degressPerTick = 360.0 / Double(totalTicks)
 
         var count = 0
         for _ in 1 ... Int(maxCycles) {

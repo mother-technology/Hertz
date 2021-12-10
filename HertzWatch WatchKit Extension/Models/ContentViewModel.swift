@@ -92,6 +92,14 @@ class ContentViewModel: ObservableObject {
     var maxOfAllDifferences: Double {
         hertzModel.maxOfAllDifferences
     }
+    
+    var beforeHeartRate: Int {
+        hertzModel.beforeHeartRate
+    }
+    
+    var afterHeartRate: Int {
+        hertzModel.afterHeartRate
+    }
 
     func returnToStart() {
         hertzModel.returnToStart()

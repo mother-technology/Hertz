@@ -63,8 +63,8 @@ struct ContentView: View {
                     if model.isFinished {
                         ScrollView {
                             VStack(alignment: .center) {
-                                Image("success-2").resizable()
-                                    .frame(width: 75.0, height: 55.0)
+                                Image("success").resizable()
+                                    .frame(width: 60.0, height: 60.0)
                                     .padding(.top, 10)
                                 Spacer()
                                 VStack {
@@ -89,86 +89,79 @@ struct ContentView: View {
                                         .padding(.top, 3)
                                         .padding(.bottom, 3)
 
-                                    Text("Your heart rate")
-                                        .font(
-                                            Font.system(
-                                                size: 14,
-                                                weight: .bold,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
-                                        .padding(.top, 10)
+                                    if model.beforeHeartRate > 0 && model.afterHeartRate > 0 {
+                                        Text("Your heart rate")
+                                            .font(
+                                                Font.system(
+                                                    size: 14,
+                                                    weight: .bold,
+                                                    design: .default
+                                                ).monospacedDigit()
+                                            )
+                                            .padding(.top, 10)
 
-                                    // ---- Text for showing heart beat
-                                    HStack {
-                                        VStack {
-                                            Text("BEFORE")
-                                                .font(
-                                                    Font.system(
-                                                        size: 8,
-                                                        weight: .light,
-                                                        design: .default
-                                                    ).monospacedDigit()
-                                                )
-                                                .kerning(0.5)
-                                                .padding(.bottom, 2)
-                                            Text("82")
-                                                .font(
-                                                    Font.system(
-                                                        size: 12,
-                                                        weight: .bold,
-                                                        design: .default
-                                                    ).monospacedDigit()
-                                                )
-                                                .padding()
-                                                .background(Color("LightPink"))
-                                                .cornerRadius(7)
+                                        // ---- Text for showing heart beat
+                                        HStack {
+                                            VStack {
+                                                Text("BEFORE")
+                                                    .font(
+                                                        Font.system(
+                                                            size: 8,
+                                                            weight: .light,
+                                                            design: .default
+                                                        ).monospacedDigit()
+                                                    )
+                                                    .kerning(0.5)
+                                                    .padding(.bottom, 2)
+                                                Text("\(model.beforeHeartRate)")
+                                                    .font(
+                                                        Font.system(
+                                                            size: 12,
+                                                            weight: .bold,
+                                                            design: .default
+                                                        ).monospacedDigit()
+                                                    )
+                                                    .padding()
+                                                    .background(Color("LightPink"))
+                                                    .cornerRadius(7)
+                                            }
+
+                                            VStack {
+                                                Text("AFTER")
+                                                    .font(
+                                                        Font.system(
+                                                            size: 8,
+                                                            weight: .regular,
+                                                            design: .default
+                                                        ).monospacedDigit()
+                                                    )
+                                                    .kerning(0.5)
+                                                    .padding(.bottom, 2)
+                                                Text("\(model.afterHeartRate)")
+                                                    .font(
+                                                        Font.system(
+                                                            size: 12,
+                                                            weight: .bold,
+                                                            design: .default
+                                                        ).monospacedDigit()
+                                                    )
+                                                    .padding()
+                                                    .background(Color("LightPink"))
+                                                    .cornerRadius(7)
+                                            }
+                                            .padding(.leading, 3)
                                         }
-
-                                        VStack {
-                                            Text("AFTER")
-                                                .font(
-                                                    Font.system(
-                                                        size: 8,
-                                                        weight: .regular,
-                                                        design: .default
-                                                    ).monospacedDigit()
-                                                )
-                                                .kerning(0.5)
-                                                .padding(.bottom, 2)
-                                            Text("80")
-                                                .font(
-                                                    Font.system(
-                                                        size: 12,
-                                                        weight: .bold,
-                                                        design: .default
-                                                    ).monospacedDigit()
-                                                )
-                                                .padding()
-                                                .background(Color("LightPink"))
-                                                .cornerRadius(7)
-                                        }
-                                        .padding(.leading, 3)
-                                    }
-                                    .padding(.top, 15)
-                                    // --- Ending with text to show heart beat
-
-                                    Text("Back to start")
-                                        .font(
-                                            Font.system(
-                                                size: 14,
-                                                weight: .bold,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
                                         .padding(.top, 15)
+                                        .padding(.bottom, 15)
+                                        // --- Ending with text to show heart beat
+                                    }
 
                                     Button(action: {
                                         model.returnToStart()
                                     }) {
-                                        Text("<<")
+                                        Image(systemName: "arrow.backward")
                                             .frame(width: 35, height: 32)
-                                            .background(Color.black)
+                                            .foregroundColor(Color.white)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 7)
                                                     .stroke(Color("SliderGreen"), lineWidth: 1)
@@ -187,21 +180,22 @@ struct ContentView: View {
                     } else {
                         VStack {
                             // --- Buttons for starting the app
+                            Spacer()
                             Button {
                                 model.start()
                             } label: {
                                 Image(systemName: "arrowtriangle.right.circle")
                             }
                             .buttonStyle(PlainButtonStyle())
+                            //.padding(.top, 10)
                             .font(Font.system(size: 50, weight: .ultraLight, design: .default))
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
-                            .offset(y: 27.0)
+                            //.offset(y: 40.0)
                             // --- End button for starting the app
 
                             Spacer()
-
                             // ---- Buttons for adjusting revolution and speed
                             HStack {
                                 VStack {
