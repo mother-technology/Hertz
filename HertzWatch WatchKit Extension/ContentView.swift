@@ -21,46 +21,141 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Group {
-                TickFace(model: model)
-                    .mask(
-                        Arc(
-                            startAngle: .degrees(303),
-                            endAngle: .degrees(57),
-                            clockwise: true,
-                            radiusOffset: 0
-                        )
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(
-                                    colors: [
-                                        .clear,
-                                        Color.gray.opacity(0),
-                                        Color.gray.opacity(0.2),
-                                        Color.gray.opacity(0.3),
-                                        Color.gray.opacity(0.5),
-                                        Color.gray.opacity(1),
-                                        Color.gray.opacity(0.7),
-                                        Color.gray.opacity(0.3),
-                                        Color.gray.opacity(0.2),
-                                        Color.gray.opacity(0),
-                                        .clear,
-                                    ]
-                                ),
-                                startPoint: .leading,
-                                endPoint: .trailing
+                if !model.isFinished {
+                    TickFace(model: model)
+                        .mask(
+                            Arc(
+                                startAngle: .degrees(303),
+                                endAngle: .degrees(57),
+                                clockwise: true,
+                                radiusOffset: 0
                             )
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(
+                                        colors: [
+                                            .clear,
+                                            Color.gray.opacity(0),
+                                            Color.gray.opacity(0.2),
+                                            Color.gray.opacity(0.3),
+                                            Color.gray.opacity(0.5),
+                                            Color.gray.opacity(1),
+                                            Color.gray.opacity(0.7),
+                                            Color.gray.opacity(0.3),
+                                            Color.gray.opacity(0.2),
+                                            Color.gray.opacity(0),
+                                            .clear,
+                                        ]
+                                    ),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .rotationEffect(model.currentAngle)
                         )
+
+                    Dot(circleRadius: 7)
+                        .fill(Color(red: 0.888, green: 0, blue: 0))
                         .rotationEffect(model.currentAngle)
-                    )
-
-                Dot(circleRadius: 7)
-                    .fill(Color(red: 0.888, green: 0, blue: 0))
-                    .rotationEffect(model.currentAngle)
-                    .padding(7.2)
-                    .shadow(color: .black, radius: 0.7, x: 0.7, y: 0.7)
-
+                        .padding(7.2)
+                        .shadow(color: .black, radius: 0.7, x: 0.7, y: 0.7)
+                }
+                
+                // Ready to be started
                 if !model.isRunning {
-                    if model.isFinished {
+                    //... and has yet not finished
+                    if !model.isFinished {
+                        VStack {
+                            // --- Buttons for starting the app
+                            Spacer()
+                            Button {
+                                model.start()
+                            } label: {
+                                Image(systemName: "arrowtriangle.right.circle")
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            //.padding(.top, 10)
+                            .font(Font.system(size: 50, weight: .ultraLight, design: .default))
+                            .transition(
+                                AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
+                            )
+                            //.offset(y: 40.0)
+                            // --- End button for starting the app
+
+                            Spacer()
+                            // ---- Buttons for adjusting revolution and speed
+                            HStack {
+                                VStack {
+                                    Text("REVS")
+                                        .font(
+                                            Font.system(
+                                                size: 10,
+                                                weight: .light,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .kerning(0.5)
+                                        .padding(.bottom, 2)
+                                    Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
+                                        .frame(width: 35, height: 32)
+                                        .background(Color.black)
+                                        .font(
+                                            Font.system(
+                                                size: 18,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .focusable(true, onFocusChange: { isFocused in
+                                            revsIsFocused = isFocused
+                                        })
+                                        .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 7, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                        .frame(width: 35, height: 32)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 7)
+                                                .stroke(revsIsFocused ? Color("SliderGreen") : Color.white, lineWidth: 1)
+                                        )
+                                }
+                                .padding(.trailing, 3)
+
+                                VStack {
+                                    Text("SPEED")
+                                        .font(
+                                            Font.system(
+                                                size: 10,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .kerning(0.5)
+                                        .padding(.bottom, 2)
+                                    Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
+                                        .frame(width: 35, height: 32)
+                                        .background(Color.black)
+                                        .font(
+                                            Font.system(
+                                                size: 18,
+                                                weight: .regular,
+                                                design: .default
+                                            ).monospacedDigit()
+                                        )
+                                        .focusable(true, onFocusChange: { isFocused in
+                                            speedIsFocused = isFocused
+                                        })
+                                        .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+                                        .frame(width: 35, height: 32)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 7)
+                                                .stroke(speedIsFocused ? Color("SliderGreen") : Color.white, lineWidth: 1)
+                                        )
+                                }
+                                .padding(.leading, 3)
+                            }
+                            .padding(.bottom, 2)
+                            // --- Ending with buttons for adjusting revs and speed
+                        }
+                    } //Finished!
+                    else {
                         ScrollView {
                             VStack(alignment: .center) {
                                 Image("success").resizable()
@@ -176,96 +271,6 @@ struct ContentView: View {
                                 Color(.black)
                                     .edgesIgnoringSafeArea(.all)
                             )
-                        }
-                    } else {
-                        VStack {
-                            // --- Buttons for starting the app
-                            Spacer()
-                            Button {
-                                model.start()
-                            } label: {
-                                Image(systemName: "arrowtriangle.right.circle")
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            //.padding(.top, 10)
-                            .font(Font.system(size: 50, weight: .ultraLight, design: .default))
-                            .transition(
-                                AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
-                            )
-                            //.offset(y: 40.0)
-                            // --- End button for starting the app
-
-                            Spacer()
-                            // ---- Buttons for adjusting revolution and speed
-                            HStack {
-                                VStack {
-                                    Text("REVS")
-                                        .font(
-                                            Font.system(
-                                                size: 10,
-                                                weight: .light,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
-                                        .kerning(0.5)
-                                        .padding(.bottom, 2)
-                                    Text("\(model.digitalScrollAmountForRevolutions, specifier: "%.0f")")
-                                        .frame(width: 35, height: 32)
-                                        .background(Color.black)
-                                        .font(
-                                            Font.system(
-                                                size: 18,
-                                                weight: .regular,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
-                                        .focusable(true, onFocusChange: { isFocused in
-                                            revsIsFocused = isFocused
-                                        })
-                                        .digitalCrownRotation($model.digitalScrollAmountForRevolutions, from: 7, through: 99, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-                                        .frame(width: 35, height: 32)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 7)
-                                                .stroke(revsIsFocused ? Color("SliderGreen") : Color.white, lineWidth: 1)
-                                        )
-                                }
-                                .padding(.trailing, 3)
-
-                                VStack {
-                                    Text("SPEED")
-                                        .font(
-                                            Font.system(
-                                                size: 10,
-                                                weight: .regular,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
-                                        .kerning(0.5)
-                                        .padding(.bottom, 2)
-                                    Text("\(model.digitalScrollAmountForSpeed, specifier: "%.0f")")
-                                        .frame(width: 35, height: 32)
-                                        .background(Color.black)
-                                        .font(
-                                            Font.system(
-                                                size: 18,
-                                                weight: .regular,
-                                                design: .default
-                                            ).monospacedDigit()
-                                        )
-                                        .focusable(true, onFocusChange: { isFocused in
-                                            speedIsFocused = isFocused
-                                        })
-                                        .digitalCrownRotation($model.digitalScrollAmountForSpeed, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
-                                        .frame(width: 35, height: 32)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 7)
-                                                .stroke(speedIsFocused ? Color("SliderGreen") : Color.white, lineWidth: 1)
-                                        )
-                                }
-                                .padding(.leading, 3)
-                            }
-                            .padding(.bottom, 2)
-                            // --- Ending with buttons for adjusting revs and speed
                         }
                     }
                 }
