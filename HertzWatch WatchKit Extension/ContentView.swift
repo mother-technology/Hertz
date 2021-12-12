@@ -64,7 +64,7 @@ struct ContentView: View {
                 // Ready to be started
                 if !model.isRunning {
                     //... and has yet not finished
-                    if !model.isFinished {
+                    if model.isFinished { //JENNY
                         VStack {
                             // --- Buttons for starting the app
                             Spacer()
@@ -74,12 +74,11 @@ struct ContentView: View {
                                 Image(systemName: "arrowtriangle.right.circle")
                             }
                             .buttonStyle(PlainButtonStyle())
-                            //.padding(.top, 10)
                             .font(Font.system(size: 50, weight: .ultraLight, design: .default))
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
-                            //.offset(y: 40.0)
+                            
                             // --- End button for starting the app
 
                             Spacer()
@@ -263,6 +262,7 @@ struct ContentView: View {
                                             )
                                     }
                                     .frame(width: 35, height: 32)
+                                    .background(Color.black)
                                     .padding(.top, 10)
                                 }
                             }
