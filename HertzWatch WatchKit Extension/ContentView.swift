@@ -64,7 +64,7 @@ struct ContentView: View {
                 // Ready to be started
                 if !model.isRunning {
                     //... and has yet not finished
-                    if model.isFinished { //JENNY
+                    if !model.isFinished { 
                         VStack {
                             // --- Buttons for starting the app
                             Spacer()
