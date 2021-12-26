@@ -60,11 +60,39 @@ struct ContentView: View {
                         .padding(7.2)
                         .shadow(color: .black, radius: 0.7, x: 0.7, y: 0.7)
                 }
+                if model.isRunning {
+                    VStack {
+                        Text("F: \(model.factor, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 10,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        Text("Heart: \(model.heartRate, specifier: "%.0f")")
+                            .font(
+                                Font.system(
+                                    size: 10,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        Text("Diff: \(model.diffAvgMinHeartRate, specifier: "%.1f")")
+                            .font(
+                                Font.system(
+                                    size: 10,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                    }
+                }
                 
                 // Ready to be started
                 if !model.isRunning {
                     //... and has yet not finished
-                    if !model.isFinished { 
+                    if !model.isFinished {
                         VStack {
                             // --- Buttons for starting the app
                             Spacer()
@@ -183,7 +211,8 @@ struct ContentView: View {
                                         .padding(.top, 3)
                                         .padding(.bottom, 3)
 
-                                    if model.beforeHeartRate > 0 && model.afterHeartRate > 0 {
+                                    if model.beforeHeartRate > 0 && model.afterHeartRate > 0 &&
+                                        model.beforeHeartRate > model.afterHeartRate {
                                         Text("Your heart rate")
                                             .font(
                                                 Font.system(
@@ -264,6 +293,7 @@ struct ContentView: View {
                                     .frame(width: 35, height: 32)
                                     .background(Color.black)
                                     .padding(.top, 10)
+                                    .padding(.bottom, 30)
                                 }
                             }
                             .frame(maxWidth: 110, maxHeight: .infinity)

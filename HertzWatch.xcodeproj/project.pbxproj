@@ -681,9 +681,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 185;
 				DEVELOPMENT_TEAM = 58262W9GL8;
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your HRV in Hertz.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRV tracked by Hertz on Apple Watch will be saved to HealthKit.";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -695,9 +697,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 185;
 				DEVELOPMENT_TEAM = 58262W9GL8;
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your HRV in Hertz.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRV tracked by Hertz on Apple Watch will be saved to HealthKit.";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz";
 				PRODUCT_NAME = "$(TARGET_NAME)";

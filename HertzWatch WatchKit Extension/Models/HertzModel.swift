@@ -54,42 +54,31 @@ enum CycleSegment: Hashable {
 public struct HertzModel {
     private(set) var absoluteStartTime: TimeInterval? = nil
     var elapsedTime: TimeInterval = 0
-
     var maxCycles: Int = 2
     var totalTicks: Int = 0
-    var degressPerTick: Double = 0
+    var degreesPerTick: Double = 0
     var factor: Double = 1
-    var crownFactor: Double = 1.0
-    var targetFactor: Double = 1
-    var factorIncrement: Double = 0.001
-    var diffAvgMinHeartRate: Double = 0.0
-    var isInsideBreatheOut: Bool = false
     var ticks: [Tick] = []
-    var averageHeartRateInOrHold: Double = 0.0
     var isFinished: Bool = false
     var beforeHeartRate: Int = 0
     var afterHeartRate: Int = 0
-
+    var heartRate: Double = 0
+    var diffAvgMinHeartRate: Double = 0.0
+    
+    private var initialFactor: Double = 1
+    private var isInsideBreatheOut: Bool = false
     private var heartRatesInOrHold: [Double] = []
     private var heartRatesOut: [Double] = []
     private var allHeartRates: [Double] = []
+    private var averageHeartRateInOrHold: Double = 0.0
     private var minHeartRateOut: Double = 0.0
     private var rollingAverageHeartRateNumber: Int = 3
-    var allDifferences: [Double] = []
-    var averageOfAllDifferences: Double = 0
-    var maxOfAllDifferences: Double = 0
-    var successImageIndex: Int = 1
-
-    private var initialFactor: Double = 1
-    private var initialFactorAfterSpeedChange: Double = 1
-
-    var heartRate: Double = 0
-
     private var digitalCrownForSpeed: Double = 0
     private var digitalCrownForRevolutions: Double = 0
+    private var parabelConstant:Double = 0
+    private var xStartOfBreathOut:Double = 0
+    private var lowestInitialFactor:Double = 0.55
 
-    var insideSpeedUpAngle: Bool = false
-    var insideSpeedDownAngle: Bool = false
     var cycleSegments: [CycleSegment] =
         [
             .breatheHold(1),
@@ -104,7 +93,7 @@ public struct HertzModel {
         }
 
         let s = elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))
-        return Angle.degrees(degressPerTick * s)
+        return Angle.degrees(degreesPerTick * s)
     }
     
     func avgOfArrayElementsFromStartToEnd(arr: [Double], start:Int, end: Int) -> Double {
@@ -118,6 +107,38 @@ public struct HertzModel {
         return sum/count
     }
     
+    // Calculated by using the general calculation of y = ax^2 + bx + c, and three known dots on the parabel
+    // Assuming that x=0 degrees gives top of the factor value, while x=40 degrees gives minimum value, and x=80 degrees (last red tick) gives same as 0 degrees
+    func calculateParabelConstant(y2:Double) -> Double {
+        
+        let x2:Double = degreesPerTick * 4/2 // Change 4 to cycleSegment(.breatheOut)?
+        let x3:Double = degreesPerTick * 4;
+        // A polynom can be rewritten from y=ax^2 + bx + c into its factor form, y = k(x - x1)(x - x3) where x1 and x3 have y = 0. In our case, this means that y = k(x - 0)(x - x3) => y = kx^2 - x3*kx
+        // We can then put in x2 (ex 40 degrees) and y2 (min point on parabel)
+        
+        let k:Double = y2 / (x2*x2-x2*x3)
+        
+        return k
+    }
+    
+    func calculateFactor(x:Double, y1:Double = 0) -> Double {
+        let x3:Double = degreesPerTick * 4; // Change 4 to cycleSegment(.breatheOut)?
+        // Once more using y = kx^2 - x3*kx, given k (x^2 - x3*x) where x is the degree moved since start in breatheout segment
+        let y:Double = parabelConstant * ( x * x - x3 * x)
+        return y;
+    }
+    
+    func calculateSpeedFactor() -> Double {
+        let speedFactor:Double = (digitalCrownForSpeed - 3) / 35
+        return speedFactor;
+    }
+    
+    func calculateHeartRateFactor() -> Double {
+        let heartRateFactor:Double = diffAvgMinHeartRate / 30
+        let limitedHeartRateFactor = min(heartRateFactor, 0.2)
+        return limitedHeartRateFactor;
+    }
+    
 
     let workOutManager: WorkoutManager = .shared
 
@@ -125,64 +146,50 @@ public struct HertzModel {
 
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
         
-        if !isFinished {
-            var currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
-            currentTickIndex = currentTickIndex < 0 ? 0 : currentTickIndex
-            let currentTick = ticks[currentTickIndex]
-
-            let currentTickSegment = currentTick.segment.toString()
-            if previousTickSegment != currentTickSegment && heartRate > 0 {
-                workOutManager.addInterval(for: heartRate, with: currentTickSegment)
-                previousTickSegment = currentTickSegment
-            }
-
-            let currentHalfRevolution = ceil(2 * elapsedTime / Double(totalTicks))
-
-            if currentHalfRevolution > digitalCrownForRevolutions * 2 {
-                workOutManager.endWorkout()
-                isFinished = true
-                stop()
-            }
-
-            if case .breatheOut = currentTick.segment {
-                if !isInsideBreatheOut {
-                    isInsideBreatheOut = true
-                    insideSpeedDownAngle = true
-                    targetFactor = initialFactorAfterSpeedChange - min(currentHalfRevolution / 55, 0.3) - (diffAvgMinHeartRate / 7)
-                    // print("targetFactor: \(targetFactor), currentHalfRevolution: \(currentHalfRevolution), diffAvgMinHeartRate: \(diffAvgMinHeartRate), digitalCrownForSpeed: \(digitalCrownForSpeed), initialFactorAfterSpeedChange: \(initialFactorAfterSpeedChange)")
-                    targetFactor = max(targetFactor, 0.5)
-                    targetFactor = min(targetFactor, 1.5)
-                    factor = initialFactorAfterSpeedChange
-                    factorIncrement = (initialFactorAfterSpeedChange - targetFactor) * withTimeInterval / (currentTick.segment.getSeconds() / 2)
-                }
-            } else {
-                targetFactor = initialFactorAfterSpeedChange
-                isInsideBreatheOut = false
-            }
-
-            if insideSpeedDownAngle {
-                if factor > targetFactor {
-                    let newFactor = factor - factorIncrement
-                    factor = max(newFactor, targetFactor)
-                } else {
-                    insideSpeedDownAngle = false
-                    insideSpeedUpAngle = true
-                    factor = targetFactor
-                }
-            } else if insideSpeedUpAngle {
-                if factor < initialFactorAfterSpeedChange {
-                    let newFactor = factor + factorIncrement
-                    factor = min(newFactor, initialFactorAfterSpeedChange)
-                } else {
-                    insideSpeedUpAngle = false
-                    targetFactor = initialFactorAfterSpeedChange
-                }
-            } else {
-                factor = targetFactor
-            }
-
-            elapsedTime += withTimeInterval * factor
+        // Skip if the clock is finished
+        if isFinished {
+            return
         }
+        
+        var currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
+        currentTickIndex = currentTickIndex < 0 ? 0 : currentTickIndex
+        let currentTick = ticks[currentTickIndex]
+
+        let currentTickSegment = currentTick.segment.toString()
+        if previousTickSegment != currentTickSegment && heartRate > 0 {
+            workOutManager.addInterval(for: heartRate, with: currentTickSegment)
+            previousTickSegment = currentTickSegment
+        }
+
+        // Have we reached the number of revolutions set in the start? If so, finish workout and return to start mode
+        let currentHalfRevolution = ceil(2 * elapsedTime / Double(totalTicks))
+
+        if currentHalfRevolution > digitalCrownForRevolutions * 2 {
+            workOutManager.endWorkout()
+            isFinished = true
+            stop()
+        }
+        // End revolution
+
+        if case .breatheOut = currentTick.segment {
+            if !isInsideBreatheOut { // in order to only do this once when breathe out segment starts
+                isInsideBreatheOut = true
+                let y2 = -lowestInitialFactor - calculateHeartRateFactor() // lowest speed point is -0.5 minus (at the most) 0.2 for heartRate
+                parabelConstant = calculateParabelConstant(y2: y2)
+                xStartOfBreathOut = currentAngle.degrees
+            }
+            
+            factor = initialFactor + calculateFactor(x: currentAngle.degrees - xStartOfBreathOut)
+            
+//            print("\(factor) \(currentAngle.degrees - xStartOfBreathOut)")
+            
+        } else {
+            isInsideBreatheOut = false
+            factor = initialFactor
+        }
+
+        elapsedTime += withTimeInterval * factor
+        
     }
 
     mutating func update(digitalCrownForSpeed withValue: Double) {
@@ -195,54 +202,49 @@ public struct HertzModel {
 
     mutating func update(heartRate withHeartRate: Double) {
         heartRate = withHeartRate
+        allHeartRates.append(heartRate)
         
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
 
-        if case .breatheHold = currentTick.segment {
-            heartRatesInOrHold.append(heartRate)
-            if heartRatesOut.count > 0 {
-                minHeartRateOut = heartRatesOut.min()!
-                heartRatesOut.removeAll()
-            }
-        } else if case .breatheIn = currentTick.segment {
-            heartRatesInOrHold.append(heartRate)
-            if heartRatesOut.count > 0 {
-                minHeartRateOut = heartRatesOut.min()!
-                heartRatesOut.removeAll()
-            }
-        } else if case .breatheOut = currentTick.segment {
+        if case .breatheOut = currentTick.segment {
             heartRatesOut.append(heartRate)
+            minHeartRateOut = heartRatesOut.min()!
+        } else {
+            heartRatesInOrHold.append(heartRate)
+            heartRatesOut.removeAll()
         }
 
+        // Too few heart rates recorded or no minHeartRateOut given, do nothing
         if heartRatesInOrHold.count <= rollingAverageHeartRateNumber || minHeartRateOut == 0.0 {
             return
         }
 
+        // heartRatesInOrHold will always keep only the last rollingAverageHeartRateNumber (ex 3) values
         heartRatesInOrHold.removeFirst()
 
         averageHeartRateInOrHold = heartRatesInOrHold.reduce(0.0, +) / Double(rollingAverageHeartRateNumber)
 
         if averageHeartRateInOrHold > minHeartRateOut {
             diffAvgMinHeartRate = averageHeartRateInOrHold - minHeartRateOut
-            allDifferences.append(diffAvgMinHeartRate)
         }
         
-        allHeartRates.append(heartRate)
     }
 
     mutating func start(at time: TimeInterval) {
         
         absoluteStartTime = time
+        initialFactor = initialFactor + calculateSpeedFactor() // initialFactorAfterSpeedChange = initialFactor + (digitalCrownForSpeed - 3) / 35
         elapsedTime = 0
-        initialFactorAfterSpeedChange = initialFactor + (digitalCrownForSpeed - 3) / 35
-        // TODO: Remove below?
+        
+        // Cleanup in case we have been training already
         heartRatesInOrHold.removeAll()
         heartRatesOut.removeAll()
         minHeartRateOut = 0.0
         diffAvgMinHeartRate = 0.0
-        // allHeartRates = []
-        // End TODO
+        allHeartRates = []
+        beforeHeartRate = 0
+        afterHeartRate = 0
     }
 
     mutating func returnToStart() {
@@ -267,7 +269,7 @@ public struct HertzModel {
         }
 
         totalTicks = Int(Double(maxCycles) * secondsForCycle)
-        degressPerTick = 360.0 / Double(totalTicks)
+        degreesPerTick = 360.0 / Double(totalTicks)
 
         var count = 0
         for _ in 1 ... Int(maxCycles) {
