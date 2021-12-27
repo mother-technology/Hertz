@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>WKSupportsAlwaysOnDisplay</key>
-	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -21,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
 	<key>NSExtension</key>
@@ -38,6 +36,8 @@
 	<string>Your workout related data will be used to display your HRV in Hertz.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>HRV tracked by Hertz on Apple Watch will be saved to HealthKit.</string>
+	<key>WKSupportsAlwaysOnDisplay</key>
+	<true/>
 	<key>WKWatchOnly</key>
 	<true/>
 </dict>
