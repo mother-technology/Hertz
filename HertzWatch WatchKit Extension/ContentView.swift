@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var revsIsFocused = false
     @State private var speedIsFocused = false
 
+    var date: Date
+
     var body: some View {
         ZStack {
             Group {
@@ -335,13 +337,31 @@ struct ContentView: View {
                 }
             }
         }
+        .onChange(of: self.date) { d in
+            model.update(date: d)
+        }
+    }
+}
+
+private struct MetricsTimelineSchedule: TimelineSchedule {
+    var startDate: Date
+
+    init(from startDate: Date) {
+        self.startDate = startDate
+    }
+
+    func entries(from startDate: Date, mode: TimelineScheduleMode) -> PeriodicTimelineSchedule.Entries {
+        PeriodicTimelineSchedule(from: self.startDate, by: 1.0 / 30.0)
+            .entries(from: startDate, mode: mode)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            TimelineView(MetricsTimelineSchedule(from: Date())) { context in
+                ContentView(date: context.date)
+            }
         }
     }
 }

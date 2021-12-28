@@ -91,18 +91,20 @@ class ContentViewModel: ObservableObject {
     }
 
     func stop() {
-        timer?.invalidate()
-        timer = nil
         hertzModel.stop()
         workOutManager.endWorkout()
     }
 
-    private var timer: Timer?
-    func start() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [unowned self] timer in
-            hertzModel.update(elapsedTime: timer.timeInterval)
+    func update(date: Date) {
+        guard let absoluteStartTime = hertzModel.absoluteStartTime else {
+            return
         }
-        
+
+        let currentElapsedTime = date.timeIntervalSinceReferenceDate - hertzModel.elapsedTime - absoluteStartTime
+        hertzModel.update(elapsedTime: currentElapsedTime)
+    }
+
+    func start() {
         hertzModel.start(at: Date().timeIntervalSinceReferenceDate)
 
         UserDefaults.standard.set(digitalScrollAmountForSpeed, forKey: "speed")
