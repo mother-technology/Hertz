@@ -93,14 +93,21 @@ class ContentViewModel: ObservableObject {
     func stop() {
         hertzModel.stop()
         workOutManager.endWorkout()
+        lastElapsedTime = 0
     }
 
+    var lastElapsedTime: TimeInterval = 0
     func update(date: Date) {
-        guard let absoluteStartTime = hertzModel.absoluteStartTime else {
+        if hertzModel.absoluteStartTime == nil {
             return
         }
-
-        let currentElapsedTime = date.timeIntervalSinceReferenceDate - hertzModel.elapsedTime - absoluteStartTime
+        
+        if lastElapsedTime == 0 {
+            lastElapsedTime = date.timeIntervalSinceReferenceDate
+        }
+        
+        let currentElapsedTime = date.timeIntervalSinceReferenceDate - lastElapsedTime
+        lastElapsedTime = date.timeIntervalSinceReferenceDate
         hertzModel.update(elapsedTime: currentElapsedTime)
     }
 

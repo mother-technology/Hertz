@@ -23,7 +23,7 @@ private struct MetricsTimelineSchedule: TimelineSchedule {
     }
 
     func entries(from startDate: Date, mode: TimelineScheduleMode) -> PeriodicTimelineSchedule.Entries {
-        PeriodicTimelineSchedule(from: self.startDate, by: 1.0 / 30.0)
+        PeriodicTimelineSchedule(from: self.startDate, by: 1.0 / 60.0)
             .entries(from: startDate, mode: mode)
     }
 }
