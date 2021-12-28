@@ -77,7 +77,7 @@ public struct HertzModel {
     private var digitalCrownForRevolutions: Double = 0
     private var parabelConstant:Double = 0
     private var xStartOfBreathOut:Double = 0
-    private var lowestInitialFactor:Double = 0.55
+    private var lowestInitialFactor:Double = 0.75
 
     var cycleSegments: [CycleSegment] =
         [
@@ -129,14 +129,13 @@ public struct HertzModel {
     }
     
     func calculateSpeedFactor() -> Double {
-        let speedFactor:Double = (digitalCrownForSpeed - 3) / 35
+        let speedFactor:Double = (digitalCrownForSpeed - 3) / 10
         return speedFactor;
     }
     
     func calculateHeartRateFactor() -> Double {
-        let heartRateFactor:Double = diffAvgMinHeartRate / 30
-        let limitedHeartRateFactor = min(heartRateFactor, 0.2)
-        return limitedHeartRateFactor;
+        let heartRateFactor:Double = diffAvgMinHeartRate / 10
+        return heartRateFactor;
     }
     
 
@@ -179,7 +178,8 @@ public struct HertzModel {
                 xStartOfBreathOut = currentAngle.degrees
             }
             
-            factor = initialFactor + calculateFactor(x: currentAngle.degrees - xStartOfBreathOut)
+            let newFactor = calculateFactor(x: currentAngle.degrees - xStartOfBreathOut)
+            factor = max(initialFactor + newFactor, 0.005)
             
 //            print("\(factor) \(currentAngle.degrees - xStartOfBreathOut)")
             
