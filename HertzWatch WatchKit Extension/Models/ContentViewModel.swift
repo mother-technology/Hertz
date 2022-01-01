@@ -4,16 +4,18 @@ import SwiftUI
 
 class ContentViewModel: ObservableObject {
     @Published private var hertzModel: HertzModel
-    @Published var digitalScrollAmountForSpeed: Double = UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
-    @Published var digitalScrollAmountForRevolutions: Double =
-        UserDefaults.standard.object(forKey: "revs") as? Double ?? 9.0
+    @Published var digitalScrollAmountForSpeed: Double
+    @Published var digitalScrollAmountForRevolutions: Double
 
     var cancellables = Set<AnyCancellable>()
 
     let workOutManager: WorkoutManager = .shared
 
-    init(hertzModel: HertzModel) {
-        self.hertzModel = hertzModel
+    init() {
+        digitalScrollAmountForSpeed = UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
+        digitalScrollAmountForRevolutions = UserDefaults.standard.object(forKey: "revs") as? Double ?? 9.0
+        
+        self.hertzModel = HertzModel()
         self.hertzModel.generateTicks()
 
         workOutManager

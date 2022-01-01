@@ -8,8 +8,8 @@ struct ContentView: View {
 
     let onBoardingModel = OnBoardingData.build()
 
-    @StateObject var model = ContentViewModel(hertzModel: HertzModel())
-    @StateObject var workoutManager: WorkoutManager = .shared
+    @StateObject var model = ContentViewModel()
+    @ObservedObject var workoutManager: WorkoutManager = .shared
 
     @State private var instructionsIsOpen: Bool = false
 
