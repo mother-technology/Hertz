@@ -12,7 +12,7 @@ struct OnBoardingCardView: View {
                     .resizable()
                     .frame(width: card.width, height: card.height)
                     .scaledToFill()
-                    .padding(.bottom, 7)
+                    .padding(.bottom, 10)
                 Text(card.text)
                     .font(.system(size: 15, weight: .light))
                 Spacer()
@@ -26,7 +26,7 @@ struct OnBoardingCardView: View {
                     isShowing = false
                 }
             }
-            .padding(.top, 1)
+            .padding(.top, 5)
         }
     }
 }

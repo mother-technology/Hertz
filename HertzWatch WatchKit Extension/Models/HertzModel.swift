@@ -77,7 +77,7 @@ public struct HertzModel {
     private var digitalCrownForRevolutions: Double = 0
     private var parabelConstant:Double = 0
     private var xStartOfBreathOut:Double = 0
-    private var lowestInitialFactor:Double = 0.75
+    private var lowestInitialFactor:Double = 0.25
 
     var cycleSegments: [CycleSegment] =
         [

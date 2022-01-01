@@ -106,6 +106,7 @@ struct ContentView: View {
                             .transition(
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
+                            .padding(.top, 20)
                             
                             // --- End button for starting the app
 
