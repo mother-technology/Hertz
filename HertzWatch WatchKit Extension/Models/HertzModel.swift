@@ -2,21 +2,6 @@ import Combine
 import Foundation
 import SwiftUI
 
-func circularArray<Element>(array: [Element], index: Int) -> Element {
-    if index < 0 {
-        let i = abs(index) % array.count
-        if i == 0 {
-            return array[i]
-        }
-
-        return array[array.count - i]
-    } else if index >= array.count {
-        return array[index % array.count]
-    } else {
-        return array[index]
-    }
-}
-
 struct Tick: Hashable {
     let angle: Angle
     let segment: CycleSegment

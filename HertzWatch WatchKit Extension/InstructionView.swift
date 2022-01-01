@@ -203,16 +203,6 @@ struct InstructionView: View {
                             ).monospacedDigit().smallCaps()
                         )
                         .frame(maxWidth: .infinity, alignment: .center)
-                    Text("consciousnesscraft.com")
-                        .font(
-                            Font.system(
-                                size: 14,
-                                weight: .ultraLight,
-                                design: .default
-                            )
-                            .monospacedDigit()
-                        )
-                        .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .padding(.bottom, 5)
                 .background(
