@@ -58,34 +58,34 @@ struct ContentView: View {
                         .padding(7.2)
                         .shadow(color: .black, radius: 0.7, x: 0.7, y: 0.7)
                 }
-//                if model.isRunning {
-//                    VStack {
-//                        Text("F: \(model.factor, specifier: "%.3f")")
-//                            .font(
-//                                Font.system(
-//                                    size: 10,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("Heart: \(model.heartRate, specifier: "%.0f")")
-//                            .font(
-//                                Font.system(
-//                                    size: 10,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                        Text("Diff: \(model.diffAvgMinHeartRate, specifier: "%.1f")")
-//                            .font(
-//                                Font.system(
-//                                    size: 10,
-//                                    weight: .regular,
-//                                    design: .default
-//                                ).monospacedDigit()
-//                            )
-//                    }
-//                }
+                if model.isRunning {
+                    VStack {
+                        Text("F: \(model.factor, specifier: "%.3f")")
+                            .font(
+                                Font.system(
+                                    size: 14,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        Text("Heart: \(model.heartRate, specifier: "%.0f")")
+                            .font(
+                                Font.system(
+                                    size: 10,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                        Text("Diff: \(model.diffAvgMinHeartRate, specifier: "%.1f")")
+                            .font(
+                                Font.system(
+                                    size: 10,
+                                    weight: .regular,
+                                    design: .default
+                                ).monospacedDigit()
+                            )
+                    }
+                }
                 
                 // Ready to be started
                 if !model.isRunning {

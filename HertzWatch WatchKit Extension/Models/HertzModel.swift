@@ -164,7 +164,7 @@ public struct HertzModel {
             }
             
             let newFactor = calculateFactor(x: currentAngle.degrees - xStartOfBreathOut)
-            factor = max(initialFactor + newFactor, 0.005)
+            factor = max(initialFactor + newFactor, 0.3)
             
 //            print("\(factor) \(currentAngle.degrees - xStartOfBreathOut)")
             
