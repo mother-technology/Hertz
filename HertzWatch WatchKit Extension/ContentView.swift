@@ -198,7 +198,7 @@ struct ContentView: View {
                                             ).monospacedDigit()
                                         )
                                         .padding(.top, 15)
-                                    Text("Keep up the training and you will notice a difference in your relaxation")
+                                    Text("Keep up the practice!")
                                         .font(
                                             Font.system(
                                                 size: 9,
