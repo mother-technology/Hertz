@@ -192,7 +192,7 @@ final class WorkoutManager: NSObject, ObservableObject {
                 // TODO: - Error handling, Mikael
                 builder?.endCollection(withEnd: Date()) { [self] _, _ in
                     // TODO: - Error handling, Mikael
-                    builder?.finishWorkout {_,_ in
+                    builder?.finishWorkout { _, _ in
                         // TODO: - Error handling, Mikael
                     }
                 }

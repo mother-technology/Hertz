@@ -86,10 +86,10 @@ struct ContentView: View {
 //                            )
 //                    }
 //                }
-                
+
                 // Ready to be started
                 if !model.isRunning {
-                    //... and has yet not finished
+                    // ... and has yet not finished
                     if !model.isFinished {
                         VStack {
                             // --- Buttons for starting the app
@@ -105,7 +105,7 @@ struct ContentView: View {
                                 AnyTransition.opacity.animation(.easeInOut(duration: 1.0))
                             )
                             .padding(.top, 20)
-                            
+
                             // --- End button for starting the app
 
                             Spacer()
@@ -180,7 +180,7 @@ struct ContentView: View {
                             .padding(.bottom, 2)
                             // --- Ending with buttons for adjusting revs and speed
                         }
-                    } //Finished!
+                    } // Finished!
                     else {
                         ScrollView {
                             VStack(alignment: .center) {
@@ -211,7 +211,8 @@ struct ContentView: View {
                                         .padding(.bottom, 3)
 
                                     if model.beforeHeartRate > 0 && model.afterHeartRate > 0 &&
-                                        model.beforeHeartRate > model.afterHeartRate {
+                                        model.beforeHeartRate > model.afterHeartRate
+                                    {
                                         Text("Your heart rate")
                                             .font(
                                                 Font.system(

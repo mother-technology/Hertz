@@ -141,59 +141,59 @@ struct InstructionView: View {
                         )
                         .frame(maxWidth: .infinity, alignment: .center)
                     Text("Best to practise straight after waking, directly after exercise, and just before sleep.")
-                    .font(
-                        Font.system(
-                            size: 14,
-                            weight: .ultraLight,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
                     Text("Regular short sessions beat sporadic long ones.")
-                    .font(
-                        Font.system(
-                            size: 14,
-                            weight: .ultraLight,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
                     Text("Practise in a calm, comfortable environment without distractions.")
-                    .font(
-                        Font.system(
-                            size: 14,
-                            weight: .ultraLight,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
                     Text("If you feel dizzy, take a moment to rest after pracise.")
-                    .font(
-                        Font.system(
-                            size: 14,
-                            weight: .ultraLight,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
                     Text("Try to 'will' the dot to slow down as you breath out.")
-                    .font(
-                        Font.system(
-                            size: 14,
-                            weight: .ultraLight,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
                     Text("As you recognise the sensation of activating your vagus, practise its activation also without the app.")
-                    .font(
-                        Font.system(
-                            size: 14,
-                            weight: .ultraLight,
-                            design: .default
+                        .font(
+                            Font.system(
+                                size: 14,
+                                weight: .ultraLight,
+                                design: .default
+                            )
+                            .monospacedDigit()
                         )
-                        .monospacedDigit()
-                    )
                     Text("Good luck!")
                         .font(
                             Font.system(

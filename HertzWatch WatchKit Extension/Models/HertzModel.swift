@@ -49,7 +49,7 @@ public struct HertzModel {
     var afterHeartRate: Int = 0
     var heartRate: Double = 0
     var diffAvgMinHeartRate: Double = 0.0
-    
+
     private var initialFactor: Double = 1
     private var isInsideBreatheOut: Bool = false
     private var heartRatesInOrHold: [Double] = []
@@ -60,9 +60,9 @@ public struct HertzModel {
     private var rollingAverageHeartRateNumber: Int = 3
     private var digitalCrownForSpeed: Double = 0
     private var digitalCrownForRevolutions: Double = 0
-    private var parabelConstant:Double = 0
-    private var xStartOfBreathOut:Double = 0
-    private var lowestInitialFactor:Double = 0.25
+    private var parabelConstant: Double = 0
+    private var xStartOfBreathOut: Double = 0
+    private var lowestInitialFactor: Double = 0.25
 
     var cycleSegments: [CycleSegment] =
         [
@@ -80,61 +80,58 @@ public struct HertzModel {
         let s = elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))
         return Angle.degrees(degreesPerTick * s)
     }
-    
-    func avgOfArrayElementsFromStartToEnd(arr: [Double], start:Int, end: Int) -> Double {
-        var sum: Double = 0.0
-        let count: Double = Double(1 + end - start)
-        
-        for n in start...end {
+
+    func avgOfArrayElementsFromStartToEnd(arr: [Double], start: Int, end: Int) -> Double {
+        var sum = 0.0
+        let count = Double(1 + end - start)
+
+        for n in start ... end {
             sum = arr[n] + sum
         }
-        
-        return sum/count
+
+        return sum / count
     }
-    
+
     // Calculated by using the general calculation of y = ax^2 + bx + c, and three known dots on the parabel
     // Assuming that x=0 degrees gives top of the factor value, while x=40 degrees gives minimum value, and x=80 degrees (last red tick) gives same as 0 degrees
-    func calculateParabelConstant(y2:Double) -> Double {
-        
-        let x2:Double = degreesPerTick * 4/2 // Change 4 to cycleSegment(.breatheOut)?
-        let x3:Double = degreesPerTick * 4;
+    func calculateParabelConstant(y2: Double) -> Double {
+        let x2: Double = degreesPerTick * 4 / 2 // Change 4 to cycleSegment(.breatheOut)?
+        let x3: Double = degreesPerTick * 4
         // A polynom can be rewritten from y=ax^2 + bx + c into its factor form, y = k(x - x1)(x - x3) where x1 and x3 have y = 0. In our case, this means that y = k(x - 0)(x - x3) => y = kx^2 - x3*kx
         // We can then put in x2 (ex 40 degrees) and y2 (min point on parabel)
-        
-        let k:Double = y2 / (x2*x2-x2*x3)
-        
+
+        let k: Double = y2 / (x2 * x2 - x2 * x3)
+
         return k
     }
-    
-    func calculateFactor(x:Double, y1:Double = 0) -> Double {
-        let x3:Double = degreesPerTick * 4; // Change 4 to cycleSegment(.breatheOut)?
+
+    func calculateFactor(x: Double, y1 _: Double = 0) -> Double {
+        let x3: Double = degreesPerTick * 4 // Change 4 to cycleSegment(.breatheOut)?
         // Once more using y = kx^2 - x3*kx, given k (x^2 - x3*x) where x is the degree moved since start in breatheout segment
-        let y:Double = parabelConstant * ( x * x - x3 * x)
-        return y;
+        let y: Double = parabelConstant * (x * x - x3 * x)
+        return y
     }
-    
+
     func calculateSpeedFactor() -> Double {
-        let speedFactor:Double = (digitalCrownForSpeed - 3) / 10
-        return speedFactor;
+        let speedFactor: Double = (digitalCrownForSpeed - 3) / 10
+        return speedFactor
     }
-    
+
     func calculateHeartRateFactor() -> Double {
-        let heartRateFactor:Double = diffAvgMinHeartRate / 10
-        return heartRateFactor;
+        let heartRateFactor: Double = diffAvgMinHeartRate / 10
+        return heartRateFactor
     }
-    
 
     let workOutManager: WorkoutManager = .shared
 
     private var previousTickSegment: String?
 
     mutating func update(elapsedTime withTimeInterval: TimeInterval) {
-        
         // Skip if the clock is finished
         if isFinished {
             return
         }
-        
+
         var currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         currentTickIndex = currentTickIndex < 0 ? 0 : currentTickIndex
         let currentTick = ticks[currentTickIndex]
@@ -162,19 +159,18 @@ public struct HertzModel {
                 parabelConstant = calculateParabelConstant(y2: y2)
                 xStartOfBreathOut = currentAngle.degrees
             }
-            
+
             let newFactor = calculateFactor(x: currentAngle.degrees - xStartOfBreathOut)
             factor = max(initialFactor + newFactor, 0.3)
-            
+
 //            print("\(factor) \(currentAngle.degrees - xStartOfBreathOut)")
-            
+
         } else {
             isInsideBreatheOut = false
             factor = initialFactor
         }
 
         elapsedTime += withTimeInterval * factor
-        
     }
 
     mutating func update(digitalCrownForSpeed withValue: Double) {
@@ -188,7 +184,7 @@ public struct HertzModel {
     mutating func update(heartRate withHeartRate: Double) {
         heartRate = withHeartRate
         allHeartRates.append(heartRate)
-        
+
         let currentTickIndex = Int(floor(elapsedTime.truncatingRemainder(dividingBy: Double(totalTicks))))
         let currentTick = ticks[currentTickIndex]
 
@@ -213,15 +209,13 @@ public struct HertzModel {
         if averageHeartRateInOrHold > minHeartRateOut {
             diffAvgMinHeartRate = averageHeartRateInOrHold - minHeartRateOut
         }
-        
     }
 
     mutating func start(at time: TimeInterval) {
-        
         absoluteStartTime = time
         initialFactor = initialFactor + calculateSpeedFactor() // initialFactorAfterSpeedChange = initialFactor + (digitalCrownForSpeed - 3) / 35
         elapsedTime = 0
-        
+
         // Cleanup in case we have been training already
         heartRatesInOrHold.removeAll()
         heartRatesOut.removeAll()
@@ -239,16 +233,15 @@ public struct HertzModel {
     mutating func stop() {
         absoluteStartTime = nil
         elapsedTime = 0
-        
-        //Calculate before and after heart rate for result screen
-        if (allHeartRates.count >= 10) {
-            beforeHeartRate = Int(round(avgOfArrayElementsFromStartToEnd(arr:allHeartRates, start:0, end:5)))
-            afterHeartRate = Int(round(avgOfArrayElementsFromStartToEnd(arr:allHeartRates, start:allHeartRates.count - 6, end:allHeartRates.count - 1)))
+
+        // Calculate before and after heart rate for result screen
+        if allHeartRates.count >= 10 {
+            beforeHeartRate = Int(round(avgOfArrayElementsFromStartToEnd(arr: allHeartRates, start: 0, end: 5)))
+            afterHeartRate = Int(round(avgOfArrayElementsFromStartToEnd(arr: allHeartRates, start: allHeartRates.count - 6, end: allHeartRates.count - 1)))
         }
     }
 
     mutating func generateTicks() {
-        
         let secondsForCycle = cycleSegments.reduce(0) { result, cycleSegment -> Double in
             result + cycleSegment.getSeconds()
         }

@@ -10,15 +10,15 @@ class ContentViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable>()
 
     let workOutManager: WorkoutManager = .shared
-    
+
     private var timer: Timer?
 
     init() {
         digitalScrollAmountForSpeed = UserDefaults.standard.object(forKey: "speed") as? Double ?? 3
         digitalScrollAmountForRevolutions = UserDefaults.standard.object(forKey: "revs") as? Double ?? 9.0
-        
-        self.hertzModel = HertzModel()
-        self.hertzModel.generateTicks()
+
+        hertzModel = HertzModel()
+        hertzModel.generateTicks()
 
         workOutManager
             .publisher
@@ -80,11 +80,11 @@ class ContentViewModel: ObservableObject {
     var diffAvgMinHeartRate: Double {
         hertzModel.diffAvgMinHeartRate
     }
-    
+
     var beforeHeartRate: Int {
         hertzModel.beforeHeartRate
     }
-    
+
     var afterHeartRate: Int {
         hertzModel.afterHeartRate
     }

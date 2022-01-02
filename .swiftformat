@@ -1,0 +1,4 @@
+--header strip
+--indentcase false
+--disable blankLinesAroundMark,andOperator
+--ifdef no-indent
