@@ -599,7 +599,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -626,7 +626,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -648,7 +648,7 @@
 				DEVELOPMENT_TEAM = 58262W9GL8;
 				IBSC_MODULE = HertzWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "HertzWatch WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -670,7 +670,7 @@
 				DEVELOPMENT_TEAM = 58262W9GL8;
 				IBSC_MODULE = HertzWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "HertzWatch WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -690,7 +690,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your HRV in Hertz.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRV tracked by Hertz on Apple Watch will be saved to HealthKit.";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -706,7 +706,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your HRV in Hertz.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRV tracked by Hertz on Apple Watch will be saved to HealthKit.";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mother-technology.Hertz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
